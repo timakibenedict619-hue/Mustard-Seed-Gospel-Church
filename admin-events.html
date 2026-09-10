@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Events — Mustard Seed Gospel Church</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: "Inter", sans-serif; }
+    .sidebar { transition: transform .25s ease; }
+    @media (max-width: 767px) {
+      .sidebar.closed { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-900">
+  <div class="min-h-screen flex">
+    <div id="overlay" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+
+    <aside id="sidebar"
+      class="sidebar closed md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 w-72 bg-slate-950 text-white flex flex-col">
+
+      <div class="px-6 py-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-white text-slate-950 flex items-center justify-center font-extrabold text-lg">MSGC</div>
+          <div>
+            <h1 class="font-bold text-sm">Mustard Seed</h1>
+            <p class="text-xs text-slate-400">Gospel Church</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="flex-1 px-4 py-5 space-y-1 overflow-y-auto">
+        <p class="px-3 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">Main</p>
+
+        <a href="admin-dashboard.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>▣</span><span>Dashboard</span>
+        </a>
+
+        <a href="admin-events.html" class="flex items-center gap-3 px-3 py-3 rounded-xl bg-white/10 text-white font-semibold">
+          <span>◫</span><span>Events</span>
+        </a>
+
+        <a href="admin-sermons.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>▶</span><span>Sermons</span>
+        </a>
+
+        <a href="admin-live.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>●</span><span>Live</span>
+        </a>
+
+        <p class="px-3 mt-7 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">Management</p>
+
+        <a href="admin-prayer-requests.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>♡</span><span>Prayer Requests</span>
+        </a>
+
+        <a href="admin-settings.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>⚙</span><span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="p-4 border-t border-white/10">
+        <a href="index.html" class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+          <span>↗</span><span>View Website</span>
+        </a>
+        <button id="logoutBtn" type="button" class="w-full mt-1 flex items-center gap-3 px-3 py-3 rounded-xl text-red-300 hover:bg-red-500/10 transition text-left">
+          <span>⇥</span><span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <main class="flex-1 min-w-0">
+      <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
+        <div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <button id="menuBtn" type="button" class="md:hidden w-10 h-10 rounded-xl border border-slate-200 hover:bg-slate-50">☰</button>
+            <div>
+              <p class="text-xs text-slate-500">Administration</p>
+              <h2 class="text-lg sm:text-xl font-bold">Events</h2>
+            </div>
+          </div>
+          <div class="text-right min-w-0">
+            <p id="adminEmail" class="text-sm font-semibold truncate max-w-[180px] sm:max-w-xs">Loading...</p>
+            <p class="text-xs text-slate-500">Administrator</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7">
+          <div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Manage Events</h3>
+            <p class="mt-2 text-slate-500">Create, edit, publish and remove events shown on the church website.</p>
+          </div>
+          <button id="newEventBtn" type="button"
+            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800 transition">
+            <span>+</span> Add Event
+          </button>
+        </div>
+
+        <div id="message" class="hidden mb-5 rounded-xl px-4 py-3 text-sm font-medium"></div>
+
+        <div id="formPanel" class="hidden bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 mb-6">
+          <div class="flex items-center justify-between gap-3 mb-5">
+            <div>
+              <h4 id="formTitle" class="text-lg font-bold">Add Event</h4>
+              <p class="text-sm text-slate-500 mt-1">Firestore collection: <b>events</b></p>
+            </div>
+            <button id="cancelBtn" type="button" class="px-3 py-2 rounded-lg text-slate-500 hover:bg-slate-100">✕</button>
+          </div>
+
+          <form id="eventForm" class="space-y-5">
+            <input type="hidden" id="eventId">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div>
+                <label for="title" class="block text-sm font-semibold mb-2">Event Title *</label>
+                <input id="title" required type="text" placeholder="Amen 2026"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+              </div>
+
+              <div>
+                <label for="date" class="block text-sm font-semibold mb-2">Date / Date Label *</label>
+                <input id="date" required type="text" placeholder="SEP 25-27"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+              </div>
+
+              <div>
+                <label for="tag" class="block text-sm font-semibold mb-2">Tag</label>
+                <input id="tag" type="text" placeholder="Annual"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+              </div>
+
+              <div>
+                <label for="time" class="block text-sm font-semibold mb-2">Time</label>
+                <input id="time" type="text" placeholder="5:00 PM"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="location" class="block text-sm font-semibold mb-2">Location</label>
+                <input id="location" type="text" placeholder="Main Auditorium"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="image" class="block text-sm font-semibold mb-2">Image Path *</label>
+                <input id="image" required type="text" placeholder="IMG-20260805-WA0001(11).jpg"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400">
+                <p class="text-xs text-slate-500 mt-2">Use the path exactly as it exists in your website folder. No Firebase Storage upload is used.</p>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="description" class="block text-sm font-semibold mb-2">Description *</label>
+                <textarea id="description" required rows="4" placeholder="Describe the event..."
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-400 resize-y"></textarea>
+              </div>
+
+              <div class="md:col-span-2 flex items-center gap-3">
+                <input id="published" type="checkbox" checked class="w-5 h-5">
+                <label for="published" class="text-sm font-semibold">Published on website</label>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 sm:justify-end">
+              <button id="cancelBtn2" type="button" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold hover:bg-slate-50">Cancel</button>
+              <button id="saveBtn" type="submit" class="px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800">
+                Save Event
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+          <div class="px-5 sm:px-6 py-5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h4 class="font-bold text-lg">All Events</h4>
+              <p id="eventCountLabel" class="text-sm text-slate-500 mt-1">Loading...</p>
+            </div>
+            <button id="refreshBtn" type="button" class="px-4 py-2 rounded-lg border border-slate-300 text-sm font-semibold hover:bg-slate-50">Refresh</button>
+          </div>
+
+          <div id="eventsList" class="divide-y divide-slate-200">
+            <div class="p-8 text-center text-slate-500">Loading events...</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+      collection,
+      doc,
+      getDoc,
+      getDocs,
+      addDoc,
+      setDoc,
+      deleteDoc,
+      serverTimestamp,
+      query,
+      orderBy
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const formPanel = document.getElementById("formPanel");
+    const eventForm = document.getElementById("eventForm");
+    const newEventBtn = document.getElementById("newEventBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const cancelBtn2 = document.getElementById("cancelBtn2");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const eventsList = document.getElementById("eventsList");
+    const message = document.getElementById("message");
+
+    let currentUser = null;
+
+    function openSidebar() {
+      sidebar.classList.remove("closed");
+      overlay.classList.remove("hidden");
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add("closed");
+      overlay.classList.add("hidden");
+    }
+
+    menuBtn.addEventListener("click", openSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    document.querySelectorAll("#sidebar a").forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 768) closeSidebar();
+      });
+    });
+
+    logoutBtn.addEventListener("click", async () => {
+      await signOut(auth);
+      window.location.href = "admin.login.html";
+    });
+
+    function showMessage(text, type = "success") {
+      message.textContent = text;
+      message.className = "mb-5 rounded-xl px-4 py-3 text-sm font-medium " +
+        (type === "error"
+          ? "bg-red-50 text-red-700 border border-red-200"
+          : "bg-green-50 text-green-700 border border-green-200");
+      message.classList.remove("hidden");
+      setTimeout(() => message.classList.add("hidden"), 5000);
+    }
+
+    function resetForm() {
+      eventForm.reset();
+      document.getElementById("eventId").value = "";
+      document.getElementById("published").checked = true;
+      document.getElementById("formTitle").textContent = "Add Event";
+      document.getElementById("saveBtn").textContent = "Save Event";
+    }
+
+    function openForm(eventData = null) {
+      formPanel.classList.remove("hidden");
+
+      if (!eventData) {
+        resetForm();
+      } else {
+        document.getElementById("formTitle").textContent = "Edit Event";
+        document.getElementById("saveBtn").textContent = "Update Event";
+        document.getElementById("eventId").value = eventData.id;
+        document.getElementById("title").value = eventData.title || "";
+        document.getElementById("date").value = eventData.date || "";
+        document.getElementById("tag").value = eventData.tag || "";
+        document.getElementById("time").value = eventData.time || "";
+        document.getElementById("location").value = eventData.location || "";
+        document.getElementById("image").value = eventData.img || eventData.image || "";
+        document.getElementById("description").value = eventData.desc || eventData.description || "";
+        document.getElementById("published").checked = eventData.published !== false;
+      }
+
+      formPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function closeForm() {
+      formPanel.classList.add("hidden");
+      resetForm();
+    }
+
+    newEventBtn.addEventListener("click", () => openForm());
+    cancelBtn.addEventListener("click", closeForm);
+    cancelBtn2.addEventListener("click", closeForm);
+    refreshBtn.addEventListener("click", loadEvents);
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function renderEvents(items) {
+      document.getElementById("eventCountLabel").textContent =
+        `${items.length} event${items.length === 1 ? "" : "s"}`;
+
+      if (!items.length) {
+        eventsList.innerHTML = `
+          <div class="p-10 text-center">
+            <div class="text-4xl mb-3">◫</div>
+            <p class="font-semibold">No events yet</p>
+            <p class="text-sm text-slate-500 mt-1">Click "Add Event" to create your first event.</p>
+          </div>
+        `;
+        return;
+      }
+
+      eventsList.innerHTML = items.map(event => {
+        const image = event.img || event.image || "";
+        const title = event.title || "Untitled Event";
+        const description = event.desc || event.description || "";
+        const date = event.date || "";
+        const tag = event.tag || "";
+        const location = event.location || "Main Auditorium";
+        const time = event.time || "5:00 PM";
+        const published = event.published !== false;
+
+        return `
+          <div class="p-5 sm:p-6">
+            <div class="flex flex-col lg:flex-row gap-5">
+              <div class="w-full lg:w-56 h-40 rounded-xl bg-slate-100 overflow-hidden shrink-0">
+                ${image
+                  ? `<img src="${escapeHtml(image)}" alt="${escapeHtml(title)}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;h-full flex items-center justify-center text-slate-400 text-sm&quot;>Image not found</div>';">`
+                  : `<div class="h-full flex items-center justify-center text-slate-400 text-sm">No image path</div>`
+                }
+              </div>
+
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-2">
+                  ${tag ? `<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">${escapeHtml(tag)}</span>` : ""}
+                  <span class="px-2.5 py-1 rounded-full ${published ? "bg-green-50 text-green-700" : "bg-amber-50 text-amber-700"} text-xs font-bold">
+                    ${published ? "Published" : "Draft"}
+                  </span>
+                </div>
+
+                <h5 class="mt-3 text-xl font-bold">${escapeHtml(title)}</h5>
+                <p class="mt-2 text-sm text-slate-500 line-clamp-3">${escapeHtml(description)}</p>
+
+                <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-500">
+                  <span>📅 ${escapeHtml(date)}</span>
+                  <span>📍 ${escapeHtml(location)}</span>
+                  <span>⏰ ${escapeHtml(time)}</span>
+                </div>
+
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <button data-action="edit" data-id="${escapeHtml(event.id)}"
+                    class="px-4 py-2 rounded-lg border border-slate-300 text-sm font-semibold hover:bg-slate-50">
+                    Edit
+                  </button>
+                  <button data-action="delete" data-id="${escapeHtml(event.id)}"
+                    class="px-4 py-2 rounded-lg border border-red-200 text-red-600 text-sm font-semibold hover:bg-red-50">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      eventsList.querySelectorAll("[data-action='edit']").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const event = items.find(item => item.id === btn.dataset.id);
+          if (event) openForm(event);
+        });
+      });
+
+      eventsList.querySelectorAll("[data-action='delete']").forEach(btn => {
+        btn.addEventListener("click", () => deleteEvent(btn.dataset.id));
+      });
+    }
+
+    async function loadEvents() {
+      eventsList.innerHTML = `<div class="p-8 text-center text-slate-500">Loading events...</div>`;
+
+      try {
+        const eventsQuery = query(
+          collection(db, "events"),
+          orderBy("createdAt", "desc")
+        );
+
+        const snapshot = await getDocs(eventsQuery);
+        const items = snapshot.docs.map(item => ({
+          id: item.id,
+          ...item.data()
+        }));
+
+        renderEvents(items);
+      } catch (error) {
+        console.error("Load events error:", error);
+
+        try {
+          const snapshot = await getDocs(collection(db, "events"));
+          const items = snapshot.docs.map(item => ({
+            id: item.id,
+            ...item.data()
+          }));
+          renderEvents(items);
+        } catch (fallbackError) {
+          console.error("Fallback load error:", fallbackError);
+          eventsList.innerHTML = `
+            <div class="p-8 text-center text-red-600">
+              Unable to load events. Check your Firestore rules and internet connection.
+            </div>
+          `;
+          document.getElementById("eventCountLabel").textContent = "Unable to load";
+        }
+      }
+    }
+
+    async function deleteEvent(id) {
+      const confirmed = confirm("Are you sure you want to delete this event?");
+      if (!confirmed) return;
+
+      try {
+        await deleteDoc(doc(db, "events", id));
+        showMessage("Event deleted successfully.");
+        closeForm();
+        await loadEvents();
+      } catch (error) {
+        console.error("Delete event error:", error);
+        showMessage("Unable to delete the event. Check your permissions.", "error");
+      }
+    }
+
+    eventForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      if (!currentUser) {
+        showMessage("You are not authenticated as an administrator.", "error");
+        return;
+      }
+
+      const eventId = document.getElementById("eventId").value.trim();
+
+      const data = {
+        title: document.getElementById("title").value.trim(),
+        date: document.getElementById("date").value.trim(),
+        tag: document.getElementById("tag").value.trim(),
+        time: document.getElementById("time").value.trim(),
+        location: document.getElementById("location").value.trim(),
+        img: document.getElementById("image").value.trim(),
+        desc: document.getElementById("description").value.trim(),
+        published: document.getElementById("published").checked,
+        updatedAt: serverTimestamp()
+      };
+
+      if (!data.title || !data.date || !data.img || !data.desc) {
+        showMessage("Please fill in all required fields.", "error");
+        return;
+      }
+
+      const saveBtn = document.getElementById("saveBtn");
+      saveBtn.disabled = true;
+      saveBtn.textContent = eventId ? "Updating..." : "Saving...";
+
+      try {
+        if (eventId) {
+          await setDoc(doc(db, "events", eventId), data, { merge: true });
+          showMessage("Event updated successfully.");
+        } else {
+          await addDoc(collection(db, "events"), {
+            ...data,
+            createdAt: serverTimestamp()
+          });
+          showMessage("Event created successfully.");
+        }
+
+        closeForm();
+        await loadEvents();
+      } catch (error) {
+        console.error("Save event error:", error);
+        showMessage("Unable to save the event. Check your Firestore rules.", "error");
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = eventId ? "Update Event" : "Save Event";
+      }
+    });
+
+    async function verifyAdmin(user) {
+      const adminSnap = await getDoc(doc(db, "admins", user.uid));
+
+      if (!adminSnap.exists() || adminSnap.data().active !== true) {
+        await signOut(auth);
+        window.location.href = "admin.login.html";
+        return false;
+      }
+
+      const adminData = adminSnap.data();
+      document.getElementById("adminEmail").textContent =
+        adminData.email || user.email || "Administrator";
+
+      return true;
+    }
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
+        window.location.href = "admin.login.html";
+        return;
+      }
+
+      try {
+        const isAdmin = await verifyAdmin(user);
+        if (!isAdmin) return;
+
+        currentUser = user;
+        await loadEvents();
+      } catch (error) {
+        console.error("Authentication error:", error);
+        await signOut(auth);
+        window.location.href = "admin.login.html";
+      }
+    });
+  </script>
+</body>
+</html>
