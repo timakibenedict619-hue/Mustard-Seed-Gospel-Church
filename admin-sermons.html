@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Sermons — Mustard Seed Gospel Church</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:Inter,sans-serif}.sidebar{transition:transform .25s ease}
+@media(max-width:767px){.sidebar.closed{transform:translateX(-100%)}}
+</style>
+</head>
+<body class="bg-slate-100 text-slate-900">
+<div class="min-h-screen flex">
+<div id="overlay" class="fixed inset-0 bg-black/40 z-30 hidden md:hidden"></div>
+<aside id="sidebar" class="sidebar closed md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 w-72 bg-slate-950 text-white flex flex-col">
+<div class="px-6 py-6 border-b border-white/10"><div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl bg-white text-slate-950 flex items-center justify-center font-extrabold text-lg">MSGC</div><div><h1 class="font-bold text-sm">Mustard Seed</h1><p class="text-xs text-slate-400">Gospel Church</p></div></div></div>
+<nav class="flex-1 px-4 py-5 space-y-1 overflow-y-auto">
+<p class="px-3 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">Main</p>
+<a href="admin-dashboard.html" class="nav">▣ <span>Dashboard</span></a>
+<a href="admin-events.html" class="nav">◫ <span>Events</span></a>
+<a href="admin-sermons.html" class="nav active">▶ <span>Sermons</span></a>
+<a href="admin-live.html" class="nav">● <span>Live</span></a>
+<p class="px-3 mt-7 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">Management</p>
+<a href="admin-prayer-requests.html" class="nav">♡ <span>Prayer Requests</span></a>
+<a href="admin-settings.html" class="nav">⚙ <span>Settings</span></a>
+</nav>
+<div class="p-4 border-t border-white/10"><a href="index.html" class="nav">↗ <span>View Website</span></a><button id="logoutBtn" class="w-full mt-1 nav text-red-300">⇥ <span>Logout</span></button></div>
+</aside>
+<main class="flex-1 min-w-0">
+<header class="bg-white border-b border-slate-200 sticky top-0 z-20"><div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4"><div class="flex items-center gap-3"><button id="menuBtn" class="md:hidden w-10 h-10 rounded-xl border border-slate-200">☰</button><div><p class="text-xs text-slate-500">Administration</p><h2 class="text-lg sm:text-xl font-bold">Sermons</h2></div></div><div class="text-right"><p id="adminEmail" class="text-sm font-semibold truncate max-w-xs">Loading...</p><p class="text-xs text-slate-500">Administrator</p></div></div></header>
+<section class="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+<div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-7"><div><h3 class="text-2xl sm:text-3xl font-extrabold">Manage Sermons</h3><p class="mt-2 text-slate-500">Add, edit, publish and remove sermons shown on the church website.</p></div><button id="newBtn" class="px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold">+ Add Sermon</button></div>
+<div id="message" class="hidden mb-5 rounded-xl px-4 py-3 text-sm font-medium"></div>
+<div id="formPanel" class="hidden bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 mb-6">
+<div class="flex items-center justify-between mb-5"><div><h4 id="formTitle" class="text-lg font-bold">Add Sermon</h4><p class="text-sm text-slate-500 mt-1">Firestore collection: <b>sermons</b></p></div><button id="cancel" class="px-3 py-2">✕</button></div>
+<form id="form" class="space-y-5"><input type="hidden" id="id">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div><label class="label">Sermon Title *</label><input id="title" required class="input" placeholder="The Power of God's Love"></div>
+<div><label class="label">Preacher / Minister</label><input id="preacher" class="input" placeholder="Pastor's Name"></div>
+<div><label class="label">Date</label><input id="date" type="date" class="input"></div>
+<div><label class="label">Category</label><input id="category" class="input" placeholder="Sunday Service"></div>
+<div class="md:col-span-2"><label class="label">Image Path</label><input id="image" class="input" placeholder="images/sermon-1.jpg"><p class="hint">Use an image path from your website folder. Firebase Storage is not required.</p></div>
+<div class="md:col-span-2"><label class="label">Video URL</label><input id="video" type="url" class="input" placeholder="https://www.youtube.com/watch?v=..."><p class="hint">Optional public sermon video link.</p></div>
+<div class="md:col-span-2"><label class="label">Audio URL</label><input id="audio" type="url" class="input" placeholder="https://..."></div>
+<div class="md:col-span-2"><label class="label">Description</label><textarea id="description" rows="4" class="input" placeholder="Short description of the sermon..."></textarea></div>
+<div class="md:col-span-2 flex items-center gap-3"><input id="published" type="checkbox" checked class="w-5 h-5"><label class="text-sm font-semibold">Published on website</label></div>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 sm:justify-end"><button type="button" id="cancel2" class="px-5 py-3 rounded-xl border font-semibold">Cancel</button><button id="save" class="px-5 py-3 rounded-xl bg-slate-950 text-white font-semibold">Save Sermon</button></div>
+</form></div>
+<div class="bg-white border border-slate-200 rounded-2xl overflow-hidden"><div class="px-5 sm:px-6 py-5 border-b flex items-center justify-between"><div><h4 class="font-bold text-lg">All Sermons</h4><p id="count" class="text-sm text-slate-500 mt-1">Loading...</p></div><button id="refresh" class="px-4 py-2 rounded-lg border font-semibold text-sm">Refresh</button></div><div id="list" class="divide-y"><div class="p-8 text-center text-slate-500">Loading sermons...</div></div></div>
+</section></main></div>
+<script type="module">
+import {auth,db} from "./firebase.js";
+import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {collection,doc,getDoc,getDocs,addDoc,setDoc,deleteDoc,serverTimestamp,query,orderBy} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const $=id=>document.getElementById(id),list=$("list"),panel=$("formPanel"),form=$("form"),msg=$("message");let user=null,items=[];
+function message(t,error=false){msg.textContent=t;msg.className="mb-5 rounded-xl px-4 py-3 text-sm font-medium "+(error?"bg-red-50 text-red-700 border border-red-200":"bg-green-50 text-green-700 border border-green-200");msg.classList.remove("hidden");setTimeout(()=>msg.classList.add("hidden"),4000)}
+function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function reset(){form.reset();$("id").value="";$("published").checked=true;$("formTitle").textContent="Add Sermon";$("save").textContent="Save Sermon"}
+function openForm(s=null){panel.classList.remove("hidden");if(!s)reset();else{$("formTitle").textContent="Edit Sermon";$("save").textContent="Update Sermon";$("id").value=s.id;$("title").value=s.title||"";$("preacher").value=s.preacher||s.speaker||"";$("date").value=s.date||"";$("category").value=s.category||"";$("image").value=s.img||s.image||"";$("video").value=s.videoUrl||s.video||"";$("audio").value=s.audioUrl||s.audio||"";$("description").value=s.description||s.desc||"";$("published").checked=s.published!==false}panel.scrollIntoView({behavior:"smooth"})}
+function closeForm(){panel.classList.add("hidden");reset()}
+$("newBtn").onclick=()=>openForm();$("cancel").onclick=closeForm;$("cancel2").onclick=closeForm;$("refresh").onclick=load;
+function render(a){items=a;$("count").textContent=`${a.length} sermon${a.length===1?"":"s"}`;if(!a.length){list.innerHTML='<div class="p-10 text-center"><p class="font-semibold">No sermons yet</p><p class="text-sm text-slate-500 mt-1">Click "Add Sermon" to create your first sermon.</p></div>';return}
+list.innerHTML=a.map(s=>{let img=s.img||s.image||"",title=s.title||"Untitled Sermon",pre=s.preacher||s.speaker||"",video=s.videoUrl||s.video||"",audio=s.audioUrl||s.audio||"",pub=s.published!==false;return `<div class="p-5 sm:p-6"><div class="flex flex-col lg:flex-row gap-5"><div class="w-full lg:w-56 h-40 rounded-xl bg-slate-100 overflow-hidden shrink-0">${img?`<img src="${esc(img)}" class="w-full h-full object-cover" onerror="this.style.display='none'">`:'<div class="h-full flex items-center justify-center text-slate-400">No image</div>'}</div><div class="flex-1"><div class="flex gap-2"><span class="px-2.5 py-1 rounded-full ${pub?"bg-green-50 text-green-700":"bg-amber-50 text-amber-700"} text-xs font-bold">${pub?"Published":"Draft"}</span>${s.category?`<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">${esc(s.category)}</span>`:""}</div><h5 class="mt-3 text-xl font-bold">${esc(title)}</h5>${pre?`<p class="mt-1 text-sm text-slate-600">By ${esc(pre)}</p>`:""}${s.description?`<p class="mt-2 text-sm text-slate-500">${esc(s.description)}</p>`:""}<div class="mt-4 text-xs text-slate-500 flex gap-4">${s.date?`<span>📅 ${esc(s.date)}</span>`:""}${video?"<span>🎥 Video available</span>":""}${audio?"<span>🎧 Audio available</span>":""}</div><div class="mt-5 flex flex-wrap gap-2"><button data-edit="${esc(s.id)}" class="px-4 py-2 rounded-lg border font-semibold text-sm">Edit</button><button data-del="${esc(s.id)}" class="px-4 py-2 rounded-lg border border-red-200 text-red-600 font-semibold text-sm">Delete</button>${video?`<a href="${esc(video)}" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg border font-semibold text-sm">Watch</a>`:""}</div></div></div></div>`}).join("");
+list.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>openForm(items.find(x=>x.id===b.dataset.edit)));list.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>remove(b.dataset.del))}
+async function load(){try{let s;try{s=await getDocs(query(collection(db,"sermons"),orderBy("createdAt","desc")))}catch(_){s=await getDocs(collection(db,"sermons"))}render(s.docs.map(x=>({id:x.id,...x.data()})))}catch(e){console.error(e);list.innerHTML='<div class="p-8 text-center text-red-600">Unable to load sermons. Check your Firestore rules and internet connection.</div>'}}
+async function remove(id){if(!confirm("Are you sure you want to delete this sermon?"))return;try{await deleteDoc(doc(db,"sermons",id));message("Sermon deleted successfully.");await load()}catch(e){message("Unable to delete the sermon. Check your permissions.",true)}}
+form.onsubmit=async e=>{e.preventDefault();if(!user)return;let id=$("id").value.trim(),data={title:$("title").value.trim(),preacher:$("preacher").value.trim(),date:$("date").value,category:$("category").value.trim(),img:$("image").value.trim(),videoUrl:$("video").value.trim(),audioUrl:$("audio").value.trim(),description:$("description").value.trim(),published:$("published").checked,updatedAt:serverTimestamp()};if(!data.title){message("Please enter a sermon title.",true);return}let b=$("save");b.disabled=true;try{if(id)await setDoc(doc(db,"sermons",id),data,{merge:true});else await addDoc(collection(db,"sermons"),{...data,createdAt:serverTimestamp()});message(id?"Sermon updated successfully.":"Sermon created successfully.");closeForm();await load()}catch(e){console.error(e);message("Unable to save the sermon. Check your Firestore rules.",true)}finally{b.disabled=false;b.textContent=id?"Update Sermon":"Save Sermon"}};
+$("menuBtn").onclick=()=>{$("sidebar").classList.remove("closed");$("overlay").classList.remove("hidden")};$("overlay").onclick=()=>{$("sidebar").classList.add("closed");$("overlay").classList.add("hidden")};$("logoutBtn").onclick=async()=>{await signOut(auth);location.href="admin.login.html"};
+onAuthStateChanged(auth,async u=>{if(!u){location.href="admin.login.html";return}try{let s=await getDoc(doc(db,"admins",u.uid));if(!s.exists()||s.data().active!==true){await signOut(auth);location.href="admin.login.html";return}user=u;$("adminEmail").textContent=s.data().email||u.email||"Administrator";await load()}catch(e){console.error(e);location.href="admin.login.html"}});
+</script>
+<style>
+.nav{display:flex;align-items:center;gap:.75rem;padding:.75rem;border-radius:.75rem;color:#cbd5e1;transition:.2s}.nav:hover{background:#ffffff1a;color:#fff}.nav.active{background:#ffffff1a;color:#fff;font-weight:600}.label{display:block;font-size:.875rem;font-weight:600;margin-bottom:.5rem}.input{width:100%;border:1px solid #cbd5e1;border-radius:.75rem;padding:.75rem 1rem;outline:0}.input:focus{box-shadow:0 0 0 2px #94a3b8}.hint{font-size:.75rem;color:#64748b;margin-top:.5rem}
+</style>
+</body>
+</html>
