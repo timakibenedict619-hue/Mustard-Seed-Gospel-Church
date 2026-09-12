@@ -501,48 +501,40 @@ const audioUrl = sermon.audioUrl || "";
 
       let imageHTML;
 
-      if (image) {
+if (image) {
 
-        imageHTML = `
-          <img
-            src="${escapeHTML(image)}"
-            alt="${title}"
-            class="w-full h-full object-cover"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          />
+  imageHTML = `
+    <img
+      src="${escapeHTML(image)}"
+      alt="${title}"
+      class="w-full h-full object-cover"
+      onerror="this.onerror=null; this.src=''; this.style.display='none';"
+    />
+  `;
 
-          <div
-            class="hidden absolute inset-0 items-center justify-center navy-bg text-white"
-          >
-            <span class="font-fraunces text-2xl">
-              Mustard Seed
-            </span>
-          </div>
-        `;
+} else {
 
-      } else {
+  imageHTML = `
+    <div class="w-full h-full navy-bg flex items-center justify-center">
+      <div class="text-center text-white px-5">
 
-        imageHTML = `
-          <div class="w-full h-full navy-bg flex items-center justify-center">
-            <div class="text-center text-white px-5">
+        <div class="gold text-4xl mb-2">
+          ✦
+        </div>
 
-              <div class="gold text-4xl mb-2">
-                ✦
-              </div>
+        <div class="font-fraunces text-2xl">
+          Mustard Seed
+        </div>
 
-              <div class="font-fraunces text-2xl">
-                Mustard Seed
-              </div>
+        <div class="text-white/60 text-sm mt-1">
+          Gospel Church
+        </div>
 
-              <div class="text-white/60 text-sm mt-1">
-                Gospel Church
-              </div>
+      </div>
+    </div>
+  `;
 
-            </div>
-          </div>
-        `;
-
-      }
+}
 
 
       let actionButtons = "";
