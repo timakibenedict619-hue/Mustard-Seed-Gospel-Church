@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Requests | Mustard Seed Gospel Church Admin</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:Inter,Arial,sans-serif;background:#f5f7fb}
+.nav{display:block;padding:12px 14px;border-radius:10px;color:#dbe4f0;text-decoration:none;margin-bottom:6px}
+.nav:hover,.nav.active{background:#172b4d;color:#fff}
+.sidebar{min-height:100vh}
+.badge{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:700}
+@media(max-width:900px){.sidebar{min-height:auto}}
+</style>
+</head>
+<body>
+
+<div id="loading" class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+<div class="text-center">
+<div class="animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-slate-900 mx-auto"></div>
+<p class="mt-4 text-slate-600">Checking admin access...</p>
+</div>
+</div>
+
+<div id="app" class="hidden min-h-screen">
+<div class="lg:flex">
+<aside class="sidebar w-full lg:w-64 bg-[#0A1931] text-white p-4 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto">
+<div class="px-2 py-4 mb-4">
+<div class="text-xl font-bold">Mustard Seed</div>
+<div class="text-sm text-slate-300">Admin Panel</div>
+</div>
+<nav>
+<a class="nav" href="admin-dashboard.html">Dashboard</a>
+<a class="nav" href="admin-events.html">Events</a>
+<a class="nav" href="admin-sermons.html">Sermons</a>
+<a class="nav" href="admin-live.html">Live</a>
+<a class="nav active" href="admin-prayer-requests.html">Prayer Requests</a>
+<a class="nav" href="admin-settings.html">Settings</a>
+</nav>
+<div class="border-t border-slate-700 mt-5 pt-5">
+<a class="nav" href="index.html">View Website</a>
+<button id="logoutBtn" class="w-full text-left nav">Logout</button>
+</div>
+</aside>
+
+<main class="w-full lg:ml-64">
+<header class="bg-white border-b border-slate-200 px-5 md:px-8 py-5">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+<div>
+<h1 class="text-2xl md:text-3xl font-bold text-[#0A1931]">Prayer Requests</h1>
+<p class="text-slate-500 mt-1">View and manage prayer requests submitted through the church website.</p>
+</div>
+<div class="text-sm text-slate-500">Admin: <span id="adminEmail" class="font-medium text-slate-700"></span></div>
+</div>
+</header>
+
+<section class="p-5 md:p-8 max-w-7xl mx-auto">
+<div id="message" class="hidden mb-5 rounded-xl px-4 py-3 text-sm"></div>
+
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+<p class="text-sm text-slate-500">Total Requests</p>
+<p id="totalCount" class="text-3xl font-bold text-[#0A1931] mt-2">0</p>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+<p class="text-sm text-slate-500">New</p>
+<p id="newCount" class="text-3xl font-bold text-blue-600 mt-2">0</p>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+<p class="text-sm text-slate-500">Prayed For</p>
+<p id="prayedCount" class="text-3xl font-bold text-green-600 mt-2">0</p>
+</div>
+</div>
+
+<div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 md:p-6 mb-6">
+<div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+<input id="searchInput" type="search" class="flex-1 border border-slate-300 rounded-xl px-4 py-3 outline-none focus:border-[#0A1931]" placeholder="Search by name, email, or prayer request...">
+<select id="statusFilter" class="border border-slate-300 rounded-xl px-4 py-3 outline-none focus:border-[#0A1931]">
+<option value="all">All Statuses</option>
+<option value="New">New</option>
+<option value="Prayed For">Prayed For</option>
+<option value="Completed">Completed</option>
+</select>
+<button id="refreshBtn" class="bg-[#0A1931] hover:bg-slate-800 text-white font-semibold px-5 py-3 rounded-xl">Refresh</button>
+</div>
+</div>
+
+<div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+<div class="px-5 md:px-6 py-5 border-b border-slate-200">
+<h2 class="text-xl font-bold text-slate-900">Submitted Requests</h2>
+</div>
+<div id="emptyState" class="hidden p-10 text-center">
+<div class="text-4xl mb-3">🙏</div>
+<h3 class="font-bold text-slate-800">No prayer requests found</h3>
+<p class="text-sm text-slate-500 mt-1">New requests submitted through the website will appear here.</p>
+</div>
+<div id="requestsList" class="divide-y divide-slate-200"></div>
+</div>
+</section>
+</main>
+</div>
+</div>
+
+<div id="modal" class="hidden fixed inset-0 z-40 bg-black/50 p-4 items-center justify-center">
+<div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+<div class="p-5 md:p-6 border-b border-slate-200 flex items-center justify-between">
+<h2 class="text-xl font-bold text-[#0A1931]">Prayer Request</h2>
+<button id="closeModal" class="text-2xl text-slate-500 hover:text-slate-900">&times;</button>
+</div>
+<div class="p-5 md:p-6 space-y-4">
+<div><p class="text-xs uppercase tracking-wide text-slate-400">Name</p><p id="modalName" class="font-semibold text-slate-900 mt-1"></p></div>
+<div><p class="text-xs uppercase tracking-wide text-slate-400">Email</p><p id="modalEmail" class="text-slate-700 mt-1"></p></div>
+<div><p class="text-xs uppercase tracking-wide text-slate-400">Date Submitted</p><p id="modalDate" class="text-slate-700 mt-1"></p></div>
+<div><p class="text-xs uppercase tracking-wide text-slate-400">Prayer Request</p><p id="modalRequest" class="text-slate-700 mt-1 whitespace-pre-wrap leading-7"></p></div>
+<div>
+<label class="text-xs uppercase tracking-wide text-slate-400">Status</label>
+<select id="modalStatus" class="mt-1 w-full border border-slate-300 rounded-xl px-3 py-3">
+<option value="New">New</option>
+<option value="Prayed For">Prayed For</option>
+<option value="Completed">Completed</option>
+</select>
+</div>
+<div class="flex flex-col sm:flex-row gap-3 pt-2">
+<button id="saveStatusBtn" class="bg-[#0A1931] text-white font-semibold px-5 py-3 rounded-xl">Save Status</button>
+<button id="deleteModalBtn" class="border border-red-300 text-red-600 font-semibold px-5 py-3 rounded-xl">Delete Request</button>
+</div>
+</div>
+</div>
+</div>
+
+<script type="module">
+import { auth, db } from "./firebase.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const $=id=>document.getElementById(id);
+const requestsRef=collection(db,"prayerRequests");
+let allRequests=[];
+let selectedRequest=null;
+
+function showMessage(text,type="success"){
+const m=$("message");
+m.textContent=text;
+m.className="mb-5 rounded-xl px-4 py-3 text-sm "+(type==="success"?"bg-green-50 text-green-700 border border-green-200":"bg-red-50 text-red-700 border border-red-200");
+m.classList.remove("hidden");
+setTimeout(()=>m.classList.add("hidden"),5000);
+}
+
+function formatDate(value){
+if(!value)return"No date";
+try{
+const d=value.toDate?value.toDate():new Date(value);
+return d.toLocaleString("en-NG",{dateStyle:"medium",timeStyle:"short"});
+}catch{return"No date";}
+}
+
+function badge(status){
+if(status==="Prayed For")return'<span class="badge bg-green-100 text-green-700">Prayed For</span>';
+if(status==="Completed")return'<span class="badge bg-purple-100 text-purple-700">Completed</span>';
+return'<span class="badge bg-blue-100 text-blue-700">New</span>';
+}
+
+function escapeHtml(text){
+return String(text??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+}
+
+function render(){
+const search=$("searchInput").value.trim().toLowerCase();
+const filter=$("statusFilter").value;
+const filtered=allRequests.filter(item=>{
+const d=item.data;
+const searchable=[d.name,d.email,d.request,d.prayerRequest].join(" ").toLowerCase();
+return(!search||searchable.includes(search))&&(filter==="all"||(d.status||"New")===filter);
+});
+$("totalCount").textContent=allRequests.length;
+$("newCount").textContent=allRequests.filter(x=>(x.data.status||"New")==="New").length;
+$("prayedCount").textContent=allRequests.filter(x=>x.data.status==="Prayed For").length;
+const list=$("requestsList");
+list.innerHTML="";
+$("emptyState").classList.toggle("hidden",filtered.length!==0);
+filtered.forEach(item=>{
+const d=item.data;
+const requestText=d.request||d.prayerRequest||"No prayer request provided.";
+const div=document.createElement("div");
+div.className="p-5 md:p-6 hover:bg-slate-50 transition";
+div.innerHTML='<div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4"><div class="min-w-0 flex-1"><div class="flex flex-wrap items-center gap-2"><h3 class="font-bold text-slate-900">'+escapeHtml(d.name||"Anonymous")+'</h3>'+badge(d.status||"New")+'</div><p class="text-sm text-slate-500 mt-1">'+escapeHtml(d.email||"No email")+'</p><p class="text-sm text-slate-400 mt-1">'+formatDate(d.createdAt||d.submittedAt)+'</p><p class="text-slate-700 mt-4 whitespace-pre-line line-clamp-3">'+escapeHtml(requestText)+'</p></div><div class="flex flex-col sm:flex-row lg:flex-col gap-2"><button data-view="'+item.id+'" class="viewBtn border border-slate-300 hover:bg-white px-4 py-2 rounded-lg text-sm font-semibold">View</button><button data-delete="'+item.id+'" class="deleteBtn border border-red-200 text-red-600 hover:bg-red-50 px-4 py-2 rounded-lg text-sm font-semibold">Delete</button></div></div>';
+list.appendChild(div);
+});
+document.querySelectorAll(".viewBtn").forEach(b=>b.addEventListener("click",()=>openRequest(b.dataset.view)));
+document.querySelectorAll(".deleteBtn").forEach(b=>b.addEventListener("click",()=>removeRequest(b.dataset.delete)));
+}
+
+async function loadRequests(){
+$("refreshBtn").disabled=true;$("refreshBtn").textContent="Loading...";
+try{
+let snap;
+try{snap=await getDocs(query(requestsRef,orderBy("createdAt","desc")))}
+catch{snap=await getDocs(requestsRef)}
+allRequests=snap.docs.map(d=>({id:d.id,data:d.data()}));
+allRequests.sort((a,b)=>(b.data.createdAt?.seconds||b.data.submittedAt?.seconds||0)-(a.data.createdAt?.seconds||a.data.submittedAt?.seconds||0));
+render();
+}catch(e){console.error(e);showMessage("Could not load prayer requests: "+e.message,"error")}
+finally{$("refreshBtn").disabled=false;$("refreshBtn").textContent="Refresh"}
+}
+
+function openRequest(id){
+const item=allRequests.find(x=>x.id===id);if(!item)return;
+selectedRequest=item;const d=item.data;
+$("modalName").textContent=d.name||"Anonymous";
+$("modalEmail").textContent=d.email||"No email provided";
+$("modalDate").textContent=formatDate(d.createdAt||d.submittedAt);
+$("modalRequest").textContent=d.request||d.prayerRequest||"No prayer request provided.";
+$("modalStatus").value=d.status||"New";
+$("modal").classList.remove("hidden");$("modal").classList.add("flex");
+}
+
+function closeModal(){$("modal").classList.add("hidden");$("modal").classList.remove("flex");selectedRequest=null}
+
+async function saveStatus(){
+if(!selectedRequest)return;
+const b=$("saveStatusBtn");b.disabled=true;b.textContent="Saving...";
+try{
+await updateDoc(doc(db,"prayerRequests",selectedRequest.id),{status:$("modalStatus").value,updatedAt:serverTimestamp()});
+showMessage("Prayer request status updated.");closeModal();await loadRequests();
+}catch(e){showMessage("Could not update status: "+e.message,"error")}
+finally{b.disabled=false;b.textContent="Save Status"}
+}
+
+async function removeRequest(id){
+const item=allRequests.find(x=>x.id===id);if(!item)return;
+if(!confirm("Delete this prayer request? This cannot be undone."))return;
+try{await deleteDoc(doc(db,"prayerRequests",id));showMessage("Prayer request deleted.");await loadRequests()}
+catch(e){showMessage("Could not delete request: "+e.message,"error")}
+}
+
+$("searchInput").addEventListener("input",render);
+$("statusFilter").addEventListener("change",render);
+$("refreshBtn").addEventListener("click",loadRequests);
+$("closeModal").addEventListener("click",closeModal);
+$("modal").addEventListener("click",e=>{if(e.target===$("modal"))closeModal()});
+$("saveStatusBtn").addEventListener("click",saveStatus);
+$("deleteModalBtn").addEventListener("click",async()=>{if(selectedRequest){const id=selectedRequest.id;closeModal();await removeRequest(id)}});
+
+$("logoutBtn").addEventListener("click",async()=>{try{await signOut(auth);location.href="admin.login.html"}catch(e){showMessage("Logout failed: "+e.message,"error")}});
+
+onAuthStateChanged(auth,async user=>{
+if(!user){location.href="admin.login.html";return}
+try{
+const adminSnap=await getDocs(query(collection(db,"admins")));
+const adminDoc=adminSnap.docs.find(d=>d.id===user.uid);
+if(!adminDoc||adminDoc.data().active!==true){await signOut(auth);location.href="admin.login.html";return}
+$("adminEmail").textContent=user.email||"Admin";
+$("loading").classList.add("hidden");$("app").classList.remove("hidden");
+await loadRequests();
+}catch(e){
+console.error(e);$("loading").classList.add("hidden");$("app").classList.remove("hidden");
+showMessage("Unable to verify administrator access: "+e.message,"error");
+}
+});
+</script>
+</body>
+</html>
