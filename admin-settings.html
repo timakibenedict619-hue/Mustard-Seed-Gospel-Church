@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Settings | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-slate-100 text-slate-800">
+  <div id="loading" class="fixed inset-0 z-50 flex items-center justify-center bg-navy text-white">
+    <div class="text-center">
+      <div class="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-white/30 border-t-gold"></div>
+      <p>Checking admin access...</p>
+    </div>
+  </div>
+
+  <div id="app" class="hidden min-h-screen">
+    <!-- Mobile header -->
+    <header class="sticky top-0 z-40 flex items-center justify-between bg-navy px-4 py-4 text-white shadow-lg lg:hidden">
+      <div>
+        <h1 class="font-bold">Mustard Seed</h1>
+        <p class="text-xs text-white/70">Admin Panel</p>
+      </div>
+      <button id="menuBtn" class="rounded-lg border border-white/20 px-3 py-2" aria-label="Open menu">☰</button>
+    </header>
+
+    <div id="mobileOverlay" class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar"
+      class="fixed inset-y-0 left-0 z-50 flex w-72 -translate-x-full flex-col bg-navy text-white transition-transform duration-300 lg:translate-x-0">
+      <div class="border-b border-white/10 p-6">
+        <h2 class="text-xl font-bold">Mustard Seed</h2>
+        <p class="mt-1 text-sm text-white/60">Gospel Church</p>
+        <div class="mt-4 inline-flex rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold text-gold">
+          Administrator
+        </div>
+      </div>
+
+      <nav class="flex-1 space-y-1 overflow-y-auto p-4">
+        <a href="admin-dashboard.html" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">Dashboard</a>
+        <a href="admin-events.html" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">Events</a>
+        <a href="admin-sermons.html" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">Sermons</a>
+        <a href="admin-live.html" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">Live Management</a>
+        <a href="admin-prayer-requests.html" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">Prayer Requests</a>
+        <a href="admin-settings.html" class="block rounded-xl bg-white/10 px-4 py-3 text-sm font-semibold text-gold">Settings</a>
+
+        <div class="my-4 border-t border-white/10"></div>
+
+        <a href="index.html" target="_blank" class="block rounded-xl px-4 py-3 text-sm hover:bg-white/10">View Website ↗</a>
+      </nav>
+
+      <div class="border-t border-white/10 p-4">
+        <p id="adminEmail" class="mb-3 truncate text-xs text-white/60"></p>
+        <button id="logoutBtn"
+          class="w-full rounded-xl bg-red-500/15 px-4 py-3 text-sm font-semibold text-red-300 hover:bg-red-500/25">
+          Logout
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="min-h-screen lg:ml-72">
+      <div class="mx-auto max-w-6xl p-4 sm:p-6 lg:p-10">
+        <div class="mb-8">
+          <p class="text-sm font-semibold uppercase tracking-wider text-gold">Church CMS</p>
+          <h1 class="mt-1 text-3xl font-bold text-navy sm:text-4xl">Church Settings</h1>
+          <p class="mt-2 max-w-2xl text-slate-600">
+            Manage the general information that can be displayed across the church website.
+          </p>
+        </div>
+
+        <div id="message" class="mb-6 hidden rounded-xl border px-4 py-3 text-sm"></div>
+
+        <form id="settingsForm" class="space-y-6">
+          <!-- General information -->
+          <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+            <div class="mb-6">
+              <h2 class="text-xl font-bold text-navy">General Information</h2>
+              <p class="mt-1 text-sm text-slate-500">Basic church information.</p>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-sm font-semibold">Church Name</label>
+                <input id="churchName" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Mustard Seed Gospel Church" />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-sm font-semibold">Tagline</label>
+                <input id="tagline" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Home of Success" />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-sm font-semibold">Address / Location</label>
+                <input id="address" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Agbor, Delta State, Nigeria" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Phone Number</label>
+                <input id="phone" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="+234..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Email Address</label>
+                <input id="email" type="email"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="church@example.com" />
+              </div>
+
+              <div class="md:col-span-2">
+                <label class="mb-2 block text-sm font-semibold">Logo Image Path</label>
+                <input id="logoPath" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="images/logo.png" />
+                <p class="mt-2 text-xs text-slate-500">
+                  Storage is not required. Keep the image inside your website folder and enter its path here.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Services -->
+          <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+            <div class="mb-6">
+              <h2 class="text-xl font-bold text-navy">Service Times</h2>
+              <p class="mt-1 text-sm text-slate-500">Set the regular service information displayed on the website.</p>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Sunday Service Time</label>
+                <input id="sundayService" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="8:00 AM & 10:00 AM WAT" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Live Stream Time</label>
+                <input id="liveStreamTime" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Sunday 7:00 AM WAT" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Weekday Service</label>
+                <input id="weekdayService" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Wednesday 5:00 PM WAT" />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Main Auditorium</label>
+                <input id="auditorium" type="text"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Main Auditorium" />
+              </div>
+            </div>
+          </section>
+
+          <!-- Social -->
+          <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+            <div class="mb-6">
+              <h2 class="text-xl font-bold text-navy">Social Media</h2>
+              <p class="mt-1 text-sm text-slate-500">Add the church's public social media links.</p>
+            </div>
+
+            <div class="grid gap-5 md:grid-cols-2">
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Facebook URL</label>
+                <input id="facebook" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://facebook.com/..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Instagram URL</label>
+                <input id="instagram" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://instagram.com/..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">YouTube URL</label>
+                <input id="youtube" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://youtube.com/..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Telegram URL</label>
+                <input id="telegram" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://t.me/..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">WhatsApp URL</label>
+                <input id="whatsapp" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://wa.me/..." />
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">TikTok URL</label>
+                <input id="tiktok" type="url"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://tiktok.com/@..." />
+              </div>
+            </div>
+          </section>
+
+          <!-- Website text -->
+          <section class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 sm:p-7">
+            <div class="mb-6">
+              <h2 class="text-xl font-bold text-navy">Website Text</h2>
+              <p class="mt-1 text-sm text-slate-500">Optional text for the homepage and footer.</p>
+            </div>
+
+            <div class="space-y-5">
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Welcome Message</label>
+                <textarea id="welcomeMessage" rows="4"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Welcome to Mustard Seed Gospel Church..."></textarea>
+              </div>
+
+              <div>
+                <label class="mb-2 block text-sm font-semibold">Footer Text</label>
+                <textarea id="footerText" rows="3"
+                  class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="A short church description for the footer."></textarea>
+              </div>
+            </div>
+          </section>
+
+          <!-- Actions -->
+          <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+            <button id="resetBtn" type="button"
+              class="rounded-xl border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-700 hover:bg-slate-50">
+              Reset Form
+            </button>
+
+            <button id="saveBtn" type="submit"
+              class="rounded-xl bg-navy px-7 py-3 font-semibold text-white shadow-sm hover:bg-navy/90 disabled:cursor-not-allowed disabled:opacity-60">
+              Save Settings
+            </button>
+          </div>
+        </form>
+
+        <p class="mt-8 text-center text-xs text-slate-400">
+          Mustard Seed Gospel Church Admin Panel • Local image paths are supported.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { auth, db } from "./firebase.js";
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const $ = (id) => document.getElementById(id);
+
+    const loading = $("loading");
+    const app = $("app");
+    const message = $("message");
+    const form = $("settingsForm");
+    const saveBtn = $("saveBtn");
+
+    const settingsRef = doc(db, "settings", "church");
+
+    const fields = [
+      "churchName",
+      "tagline",
+      "address",
+      "phone",
+      "email",
+      "logoPath",
+      "sundayService",
+      "liveStreamTime",
+      "weekdayService",
+      "auditorium",
+      "facebook",
+      "instagram",
+      "youtube",
+      "telegram",
+      "whatsapp",
+      "tiktok",
+      "welcomeMessage",
+      "footerText"
+    ];
+
+    function showMessage(text, type = "success") {
+      message.textContent = text;
+      message.className = "mb-6 rounded-xl border px-4 py-3 text-sm";
+
+      if (type === "success") {
+        message.classList.add("border-emerald-200", "bg-emerald-50", "text-emerald-700");
+      } else {
+        message.classList.add("border-red-200", "bg-red-50", "text-red-700");
+      }
+
+      message.classList.remove("hidden");
+
+      setTimeout(() => {
+        message.classList.add("hidden");
+      }, 5000);
+    }
+
+    function getFormData() {
+      const data = {};
+
+      fields.forEach((field) => {
+        data[field] = $(field).value.trim();
+      });
+
+      return data;
+    }
+
+    function fillForm(data = {}) {
+      fields.forEach((field) => {
+        $(field).value = data[field] || "";
+      });
+    }
+
+    async function loadSettings() {
+      try {
+        const snapshot = await getDoc(settingsRef);
+
+        if (snapshot.exists()) {
+          fillForm(snapshot.data());
+        } else {
+          // Helpful defaults based on the current website information.
+          fillForm({
+            churchName: "Mustard Seed Gospel Church",
+            tagline: "Home of Success",
+            address: "Agbor, Delta State, Nigeria",
+            sundayService: "8:00 AM & 10:00 AM WAT",
+            liveStreamTime: "Sunday 7:00 AM WAT",
+            auditorium: "Main Auditorium"
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        showMessage("Could not load church settings. Check your Firestore rules and connection.", "error");
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      saveBtn.disabled = true;
+      saveBtn.textContent = "Saving...";
+
+      try {
+        const data = getFormData();
+
+        await setDoc(settingsRef, {
+          ...data,
+          updatedAt: serverTimestamp()
+        }, { merge: true });
+
+        showMessage("Church settings saved successfully.");
+      } catch (error) {
+        console.error(error);
+        showMessage("Failed to save settings. Please check your Firebase connection and Firestore rules.", "error");
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save Settings";
+      }
+    });
+
+    $("resetBtn").addEventListener("click", async () => {
+      await loadSettings();
+      showMessage("Form restored to the saved settings.");
+    });
+
+    $("logoutBtn").addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        window.location.href = "admin.login.html";
+      } catch (error) {
+        console.error(error);
+        showMessage("Could not log out. Please try again.", "error");
+      }
+    });
+
+    // Mobile sidebar
+    const sidebar = $("sidebar");
+    const overlay = $("mobileOverlay");
+    const menuBtn = $("menuBtn");
+
+    function openMenu() {
+      sidebar.classList.remove("-translate-x-full");
+      overlay.classList.remove("hidden");
+    }
+
+    function closeMenu() {
+      sidebar.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+    overlay.addEventListener("click", closeMenu);
+
+    document.querySelectorAll("#sidebar a").forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    // Protect this page.
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "admin.login.html";
+        return;
+      }
+
+      try {
+        const adminSnap = await getDoc(doc(db, "admins", user.uid));
+
+        if (!adminSnap.exists() || adminSnap.data().active !== true) {
+          await signOut(auth);
+          window.location.href = "admin.login.html";
+          return;
+        }
+
+        $("adminEmail").textContent = user.email || "Administrator";
+        await loadSettings();
+
+        loading.classList.add("hidden");
+        app.classList.remove("hidden");
+      } catch (error) {
+        console.error(error);
+        await signOut(auth);
+        window.location.href = "admin.login.html";
+      }
+    });
+  </script>
+</body>
+</html>
