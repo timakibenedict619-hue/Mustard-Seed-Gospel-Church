@@ -1,0 +1,758 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  <title>Sermons | Mustard Seed Gospel Church</title>  <script src="https://cdn.tailwindcss.com"></script>  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F7F7F5;
+      color: #0A1931;
+    }
+
+    .font-fraunces {
+      font-family: 'Fraunces', serif;
+    }
+
+    .gold {
+      color: #D4AF37;
+    }
+
+    .gold-bg {
+      background: #D4AF37;
+    }
+
+    .navy {
+      color: #0A1931;
+    }
+
+    .navy-bg {
+      background: #0A1931;
+    }
+
+    .sermon-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .sermon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(10, 25, 49, 0.12);
+    }
+  </style></head><body>  <!-- TOP BAR -->  <div class="navy-bg text-white text-sm">
+    <div class="max-w-7xl mx-auto px-5 py-3 flex flex-col sm:flex-row justify-between gap-2">
+      <div>
+        Sunday Services: <span class="font-semibold">8:00 AM & 10:00 AM WAT</span>
+      </div>  <div>
+    Agbor, Delta State
+  </div>
+</div>
+
+  </div>  <!-- NAVIGATION -->  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="h-20 flex items-center justify-between">    <!-- LOGO -->
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full gold-bg flex items-center justify-center">
+        <span class="text-white font-bold text-lg">M</span>
+      </div>
+
+      <div>
+        <div class="font-fraunces text-lg font-bold navy">
+          Mustard Seed Gospel Church
+        </div>
+
+        <div class="text-xs text-gray-500">
+          Home of Success
+        </div>
+      </div>
+    </a>
+
+
+    <!-- DESKTOP NAV -->
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+      <a href="index.html" class="text-gray-600 hover:text-[#D4AF37] transition">
+        Home
+      </a>
+
+      <a href="sermons.html" class="text-[#D4AF37] font-semibold">
+        Sermons
+      </a>
+
+      <a href="about.html" class="text-gray-600 hover:text-[#D4AF37] transition">
+        About
+      </a>
+
+      <a href="watch-live.html" class="text-gray-600 hover:text-[#D4AF37] transition">
+        Live
+      </a>
+
+      <a href="index.html#events" class="text-gray-600 hover:text-[#D4AF37] transition">
+        Events
+      </a>
+
+      <a href="give.html" class="text-gray-600 hover:text-[#D4AF37] transition">
+        Give
+      </a>
+
+      <a href="contact.html" class="text-gray-600 hover:text-[#D4AF37] transition">
+        Contact
+      </a>
+
+      <a
+        href="join-online.html"
+        class="gold-bg text-white px-5 py-3 rounded-full hover:opacity-90 transition"
+      >
+        Join Online
+      </a>
+
+    </nav>
+
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+      id="menuButton"
+      class="lg:hidden text-2xl navy"
+      aria-label="Open menu"
+    >
+      ☰
+    </button>
+
+  </div>
+
+
+  <!-- MOBILE NAV -->
+  <div id="mobileMenu" class="hidden lg:hidden pb-5">
+
+    <div class="flex flex-col gap-4 text-sm font-medium">
+
+      <a href="index.html" class="text-gray-600">
+        Home
+      </a>
+
+      <a href="sermons.html" class="gold font-semibold">
+        Sermons
+      </a>
+
+      <a href="about.html" class="text-gray-600">
+        About
+      </a>
+
+      <a href="watch-live.html" class="text-gray-600">
+        Live
+      </a>
+
+      <a href="index.html#events" class="text-gray-600">
+        Events
+      </a>
+
+      <a href="give.html" class="text-gray-600">
+        Give
+      </a>
+
+      <a href="contact.html" class="text-gray-600">
+        Contact
+      </a>
+
+      <a
+        href="join-online.html"
+        class="gold-bg text-white px-5 py-3 rounded-full text-center"
+      >
+        Join Online
+      </a>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </header>  <!-- HERO -->  <section class="navy-bg text-white">
+    <div class="max-w-7xl mx-auto px-5 py-20 md:py-28">  <div class="max-w-3xl">
+
+    <div class="gold uppercase tracking-[0.25em] text-sm font-semibold mb-5">
+      The Word of God
+    </div>
+
+    <h1 class="font-fraunces text-5xl md:text-7xl font-bold leading-tight">
+      Sermons
+    </h1>
+
+    <p class="mt-6 text-white/75 text-lg md:text-xl leading-relaxed">
+      Be encouraged, strengthened, and transformed through the teaching
+      of God's Word.
+    </p>
+
+  </div>
+
+</div>
+
+  </section>  <!-- SERMONS -->  <main class="max-w-7xl mx-auto px-5 py-16 md:py-20"><div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
+
+  <div>
+    <div class="gold uppercase tracking-[0.2em] text-sm font-semibold mb-3">
+      Messages
+    </div>
+
+    <h2 class="font-fraunces text-4xl md:text-5xl font-bold navy">
+      Latest Sermons
+    </h2>
+
+    <p class="text-gray-600 mt-4 max-w-2xl">
+      Watch and listen to messages from Mustard Seed Gospel Church.
+    </p>
+  </div>
+
+</div>
+
+
+<!-- LOADING -->
+<div id="loadingState" class="py-16 text-center">
+
+  <div
+    class="inline-block w-10 h-10 border-4 border-gray-200 border-t-[#D4AF37] rounded-full animate-spin"
+  ></div>
+
+  <p class="mt-4 text-gray-500">
+    Loading sermons...
+  </p>
+
+</div>
+
+
+<!-- EMPTY -->
+<div id="emptyState" class="hidden py-16 text-center">
+
+  <div class="text-5xl mb-5">
+    📖
+  </div>
+
+  <h3 class="font-fraunces text-2xl font-bold navy">
+    No Sermons Available Yet
+  </h3>
+
+  <p class="text-gray-500 mt-3">
+    New sermons will appear here when they are published.
+  </p>
+
+</div>
+
+
+<!-- ERROR -->
+<div id="errorState" class="hidden py-16 text-center">
+
+  <div class="text-5xl mb-5">
+    ⚠️
+  </div>
+
+  <h3 class="font-fraunces text-2xl font-bold navy">
+    Unable to Load Sermons
+  </h3>
+
+  <p id="errorMessage" class="text-gray-500 mt-3">
+    Please try again later.
+  </p>
+
+</div>
+
+
+<!-- SERMON GRID -->
+<div
+  id="sermonsGrid"
+  class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+></div>
+
+  </main>  <!-- CTA -->  <section class="navy-bg text-white"><div class="max-w-7xl mx-auto px-5 py-16 text-center">
+
+  <div class="gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+    Stay Connected
+  </div>
+
+  <h2 class="font-fraunces text-4xl md:text-5xl font-bold">
+    Join Us for Worship
+  </h2>
+
+  <p class="text-white/70 max-w-2xl mx-auto mt-5 leading-relaxed">
+    Come and experience God's presence with us at Mustard Seed Gospel Church.
+  </p>
+
+  <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+
+    <a
+      href="index.html"
+      class="gold-bg text-white px-7 py-3.5 rounded-full font-semibold hover:opacity-90 transition"
+    >
+      Back to Home
+    </a>
+
+    <a
+      href="join-online.html"
+      class="border border-white/30 text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white/10 transition"
+    >
+      Join Online
+    </a>
+
+  </div>
+
+</div>
+
+  </section>  <!-- FOOTER -->  <footer class="bg-white border-t border-gray-100"><div class="max-w-7xl mx-auto px-5 py-12">
+
+  <div class="grid md:grid-cols-3 gap-10">
+
+    <div>
+
+      <div class="font-fraunces text-xl font-bold navy">
+        Mustard Seed Gospel Church
+      </div>
+
+      <p class="text-gray-500 mt-3 leading-relaxed">
+        Home of Success. Raising people who know God,
+        walk in His purpose, and succeed in life.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3 class="font-semibold navy mb-4">
+        Quick Links
+      </h3>
+
+      <div class="flex flex-col gap-3 text-sm">
+
+        <a href="index.html" class="text-gray-500 hover:text-[#D4AF37]">
+          Home
+        </a>
+
+        <a href="sermons.html" class="text-gray-500 hover:text-[#D4AF37]">
+          Sermons
+        </a>
+
+        <a href="about.html" class="text-gray-500 hover:text-[#D4AF37]">
+          About
+        </a>
+
+        <a href="give.html" class="text-gray-500 hover:text-[#D4AF37]">
+          Give
+        </a>
+
+        <a href="contact.html" class="text-gray-500 hover:text-[#D4AF37]">
+          Contact
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div>
+
+      <h3 class="font-semibold navy mb-4">
+        Service Times
+      </h3>
+
+      <p class="text-gray-500 text-sm leading-7">
+        Sunday Services<br>
+        8:00 AM & 10:00 AM WAT<br><br>
+
+        Agbor, Delta State
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="border-t border-gray-100 mt-10 pt-6 text-sm text-gray-400 text-center">
+
+    © <span id="currentYear"></span> Mustard Seed Gospel Church.
+    All rights reserved.
+
+  </div>
+
+</div>
+
+  </footer>  <!-- FIREBASE + PAGE SCRIPT -->  <script type="module">
+
+    import { db } from "./firebase.js";
+
+    import {
+      collection,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const sermonsGrid = document.getElementById("sermonsGrid");
+    const loadingState = document.getElementById("loadingState");
+    const emptyState = document.getElementById("emptyState");
+    const errorState = document.getElementById("errorState");
+    const errorMessage = document.getElementById("errorMessage");
+
+
+    /*
+      MOBILE MENU
+    */
+
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+
+    /*
+      CURRENT YEAR
+    */
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+
+    /*
+      ESCAPE HTML
+      Prevents Firestore text from being interpreted as HTML.
+    */
+
+    function escapeHTML(value) {
+
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    /*
+      FORMAT DATE
+    */
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "";
+      }
+
+      try {
+
+        let date;
+
+        if (value?.toDate) {
+          date = value.toDate();
+        } else {
+          date = new Date(value);
+        }
+
+        if (isNaN(date.getTime())) {
+          return value;
+        }
+
+        return date.toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric"
+        });
+
+      } catch (error) {
+        return value;
+      }
+
+    }
+
+
+    /*
+      CREATE SERMON CARD
+    */
+
+    function createSermonCard(sermon) {
+
+      const title = escapeHTML(sermon.title || "Untitled Sermon");
+      const preacher = escapeHTML(
+        sermon.preacher ||
+        sermon.minister ||
+        "Mustard Seed Gospel Church"
+      );
+
+      const category = escapeHTML(
+        sermon.category || "Sermon"
+      );
+
+      const description = escapeHTML(
+        sermon.description ||
+        "Listen to this powerful message from Mustard Seed Gospel Church."
+      );
+
+      const date = formatDate(sermon.date);
+
+      const image = sermon.image || "";
+
+      const videoUrl = sermon.videoUrl || "";
+
+      const audioUrl = sermon.audioUrl || "";
+
+
+      let imageHTML;
+
+      if (image) {
+
+        imageHTML = `
+          <img
+            src="${escapeHTML(image)}"
+            alt="${title}"
+            class="w-full h-full object-cover"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+
+          <div
+            class="hidden absolute inset-0 items-center justify-center navy-bg text-white"
+          >
+            <span class="font-fraunces text-2xl">
+              Mustard Seed
+            </span>
+          </div>
+        `;
+
+      } else {
+
+        imageHTML = `
+          <div class="w-full h-full navy-bg flex items-center justify-center">
+            <div class="text-center text-white px-5">
+
+              <div class="gold text-4xl mb-2">
+                ✦
+              </div>
+
+              <div class="font-fraunces text-2xl">
+                Mustard Seed
+              </div>
+
+              <div class="text-white/60 text-sm mt-1">
+                Gospel Church
+              </div>
+
+            </div>
+          </div>
+        `;
+
+      }
+
+
+      let actionButtons = "";
+
+
+      if (videoUrl) {
+
+        actionButtons += `
+          <a
+            href="${escapeHTML(videoUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 gold-bg text-white px-5 py-3 rounded-full font-semibold text-sm hover:opacity-90 transition"
+          >
+            ▶ Watch
+          </a>
+        `;
+
+      }
+
+
+      if (audioUrl) {
+
+        actionButtons += `
+          <a
+            href="${escapeHTML(audioUrl)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 border border-[#0A1931]/15 navy text-[#0A1931] px-5 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition"
+          >
+            🎧 Listen
+          </a>
+        `;
+
+      }
+
+
+      return `
+
+        <article class="sermon-card bg-white rounded-2xl overflow-hidden border border-gray-100">
+
+          <!-- IMAGE -->
+
+          <div class="relative h-56 overflow-hidden">
+
+            ${imageHTML}
+
+            <div class="absolute top-4 left-4">
+
+              <span class="inline-block gold-bg text-white text-xs font-semibold px-3 py-1.5 rounded-full">
+                ${category}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- CONTENT -->
+
+          <div class="p-6">
+
+            ${
+              date
+                ? `
+                  <div class="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">
+                    ${escapeHTML(date)}
+                  </div>
+                `
+                : ""
+            }
+
+
+            <h3 class="font-fraunces text-2xl font-bold navy leading-tight">
+              ${title}
+            </h3>
+
+
+            <div class="mt-3 text-sm font-semibold gold">
+              ${preacher}
+            </div>
+
+
+            <p class="text-gray-500 text-sm leading-relaxed mt-4 line-clamp-3">
+              ${description}
+            </p>
+
+
+            ${
+              actionButtons
+                ? `
+                  <div class="flex flex-wrap gap-3 mt-6">
+                    ${actionButtons}
+                  </div>
+                `
+                : `
+                  <div class="mt-6 text-sm text-gray-400">
+                    Media for this sermon will be available soon.
+                  </div>
+                `
+            }
+
+          </div>
+
+        </article>
+
+      `;
+
+    }
+
+
+    /*
+      LOAD SERMONS FROM FIRESTORE
+    */
+
+    onSnapshot(
+      collection(db, "sermons"),
+
+      (snapshot) => {
+
+        loadingState.classList.add("hidden");
+        errorState.classList.add("hidden");
+
+
+        const sermons = [];
+
+
+        snapshot.forEach((doc) => {
+
+          const data = doc.data();
+
+
+          /*
+            Only published sermons appear
+            on the public website.
+          */
+
+          if (data.published === true) {
+
+            sermons.push({
+              id: doc.id,
+              ...data
+            });
+
+          }
+
+        });
+
+
+        /*
+          Sort newest sermons first.
+        */
+
+        sermons.sort((a, b) => {
+
+          const dateA = a.date?.toDate
+            ? a.date.toDate()
+            : new Date(a.date || 0);
+
+          const dateB = b.date?.toDate
+            ? b.date.toDate()
+            : new Date(b.date || 0);
+
+          return dateB - dateA;
+
+        });
+
+
+        /*
+          No sermons
+        */
+
+        if (sermons.length === 0) {
+
+          sermonsGrid.classList.add("hidden");
+          emptyState.classList.remove("hidden");
+
+          return;
+        }
+
+
+        /*
+          Display sermons
+        */
+
+        emptyState.classList.add("hidden");
+        sermonsGrid.classList.remove("hidden");
+
+
+        sermonsGrid.innerHTML = sermons
+          .map(createSermonCard)
+          .join("");
+
+      },
+
+      (error) => {
+
+        console.error("Error loading sermons:", error);
+
+        loadingState.classList.add("hidden");
+        sermonsGrid.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        errorState.classList.remove("hidden");
+
+        errorMessage.textContent =
+          "There was a problem connecting to the sermon database. Please try again later.";
+
+      }
+    );
+
+  </script></body>
+  </html>
