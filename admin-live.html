@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Live Management | Mustard Seed Gospel Church</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+body{font-family:Inter,Arial,sans-serif;background:#f5f7fb}.nav{display:block;padding:12px 14px;border-radius:10px;color:#dbe4f0;text-decoration:none;margin-bottom:6px}.nav:hover,.nav.active{background:#172b4d;color:#fff}.label{display:block;font-size:14px;font-weight:600;color:#334155;margin-bottom:7px}.input{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:11px 12px;outline:none;background:#fff}.input:focus{border-color:#0A1931;box-shadow:0 0 0 3px rgba(10,25,49,.08)}.hint{font-size:12px;color:#64748b;margin-top:5px}.sidebar{min-height:100vh}@media(max-width:900px){.sidebar{min-height:auto}}
+</style>
+</head>
+<body>
+<div id="loading" class="fixed inset-0 z-50 bg-white flex items-center justify-center"><div class="text-center"><div class="animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-slate-900 mx-auto"></div><p class="mt-4 text-slate-600">Checking admin access...</p></div></div>
+<div id="app" class="hidden min-h-screen"><div class="lg:flex">
+<aside class="sidebar w-full lg:w-64 bg-[#0A1931] text-white p-4 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto">
+<div class="px-2 py-4 mb-4"><div class="text-xl font-bold">Mustard Seed</div><div class="text-sm text-slate-300">Admin Panel</div></div>
+<nav>
+<a class="nav" href="admin-dashboard.html">Dashboard</a><a class="nav" href="admin-events.html">Events</a><a class="nav" href="admin-sermons.html">Sermons</a><a class="nav active" href="admin-live.html">Live</a><a class="nav" href="admin-prayer-requests.html">Prayer Requests</a><a class="nav" href="admin-settings.html">Settings</a>
+</nav>
+<div class="border-t border-slate-700 mt-5 pt-5"><a class="nav" href="index.html">View Website</a><button id="logoutBtn" class="w-full text-left nav">Logout</button></div>
+</aside>
+<main class="w-full lg:ml-64">
+<header class="bg-white border-b border-slate-200 px-5 md:px-8 py-5"><div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3"><div><h1 class="text-2xl md:text-3xl font-bold text-[#0A1931]">Live Management</h1><p class="text-slate-500 mt-1">Control the live service information shown on your website.</p></div><div class="text-sm text-slate-500">Admin: <span id="adminEmail" class="font-medium text-slate-700"></span></div></div></header>
+<section class="p-5 md:p-8 max-w-6xl mx-auto"><div id="message" class="hidden mb-5 rounded-xl px-4 py-3 text-sm"></div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+<div class="xl:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm p-5 md:p-7">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6"><div><h2 class="text-xl font-bold text-slate-900">Current Live Information</h2><p class="text-sm text-slate-500 mt-1">Saved in <b>live/current</b>.</p></div>
+<label class="inline-flex items-center gap-3 cursor-pointer"><input id="isLive" type="checkbox" class="sr-only peer"><div class="relative w-12 h-7 rounded-full bg-slate-300 peer-checked:bg-green-600 transition"><div class="absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition peer-checked:translate-x-5"></div></div><span id="liveLabel" class="font-semibold text-slate-600">Offline</span></label></div>
+<form id="liveForm" class="space-y-5">
+<div><label class="label">Live Service Title</label><input id="title" class="input" type="text" placeholder="Sunday Miracle Service"></div>
+<div><label class="label">Description</label><textarea id="description" class="input min-h-28" placeholder="Join us for a powerful time in God's presence..."></textarea></div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><label class="label">Date</label><input id="date" class="input" type="date"></div><div><label class="label">Start Time</label><input id="time" class="input" type="time"></div></div>
+<div><label class="label">Live Stream URL</label><input id="streamUrl" class="input" type="url" placeholder="https://youtube.com/..."><p class="hint">Paste the public YouTube, Facebook, or other live-stream link.</p></div>
+<div><label class="label">Live Image Path</label><input id="image" class="input" type="text" placeholder="images/live-service.jpg"><p class="hint">Keep the image inside your website folder because Firebase Storage is not enabled.</p></div>
+<div><label class="label">Location</label><input id="location" class="input" type="text" placeholder="Main Auditorium"></div>
+<div class="flex flex-col sm:flex-row gap-3 pt-2"><button id="saveBtn" type="submit" class="bg-[#0A1931] hover:bg-slate-800 text-white font-semibold px-6 py-3 rounded-xl">Save Live Information</button><button id="offlineBtn" type="button" class="border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-6 py-3 rounded-xl">Set Offline</button></div>
+</form></div>
+<div class="space-y-6">
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5"><h2 class="text-lg font-bold text-slate-900 mb-4">Current Status</h2><div id="statusCard" class="rounded-xl p-5 bg-slate-100"><div class="flex items-center gap-3"><span id="statusDot" class="w-3 h-3 rounded-full bg-slate-400"></span><span id="statusText" class="font-bold text-slate-700">OFFLINE</span></div><p id="statusTitle" class="font-semibold text-slate-900 mt-4">No live service currently active.</p><p id="statusDescription" class="text-sm text-slate-500 mt-2"></p></div></div>
+<div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5"><h2 class="text-lg font-bold text-slate-900 mb-4">Image Preview</h2><div class="aspect-video bg-slate-100 rounded-xl overflow-hidden flex items-center justify-center"><img id="imagePreview" alt="Live preview" class="hidden w-full h-full object-cover"><span id="noImage" class="text-sm text-slate-400">No image path entered</span></div></div>
+<div class="bg-amber-50 border border-amber-200 rounded-2xl p-5"><h3 class="font-bold text-amber-900">How it works</h3><p class="text-sm text-amber-800 mt-2 leading-6">Turn <b>Live</b> on when the church is streaming. Save the information. We will connect the public website to this Firestore document so visitors can see the current live status automatically.</p></div>
+</div></div></section></main></div></div>
+<script type="module">
+import{auth,db}from"./firebase.js";
+import{onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import{doc,getDoc,setDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const $=id=>document.getElementById(id),ref=doc(db,"live","current");
+function msg(t,e="success"){const m=$("message");m.textContent=t;m.className="mb-5 rounded-xl px-4 py-3 text-sm "+(e==="success"?"bg-green-50 text-green-700 border border-green-200":"bg-red-50 text-red-700 border border-red-200");m.classList.remove("hidden");setTimeout(()=>m.classList.add("hidden"),5000)}
+function label(){ $("liveLabel").textContent=$("isLive").checked?"LIVE":"Offline";$("liveLabel").className=$("isLive").checked?"font-semibold text-green-600":"font-semibold text-slate-600" }
+function preview(){const p=$("image").value.trim(),im=$("imagePreview"),n=$("noImage");if(p){im.src=p;im.classList.remove("hidden");n.classList.add("hidden");im.onerror=()=>{im.classList.add("hidden");n.textContent="Image could not be loaded";n.classList.remove("hidden")}}else{im.classList.add("hidden");n.textContent="No image path entered";n.classList.remove("hidden")}}
+function status(d){const on=d.isLive;$("statusCard").className=on?"rounded-xl p-5 bg-green-50 border border-green-200":"rounded-xl p-5 bg-slate-100";$("statusDot").className=on?"w-3 h-3 rounded-full bg-green-500 animate-pulse":"w-3 h-3 rounded-full bg-slate-400";$("statusText").textContent=on?"LIVE NOW":"OFFLINE";$("statusText").className=on?"font-bold text-green-700":"font-bold text-slate-700";$("statusTitle").textContent=d.title||"No live service currently active.";$("statusDescription").textContent=d.description||""}
+function fill(d){$("isLive").checked=d.isLive===true;$("title").value=d.title||"";$("description").value=d.description||"";$("date").value=d.date||"";$("time").value=d.time||"";$("streamUrl").value=d.streamUrl||"";$("image").value=d.image||"";$("location").value=d.location||"";label();preview();status(d)}
+async function load(){try{const s=await getDoc(ref);fill(s.exists()?s.data():{isLive:false})}catch(e){msg("Could not load live information: "+e.message,"error")}}
+$("isLive").addEventListener("change",label);$("image").addEventListener("input",preview);
+$("liveForm").addEventListener("submit",async e=>{e.preventDefault();const b=$("saveBtn");b.disabled=true;b.textContent="Saving...";const d={isLive:$("isLive").checked,title:$("title").value.trim(),description:$("description").value.trim(),date:$("date").value,time:$("time").value,streamUrl:$("streamUrl").value.trim(),image:$("image").value.trim(),location:$("location").value.trim(),updatedAt:serverTimestamp()};try{await setDoc(ref,d,{merge:true});status(d);msg("Live information saved successfully.")}catch(x){msg("Could not save live information: "+x.message,"error")}finally{b.disabled=false;b.textContent="Save Live Information"}});
+$("offlineBtn").addEventListener("click",async()=>{const b=$("offlineBtn");b.disabled=true;b.textContent="Updating...";try{await setDoc(ref,{isLive:false,updatedAt:serverTimestamp()},{merge:true});$("isLive").checked=false;label();status({isLive:false,title:$("title").value.trim(),description:$("description").value.trim()});msg("The live status has been set to offline.")}catch(e){msg("Could not set offline: "+e.message,"error")}finally{b.disabled=false;b.textContent="Set Offline"}});
+$("logoutBtn").addEventListener("click",async()=>{await signOut(auth);location.href="admin.login.html"});
+onAuthStateChanged(auth,async u=>{if(!u){location.href="admin.login.html";return}try{const a=await getDoc(doc(db,"admins",u.uid));if(!a.exists()||a.data().active!==true){await signOut(auth);location.href="admin.login.html";return}$("adminEmail").textContent=u.email||"Admin";$("loading").classList.add("hidden");$("app").classList.remove("hidden");await load()}catch(e){$("loading").classList.add("hidden");$("app").classList.remove("hidden");msg("Unable to verify administrator access: "+e.message,"error")}});
+</script>
+</body>
+</html>
