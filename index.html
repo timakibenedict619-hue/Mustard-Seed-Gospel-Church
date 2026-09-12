@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mustard Seed Gospel Church — Home of Success</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#0A1931',
+            gold: '#D4AF37',
+            cream: '#F7F7F5',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+            serif: ['Fraunces', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .serif { font-family: 'Fraunces', serif; }
+  </style>
+</head>
+<body class="bg-white text-navy antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel" data-type="module">
+    import React, { useEffect, useState } from 'https://esm.sh/react@18.3.1';
+    import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
+
+    import { db } from './firebase.js';
+
+    import {
+      collection,
+      doc,
+      onSnapshot
+    } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+
+    const Icon = ({ children, className = "w-5 h-5" }) => (
+      <svg className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+        {children}
+      </svg>
+    );
+
+    const ArrowRight = (props) => <Icon {...props}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></Icon>;
+    const BookOpen = (props) => <Icon {...props}><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></Icon>;
+    const Calendar = (props) => <Icon {...props}><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></Icon>;
+    const Clock = (props) => <Icon {...props}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></Icon>;
+    const HandHeart = (props) => <Icon {...props}><path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 16"/><path d="m7 20 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 15 6 6"/><path d="M19.5 8.5c.7-.7 1.5-1.6 1.5-2.7A2.73 2.73 0 0 0 16 4a2.78 2.78 0 0 0-5 1.8c0 1.2.8 2 1.5 2.8L16 12Z"/></Icon>;
+    const Heart = (props) => <Icon {...props}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></Icon>;
+    const MapPin = (props) => <Icon {...props}><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></Icon>;
+    const Menu = (props) => <Icon {...props}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></Icon>;
+    const Play = (props) => <Icon {...props}><polygon points="6 3 20 12 6 21 6 3"/></Icon>;
+    const Quote = (props) => <Icon {...props}><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></Icon>;
+    const Users = (props) => <Icon {...props}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
+    const X = (props) => <Icon {...props}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></Icon>;
+
+    function App() {
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+      /*
+        ---------------------------------------------------------
+        FIREBASE DATA
+        ---------------------------------------------------------
+        The hard-coded data below remains as fallback data.
+        Firebase will replace it automatically when published
+        content exists in Firestore.
+      */
+
+      const defaultEvents = [
+        {
+          date: "SEP 25-27",
+          title: "Amen 2026",
+          desc: "3 days of supernatural encounters and divine visitation. Theme: The Great Shepherd.",
+          img: "IMG-20260805-WA0001(11).jpg",
+          tag: "Annual",
+          location: "Main Auditorium",
+          time: "5:00 PM"
+        },
+        {
+          date: "EVERY SUN",
+          title: "Sunday Miracle Service",
+          desc: "Experience healing, deliverance and success in every area of life.",
+          img: "images/sunday-service.jpg",
+          tag: "Weekly",
+          location: "Main Auditorium",
+          time: "5:00 PM"
+        },
+        {
+          date: "DEC 31",
+          title: "Crossover Night",
+          desc: "Enter 2026 with prophetic declarations for dominion and success.",
+          img: "images/crossover-night.jpg",
+          tag: "Special",
+          location: "Main Auditorium",
+          time: "5:00 PM"
+        }
+      ];
+
+      const [events, setEvents] = useState(defaultEvents);
+
+      const [liveData, setLiveData] = useState({
+        isLive: true,
+        title: "Sunday Miracle Service with Ifeanyichukwu Joseph",
+        startTime: "8:00 AM WAT",
+        location: "Sanctuary",
+        imagePath: "images/live.jpg",
+        streamUrl: "watch-live.html"
+      });
+
+      const [settings, setSettings] = useState({
+        churchName: "Mustard Seed Gospel Church",
+        tagline: "Home of Success",
+        address: "Agbor Delta, Nigeria",
+        sundayService: "8AM & 10AM WAT",
+        liveStreamTime: "Sun 7AM",
+        welcomeMessage: "A global vision to establish the Kingdom of God here on Earth. Raising champions, restoring destinies, and transforming lives since 1997.",
+        footerText: "Raising champions and restoring destinies through the power of God’s Word. Established 1997 in Agbor, Nigeria."
+      });
+
+      useEffect(() => {
+
+        /*
+          ---------------------------------------------------------
+          EVENTS LISTENER
+          ---------------------------------------------------------
+          Reads all events from:
+          Firestore > events
+
+          Only events with published === true are displayed.
+        */
+
+        const unsubscribeEvents = onSnapshot(
+          collection(db, "events"),
+          (snapshot) => {
+
+            const firebaseEvents = [];
+
+            snapshot.forEach((eventDoc) => {
+              const data = eventDoc.data();
+
+              if (data.published === true) {
+                firebaseEvents.push({
+                  id: eventDoc.id,
+                  date: data.date || "",
+                  title: data.title || "",
+                  desc: data.desc || data.description || "",
+                  img: data.img || data.imagePath || "",
+                  tag: data.tag || "",
+                  location: data.location || "Main Auditorium",
+                  time: data.time || "5:00 PM"
+                });
+              }
+            });
+
+            /*
+              Sort newest created events first when createdAt exists.
+            */
+            firebaseEvents.sort((a, b) => {
+
+              const originalA = snapshot.docs.find((doc) => doc.id === a.id);
+              const originalB = snapshot.docs.find((doc) => doc.id === b.id);
+
+              const timeA = originalA?.data()?.createdAt?.toMillis?.() || 0;
+              const timeB = originalB?.data()?.createdAt?.toMillis?.() || 0;
+
+              return timeB - timeA;
+            });
+
+            /*
+              If Firebase has published events, use them.
+              If there are no published events, keep the original
+              homepage events so the design/content does not disappear.
+            */
+            if (firebaseEvents.length > 0) {
+              setEvents(firebaseEvents);
+            } else {
+              setEvents(defaultEvents);
+            }
+
+          },
+          (error) => {
+            console.error("Firebase events error:", error);
+            setEvents(defaultEvents);
+          }
+        );
+
+
+        /*
+          ---------------------------------------------------------
+          LIVE SERVICE LISTENER
+          ---------------------------------------------------------
+          Reads:
+          Firestore > live > current
+        */
+
+        const unsubscribeLive = onSnapshot(
+          doc(db, "live", "current"),
+          (snapshot) => {
+
+            if (snapshot.exists()) {
+
+              const data = snapshot.data();
+
+              setLiveData({
+                isLive: data.isLive === true,
+                title: data.title || "Sunday Miracle Service with Ifeanyichukwu Joseph",
+                startTime: data.startTime || "8:00 AM WAT",
+                location: data.location || "Sanctuary",
+                imagePath: data.imagePath || "images/live.jpg",
+                streamUrl: data.streamUrl || "watch-live.html"
+              });
+
+            }
+
+          },
+          (error) => {
+            console.error("Firebase live data error:", error);
+          }
+        );
+
+
+        /*
+          ---------------------------------------------------------
+          CHURCH SETTINGS LISTENER
+          ---------------------------------------------------------
+          Reads:
+          Firestore > settings > church
+        */
+
+        const unsubscribeSettings = onSnapshot(
+          doc(db, "settings", "church"),
+          (snapshot) => {
+
+            if (snapshot.exists()) {
+
+              const data = snapshot.data();
+
+              setSettings((previous) => ({
+                ...previous,
+                ...data
+              }));
+
+            }
+
+          },
+          (error) => {
+            console.error("Firebase settings error:", error);
+          }
+        );
+
+
+        /*
+          Clean up Firebase listeners when component is removed.
+        */
+        return () => {
+          unsubscribeEvents();
+          unsubscribeLive();
+          unsubscribeSettings();
+        };
+
+      }, []);
+
+
+      const testimonies = [
+        {
+          name: "Mr. Timaki Benedict",
+          loc: "Port Harcourt",
+          text: "After 7 years of barrenness, God visited us during Glory Reign. Today we are parents of twins. The God of Salvation Ministries is faithful!",
+          img: "IMG_20260821_123033_759.jpg"
+        },
+        {
+          name: "Emeka J.",
+          loc: "Lagos • Entrepreneur",
+          text: "My business was dead. After the anointing service, contracts started coming. From zero to 6 figures monthly. Home of Success indeed!",
+          img: "images/testimony-2.jpg"
+        },
+        {
+          name: "Grace & Family",
+          loc: "London, UK • Online",
+          text: "We joined online from London. My husband got healed of a 10-year ailment during live stream prayer. Distance is not a barrier!",
+          img: "images/testimony-3.jpg"
+        }
+      ];
+
+      const getInvolved = [
+        { icon: Heart, title: "Pray", desc: "Join our intercessory team and global prayer altar. Prayer moves God.", cta: "Prayer Request", href: "prayer-request.html" },
+        { icon: HandHeart, title: "Serve", desc: "Volunteer in media, choir, ushering, children & outreach teams.", cta: "Join a Department", href: "departments.html" },
+        { icon: Users, title: "Give", desc: "Partner with the vision through tithes, offerings and kingdom projects.", cta: "Give Online", href: "give.html" },
+        { icon: BookOpen, title: "Grow", desc: "Enroll in Word of Faith Bible Institute for spiritual depth.", cta: "Explore WOFBI", href: "wofbi.html" }
+      ];
+
+      return (
+        <div className="min-h-screen bg-white text-navy font-inter overflow-x-hidden">
+
+          {/* Top Bar */}
+          <div className="bg-navy text-white text-[12px] tracking-[0.18em] uppercase font-medium">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 h-9 flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <span className="flex items-center gap-2 opacity-80">
+                  <Clock className="w-3 h-3" /> Sunday Services • {settings.sundayService || "8AM & 10AM WAT"}
+                </span>
+
+                <span className="hidden md:flex items-center gap-2 opacity-60">
+                  <MapPin className="w-3 h-3" /> {settings.address || "Agbor Delta, Nigeria"}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-4 opacity-80">
+                <span className="hidden sm:inline">
+                  Live Stream: {settings.liveStreamTime || "Sun 7AM"}
+                </span>
+
+                <span className="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+              </div>
+            </div>
+          </div>
+
+          {/* Header */}
+          <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-black/[0.06]">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 h-[72px] flex items-center justify-between">
+
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-gold font-bold text-[13px] tracking-widest">
+                  SM
+                </div>
+
+                <div className="leading-[1.1]">
+                  <div className="font-bold text-[15px] tracking-[-0.02em]">
+                    {settings.churchName || "Mustard Seed Gospel Church"}
+                  </div>
+
+                  <div className="text-[11px] tracking-[0.22em] uppercase font-semibold text-navy/60">
+                    {settings.tagline || "Home of Success"}
+                  </div>
+                </div>
+              </div>
+
+              <nav className="hidden lg:flex items-center gap-8 text-[13.5px] font-medium tracking-[-0.01em]">
+                <a href="#home" className="hover:text-navy/60 transition">Home</a>
+                <a href="sermons.html" className="hover:text-navy/60 transition">Sermons</a>
+                <a href="#about" className="hover:text-navy/60 transition">About</a>
+                <a href="#live" className="hover:text-navy/60 transition">Live</a>
+                <a href="#events" className="hover:text-navy/60 transition">Events</a>
+                <a href="give.html" className="hover:text-navy/60 transition">Give</a>
+                <a href="#contact" className="hover:text-navy/60 transition">Contact</a>
+              </nav>
+
+              <div className="hidden lg:flex items-center gap-3">
+                <a href="join-online.html" className="h-10 px-6 rounded-full bg-navy text-white text-[13px] font-semibold tracking-wide hover:bg-black transition flex items-center">
+                  Join Online
+                </a>
+              </div>
+
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden w-10 h-10 rounded-full border border-black/10 flex items-center justify-center"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+              <div className="lg:hidden border-t border-black/10 bg-white px-6 py-6 space-y-1">
+
+                <a href="#home" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  Home <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="sermons.html" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  Sermons <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="#about" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  About <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="#live" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  Live <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="#events" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  Events <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="give.html" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium border-b border-black/5">
+                  Give <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center justify-between py-3 text-[15px] font-medium">
+                  Contact <ArrowRight className="w-4 h-4 opacity-40" />
+                </a>
+
+                <a href="join-online.html" className="mt-4 w-full h-12 rounded-full bg-navy text-white font-semibold flex items-center justify-center">
+                  Join Online
+                </a>
+              </div>
+            )}
+          </header>
+
+          {/* Hero */}
+          <section id="home" className="relative overflow-hidden">
+
+            {/* HERO BACKGROUND IMAGE
+                 Replace images/IMG-20250929-WA0351.jpg with your own image path or URL.
+                 Example:
+                 src="images/IMG-20250929-WA0351.jpg"
+                 or
+                 src="https://example.com/IMG-20250929-WA0351.jpg"
+            */}
+            <div className="absolute inset-0 z-0">
+              <img
+                src="IMG-20250929-WA0351.jpg"
+                alt="church background"
+                className="w-full h-full object-cover"
+              />
+
+              <div className="absolute inset-0 bg-navy/80 mix-blend-multiply"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(212,175,55,0.18),transparent_60%)]"></div>
+            </div>
+
+            <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-8 pt-[96px] md:pt-[128px] pb-[88px] md:pb-[120px]">
+              <div className="max-w-[720px]">
+
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-white text-[12px] tracking-[0.18em] uppercase font-semibold backdrop-blur">
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold"></span> Welcome Home
+                </div>
+
+                <h1 className="serif mt-6 text-[42px] md:text-[68px] leading-[0.95] tracking-[-0.03em] text-white font-bold">
+                  Welcome to<br />
+                  Mustard Seed Gospel<br />
+                  <span className="text-gold">Church</span>
+
+                  <span className="block mt-2 text-[14px] md:text-[18px] font-sans font-medium tracking-[0.18em] uppercase text-white/70">
+                    (Home of Success)
+                  </span>
+                </h1>
+
+                <p className="mt-6 text-[16px] md:text-[18px] leading-[1.6] text-white/75 max-w-[520px] font-light">
+                  {settings.welcomeMessage || "A global vision to establish the Kingdom of God here on Earth. Raising champions, restoring destinies, and transforming lives since 1997."}
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+
+                  <a
+                    href="join-online.html"
+                    className="h-[52px] px-8 rounded-full bg-gold text-navy text-[15px] font-bold tracking-wide flex items-center gap-2 hover:bg-[#c7a230] transition"
+                  >
+                    <Play className="w-4 h-4 fill-navy" /> Join Us Online
+                  </a>
+
+                  <a
+                    href="sermons.html"
+                    className="h-[52px] px-8 rounded-full bg-white/10 border border-white/20 text-white text-[15px] font-semibold tracking-wide backdrop-blur hover:bg-white/15 transition flex items-center gap-2"
+                  >
+                    <BookOpen className="w-4 h-4" /> Our Sermons
+                  </a>
+
+                </div>
+
+                <div className="mt-10 flex items-center gap-8 text-white/60 text-[13px]">
+                  <div className="flex -space-x-3">
+                    {[1, 2, 3].map((n) => (
+                      <img
+                        key={n}
+                        src={`images/member-${n}.jpg`}
+                        className="w-9 h-9 rounded-full border-2 border-navy object-cover"
+                        alt="member"
+                      />
+                    ))}
+                  </div>
+
+                  <div className="leading-tight">
+                    <div className="text-white font-semibold">100k+ Members Worldwide</div>
+                    <div className="text-white/50">Join the family this Sunday</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Card */}
+              <div className="mt-12 md:mt-0 md:absolute md:right-8 md:bottom-[120px] md:w-[340px] bg-white rounded-[20px] p-5 shadow-[0_20px_80px_rgba(0,0,0,0.25)] border border-black/5">
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-[11px] tracking-[0.16em] uppercase font-bold text-navy/60">
+                    <span className={`w-2 h-2 rounded-full ${liveData.isLive ? "bg-red-500 animate-pulse" : "bg-black/30"}`}></span>
+                    {liveData.isLive ? "Live Now" : "Offline"}
+                  </div>
+
+                  <span className="text-[11px] font-semibold px-2 py-1 rounded-full bg-navy/5">
+                    YouTube • Facebook
+                  </span>
+                </div>
+
+                <a
+                  href={liveData.streamUrl || "watch-live.html"}
+                  target={liveData.streamUrl && liveData.streamUrl.startsWith("http") ? "_blank" : undefined}
+                  rel={liveData.streamUrl && liveData.streamUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="block"
+                >
+                  <div className="mt-3 aspect-[16/9] rounded-[14px] overflow-hidden bg-navy relative">
+                    <img
+                      src={liveData.imagePath || "images/live.jpg"}
+                      className="w-full h-full object-cover opacity-80"
+                      alt="live"
+                    />
+
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
+                        <Play className="w-5 h-5 fill-navy ml-0.5" />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+
+                <div className="mt-4">
+                  <div className="font-semibold text-[15px] leading-tight">
+                    {liveData.title || "Sunday Miracle Service with Ifeanyichukwu Joseph"}
+                  </div>
+
+                  <div className="mt-1 text-[13px] text-black/50 flex items-center gap-2">
+                    <Clock className="w-3.5 h-3.5" />
+                    {liveData.startTime || "8:00 AM WAT"} • {liveData.location || "Sanctuary"}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Events */}
+          <section id="events" className="bg-cream border-y border-black/[0.06]">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-12 md:py-16">
+
+              <div className="flex flex-wrap items-end justify-between gap-6 mb-8">
+                <div>
+                  <div className="text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">What's Happening</div>
+
+                  <h2 className="serif mt-2 text-[32px] md:text-[44px] leading-[0.95] tracking-[-0.02em] font-bold">
+                    Upcoming Events
+                  </h2>
+                </div>
+
+                <a href="events.html" className="text-[14px] font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+                  View all events <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-5">
+                {events.map((event, i) => (
+                  <div
+                    key={event.id || i}
+                    className="group bg-white rounded-[16px] overflow-hidden border border-black/[0.06] shadow-[0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] transition-all"
+                  >
+
+                    <div className="relative h-[190px] overflow-hidden">
+                      <img
+                        src={event.img}
+                        alt={event.title}
+                        className="w-full h-full object-cover group-hover:scale-[1.04] transition duration-700"
+                      />
+
+                      <div className="absolute top-3 left-3 flex gap-2">
+                        <span className="px-2.5 py-1 rounded-full bg-white text-[10px] font-bold tracking-[0.12em] uppercase">
+                          {event.tag}
+                        </span>
+
+                        <span className="px-2.5 py-1 rounded-full bg-navy text-white text-[10px] font-bold tracking-[0.12em] uppercase">
+                          {event.date}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-5">
+                      <h3 className="font-semibold text-[17px] leading-tight tracking-[-0.01em]">
+                        {event.title}
+                      </h3>
+
+                      <p className="mt-2 text-[14px] leading-[1.5] text-black/60 line-clamp-2">
+                        {event.desc}
+                      </p>
+
+                      <div className="mt-4 flex items-center gap-2 text-[13px] font-semibold">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {event.location || "Main Auditorium"} • {event.time || "5:00 PM"}
+                      </div>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* About */}
+          <section id="about" className="bg-white">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-24 grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-center">
+
+              <div>
+                <div className="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">
+                  <span className="w-6 h-[1px] bg-gold"></span> Our Mandate Since 1997
+                </div>
+
+                <h2 className="serif mt-4 text-[36px] md:text-[52px] leading-[0.95] tracking-[-0.03em] font-bold">
+                  To Establish<br />
+                  the Kingdom of<br />
+                  <span className="text-navy/40">God Here</span><br />
+                  on Earth
+                </h2>
+
+                <div className="mt-6 space-y-4 text-[15px] leading-[1.7] text-black/65 max-w-[520px]">
+
+                  <p>
+                    Founded in April 1997 by <span className="font-semibold text-navy">Pastor Ifeanyichukwu Joseph</span>, Mustard Seed Gospel Church started with 34 persons including 6 ministers at No 27 Melekwe st.owa, Agbor.
+                  </p>
+
+                  <p>
+                    Today, we are a global commission with hundreds of churches worldwide, the Joseph ifeanyichukwu University, media outreach reaching millions, and a vision to make every member a success.
+                  </p>
+
+                  <p className="text-navy font-medium italic border-l-2 border-gold pl-4">
+                    “God told me: ‘I have given you this city and its environs… I will use you to establish my kingdom here.’”
+                  </p>
+
+                </div>
+
+                <div className="mt-8 flex gap-3">
+
+                  <div className="px-5 py-4 rounded-[14px] bg-cream border border-black/5">
+                    <div className="text-[24px] font-bold serif tracking-tight">1997</div>
+                    <div className="text-[11px] uppercase tracking-[0.14em] font-semibold text-black/50">Founded</div>
+                  </div>
+
+                  <div className="px-5 py-4 rounded-[14px] bg-cream border border-black/5">
+                    <div className="text-[24px] font-bold serif tracking-tight">500+</div>
+                    <div className="text-[11px] uppercase tracking-[0.14em] font-semibold text-black/50">Churches</div>
+                  </div>
+
+                  <div className="px-5 py-4 rounded-[14px] bg-cream border border-black/5">
+                    <div className="text-[24px] font-bold serif tracking-tight">1M+</div>
+                    <div className="text-[11px] uppercase tracking-[0.14em] font-semibold text-black/50">Lives Touched</div>
+                  </div>
+
+                </div>
+
+                <a href="about.html" className="mt-8 h-11 px-7 rounded-full bg-navy text-white text-[14px] font-semibold flex items-center gap-2 w-fit">
+                  Our Story <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+
+              <div className="relative">
+                <div className="rounded-[20px] overflow-hidden border border-black/5 shadow-[0_24px_60px_rgba(0,0,0,0.12)]">
+
+                  <img
+                    src="IMG-20260811-WA0026.jpg"
+                    alt="pastor preaching"
+                    className="w-full h-[560px] object-cover"
+                  />
+
+                  <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+                    <div className="flex items-end justify-between gap-4">
+
+                      <div className="text-white">
+                        <div className="font-semibold">Pst. Ifeanyichukwu Joseph</div>
+                        <div className="text-[13px] text-white/70">Presiding Pastor, Mustard Seed Gospel Church</div>
+                      </div>
+
+                      <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
+                        <Quote className="w-5 h-5 text-navy" />
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+                <div className="absolute -left-6 -bottom-6 hidden md:block bg-gold rounded-[16px] px-5 py-4 shadow-xl">
+                  <div className="text-[11px] uppercase tracking-[0.16em] font-bold text-navy/70">
+                    Home of Success
+                  </div>
+
+                  <div className="mt-1 serif text-[18px] leading-tight font-bold text-navy">
+                    Raising Giants<br />for God
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Scripture Banner */}
+          <section className="bg-navy relative overflow-hidden">
+
+            <div
+              className="absolute inset-0 opacity-[0.08]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+              }}
+            ></div>
+
+            <div className="max-w-[960px] mx-auto px-6 md:px-8 py-16 md:py-24 text-center relative">
+
+              <div className="inline-flex w-12 h-12 rounded-full bg-white/10 border border-white/15 items-center justify-center mb-6">
+                <span className="serif text-[24px] text-gold font-bold">“</span>
+              </div>
+
+              <h3 className="serif text-[28px] md:text-[40px] leading-[1.1] tracking-[-0.02em] font-semibold text-white">
+                But on <span className="text-gold">Mount Zion</span> there shall be<br className="hidden md:block" />
+                deliverance, and there shall be<br className="hidden md:block" />
+                holiness; and the house of Jacob<br className="hidden md:block" />
+                shall possess their possessions.
+              </h3>
+
+              <div className="mt-6 flex items-center justify-center gap-3">
+                <span className="w-10 h-[1px] bg-gold"></span>
+
+                <span className="text-[12px] tracking-[0.22em] uppercase font-bold text-white/60">
+                  Obadiah 1:17 — Our Anchor Scripture
+                </span>
+
+                <span className="w-10 h-[1px] bg-gold"></span>
+              </div>
+
+            </div>
+          </section>
+
+          {/* Testimonies */}
+          <section id="live" className="bg-white">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-24">
+
+              <div className="flex flex-wrap items-start justify-between gap-6 mb-10">
+
+                <div>
+                  <div className="text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">
+                    What God is Doing
+                  </div>
+
+                  <h2 className="serif mt-3 text-[32px] md:text-[44px] leading-[0.9] tracking-[-0.02em] font-bold">
+                    Testimonies of<br />Success
+                  </h2>
+                </div>
+
+                <p className="max-w-[380px] text-[15px] leading-[1.6] text-black/60">
+                  Real stories of deliverance, restoration and supernatural turnaround from our global family. God is still in the business of changing lives.
+                </p>
+
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-5">
+
+                {testimonies.map((t, i) => (
+                  <div key={i} className="rounded-[16px] bg-cream border border-black/[0.04] p-6 flex flex-col">
+
+                    <div className="flex items-center gap-3">
+
+                      <img
+                        src={t.img}
+                        alt={t.name}
+                        className="w-11 h-11 rounded-full object-cover"
+                      />
+
+                      <div>
+                        <div className="font-semibold text-[14px]">{t.name}</div>
+                        <div className="text-[12px] text-black/50 tracking-wide">{t.loc}</div>
+                      </div>
+
+                      <div className="ml-auto text-gold">
+                        <Quote className="w-5 h-5 fill-gold/20" />
+                      </div>
+
+                    </div>
+
+                    <p className="mt-5 text-[14px] leading-[1.6] text-black/70">
+                      “{t.text}”
+                    </p>
+
+                    <div className="mt-auto pt-6 flex gap-1">
+                      {[...Array(5)].map((_, j) => (
+                        <span
+                          key={j}
+                          className="w-1.5 h-1.5 rounded-full bg-gold"
+                        ></span>
+                      ))}
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+            </div>
+          </section>
+
+          {/* Get Involved */}
+          <section id="give" className="bg-cream border-y border-black/[0.06]">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-20">
+
+              <div className="max-w-[720px] mx-auto text-center">
+
+                <div className="text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">
+                  Join The Movement
+                </div>
+
+                <h2 className="serif mt-3 text-[32px] md:text-[44px] leading-[0.9] font-bold tracking-[-0.02em]">
+                  Get Involved
+                </h2>
+
+                <p className="mt-3 text-[15px] leading-[1.6] text-black/60">
+                  Mustard Seed Gospel Church is more than a church — it’s a family and a mission. Here’s how you can be part.
+                </p>
+
+              </div>
+
+              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+
+                {getInvolved.map((item, i) => (
+                  <div
+                    key={i}
+                    className="group bg-white rounded-[16px] border border-black/5 p-6 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06)] hover:-translate-y-[2px] transition-all"
+                  >
+
+                    <div className="w-12 h-12 rounded-[14px] bg-navy text-gold flex items-center justify-center">
+                      <item.icon className="w-5 h-5" />
+                    </div>
+
+                    <h3 className="mt-5 font-semibold text-[18px] serif tracking-tight">
+                      {item.title}
+                    </h3>
+
+                    <p className="mt-2 text-[13px] leading-[1.5] text-black/60 min-h-[48px]">
+                      {item.desc}
+                    </p>
+
+                    <a
+                      href={item.href}
+                      className="mt-5 text-[13px] font-semibold tracking-wide flex items-center gap-1 group-hover:gap-2 transition-all"
+                    >
+                      {item.cta} <ArrowRight className="w-3.5 h-3.5" />
+                    </a>
+
+                  </div>
+                ))}
+
+              </div>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer id="contact" className="bg-navy text-white">
+            <div className="max-w-[1280px] mx-auto px-6 md:px-8 pt-14 pb-10">
+
+              <div className="grid md:grid-cols-[1.4fr_0.8fr_0.8fr_1fr] gap-10">
+
+                <div>
+
+                  <div className="flex items-center gap-3">
+
+                    <div className="w-10 h-10 rounded-full bg-white text-navy flex items-center justify-center font-bold text-[14px]">
+                      SM
+                    </div>
+
+                    <div className="leading-[1.1]">
+
+                      <div className="font-bold text-[16px]">
+                        {settings.churchName || "Mustard Seed Gospel Church"}
+                      </div>
+
+                      <div className="text-[11px] tracking-[0.2em] uppercase opacity-60">
+                        {settings.tagline || "Home of Success"}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <p className="mt-5 text-[14px] leading-[1.6] text-white/60 max-w-[320px]">
+                    {settings.footerText || "Raising champions and restoring destinies through the power of God’s Word. Established 1997 in Agbor, Nigeria."}
+                  </p>
+
+                  <div className="mt-6 flex gap-2">
+
+                    {["FB", "YT", "IG", "X"].map((s) => (
+                      <div
+                        key={s}
+                        className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[11px] font-bold hover:bg-white hover:text-navy transition cursor-pointer"
+                      >
+                        {s}
+                      </div>
+                    ))}
+
+                  </div>
+                </div>
+
+                <div>
+
+                  <div className="text-[12px] tracking-[0.2em] uppercase font-bold opacity-50">
+                    Visit Us
+                  </div>
+
+                  <div className="mt-4 text-[14px] leading-[1.7] text-white/70">
+                    {settings.churchName || "Mustard Seed Gospel Church"}<br />
+                    Headquarters<br />
+                    No 27, Melekwe Street<br />
+                    <br />Boji Boji Owa
+                    Agbor, Delta<br />
+                    Nigeria
+                  </div>
+
+                </div>
+
+                <div>
+
+                  <div className="text-[12px] tracking-[0.2em] uppercase font-bold opacity-50">
+                    Quick Links
+                  </div>
+
+                  <div className="mt-4 space-y-2.5 text-[14px] text-white/70">
+
+                    <a className="block hover:text-white" href="#about">
+                      About Pst Ifeanyichukwu Joseph
+                    </a>
+
+                    <a className="block hover:text-white" href="#events">
+                      Events & Programs
+                    </a>
+
+                    <a className="block hover:text-white" href="wofbi.html">
+                      WOFBI
+                    </a>
+
+                    <a className="block hover:text-white" href="churches.html">
+                      Our Churches
+                    </a>
+
+                    <a className="block hover:text-white" href="give.html">
+                      Give / Partnership
+                    </a>
+
+                    <a className="block hover:text-white" href="sermons.html">
+                      Our Sermons
+                    </a>
+
+                    <a className="block hover:text-white" href="prayer-request.html">
+                      Prayer Request
+                    </a>
+
+                  </div>
+                </div>
+
+                <div className="bg-white/[0.06] border border-white/10 rounded-[16px] p-6">
+
+                  <div className="text-[12px] tracking-[0.18em] uppercase font-bold text-gold">
+                    Join Online
+                  </div>
+
+                  <div className="mt-3 serif text-[20px] leading-tight font-semibold">
+                    Never miss a service.
+                  </div>
+
+                  <p className="mt-2 text-[13px] leading-[1.6] text-white/60">
+                    Stream live on YouTube & Facebook every Sunday 8AM WAT and Wednesday 5PM.
+                  </p>
+
+                  <div className="mt-5 flex gap-2">
+
+                    <a
+                      href="watch-live.html"
+                      className="h-10 px-5 rounded-full bg-white text-navy text-[13px] font-bold flex items-center justify-center"
+                    >
+                      Watch Live
+                    </a>
+
+                    <a
+                      href="churches.html"
+                      className="h-10 px-5 rounded-full bg-gold text-navy text-[13px] font-bold flex items-center justify-center"
+                    >
+                      Find a Church
+                    </a>
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div className="mt-12 pt-6 border-t border-white/10 flex flex-wrap gap-4 items-center justify-between text-[12px] tracking-wide text-white/40">
+
+                <span>
+                  © {new Date().getFullYear()} Mustard Seed Gospel Church. Home of Success. All Rights Reserved.
+                </span>
+
+                <span className="flex items-center gap-4">
+
+                  <a href="privacy.html" className="hover:text-white">
+                    Privacy
+                  </a>
+
+                  <a href="terms.html" className="hover:text-white">
+                    Terms
+                  </a>
+
+                  <span className="w-1 h-1 rounded-full bg-white/20"></span>
+
+                  <span className="text-gold">
+                    Built with Purpose
+                  </span>
+
+                </span>
+
+              </div>
+            </div>
+          </footer>
+
+        </div>
+      );
+    }
+
+    const root = createRoot(document.getElementById('root'));
+
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+  </script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</body>
+  </html>
