@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Watch Live | Mustard Seed Gospel Church</title>
+
+  <meta
+    name="description"
+    content="Watch Mustard Seed Gospel Church live online."
+  />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --navy: #0A1931;
+      --gold: #D4AF37;
+      --cream: #F7F7F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--cream);
+      color: #111827;
+    }
+
+    .font-display {
+      font-family: "Fraunces", serif;
+    }
+
+    .bg-navy {
+      background-color: var(--navy);
+    }
+
+    .text-navy {
+      color: var(--navy);
+    }
+
+    .bg-gold {
+      background-color: var(--gold);
+    }
+
+    .text-gold {
+      color: var(--gold);
+    }
+
+    .border-gold {
+      border-color: var(--gold);
+    }
+
+    .live-pulse {
+      animation: livePulse 1.6s infinite;
+    }
+
+    @keyframes livePulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.45);
+      }
+
+      70% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+      }
+    }
+
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
+
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-black/5">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+
+        <div
+          class="w-10 h-10 rounded-full bg-navy text-white grid place-items-center font-bold"
+        >
+          SM
+        </div>
+
+        <div class="leading-tight">
+
+          <div class="font-bold tracking-tight">
+            Mustard Seed Gospel Church
+          </div>
+
+          <div class="text-[11px] text-black/50 tracking-[0.18em] uppercase">
+            Home of Success
+          </div>
+
+        </div>
+
+      </a>
+
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-[13px] font-semibold">
+
+        <a
+          href="index.html"
+          class="text-black/60 hover:text-navy transition"
+        >
+          Home
+        </a>
+
+        <a
+          href="sermons.html"
+          class="text-black/60 hover:text-navy transition"
+        >
+          Sermons
+        </a>
+
+        <a
+          href="index.html#about"
+          class="text-black/60 hover:text-navy transition"
+        >
+          About
+        </a>
+
+        <a
+          href="watch-live.html"
+          class="text-navy"
+        >
+          Live
+        </a>
+
+        <a
+          href="index.html#events"
+          class="text-black/60 hover:text-navy transition"
+        >
+          Events
+        </a>
+
+        <a
+          href="give.html"
+          class="text-black/60 hover:text-navy transition"
+        >
+          Give
+        </a>
+
+        <a
+          href="contact.html"
+          class="text-black/60 hover:text-navy transition"
+        >
+          Contact
+        </a>
+
+      </nav>
+
+
+      <!-- Join Online -->
+      <a
+        href="join-online.html"
+        class="hidden md:flex h-10 px-5 rounded-full bg-navy text-white items-center gap-2 text-[13px] font-semibold hover:opacity-90 transition"
+      >
+        Join Online
+
+        <span>→</span>
+      </a>
+
+
+      <!-- Mobile Button -->
+      <button
+        id="mobileMenuButton"
+        class="md:hidden w-10 h-10 rounded-full border border-black/10 grid place-items-center"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+    </div>
+
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobileMenu"
+      class="hidden md:hidden bg-white border-t border-black/5"
+    >
+
+      <div class="px-6 py-5 flex flex-col gap-4 text-sm font-semibold">
+
+        <a href="index.html">Home</a>
+
+        <a href="sermons.html">Sermons</a>
+
+        <a href="index.html#about">About</a>
+
+        <a href="watch-live.html" class="text-navy">
+          Live
+        </a>
+
+        <a href="index.html#events">Events</a>
+
+        <a href="give.html">Give</a>
+
+        <a href="contact.html">Contact</a>
+
+        <a
+          href="join-online.html"
+          class="inline-flex justify-center rounded-full bg-navy text-white px-5 py-3"
+        >
+          Join Online
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+
+  <main>
+
+    <section class="bg-navy text-white">
+
+      <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-20 md:py-28">
+
+        <div class="max-w-3xl">
+
+          <div
+            id="statusBadge"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/10 text-xs font-semibold uppercase tracking-[0.15em]"
+          >
+
+            <span
+              id="statusDot"
+              class="w-2 h-2 rounded-full bg-white/40"
+            ></span>
+
+            <span id="statusText">
+              Checking Live Status
+            </span>
+
+          </div>
+
+
+          <h1
+            id="pageTitle"
+            class="font-display text-5xl md:text-7xl leading-[0.95] mt-7"
+          >
+            Watch Live
+          </h1>
+
+
+          <p
+            id="pageDescription"
+            class="mt-6 text-white/70 text-base md:text-lg leading-8 max-w-2xl"
+          >
+            Join Mustard Seed Gospel Church online and experience the service
+            wherever you are.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         LIVE CONTENT
+    ========================================================== -->
+
+    <section class="py-14 md:py-20">
+
+      <div class="max-w-[1280px] mx-auto px-6 md:px-8">
+
+
+        <!-- Loading -->
+        <div
+          id="loadingState"
+          class="bg-navy rounded-3xl min-h-[420px] flex flex-col items-center justify-center text-white"
+        >
+
+          <div class="spinner mb-5"></div>
+
+          <p class="text-white/70">
+            Checking live stream...
+          </p>
+
+        </div>
+
+
+        <!-- Main Live Area -->
+        <div id="liveContent" class="hidden">
+
+
+          <!-- Video Player -->
+          <div
+            id="livePlayer"
+            class="w-full bg-black rounded-3xl overflow-hidden shadow-2xl"
+          >
+          </div>
+
+
+          <!-- Information -->
+          <div class="mt-8 grid lg:grid-cols-[1fr_320px] gap-8">
+
+
+            <!-- Main Info -->
+            <div class="bg-white rounded-3xl border border-black/5 p-7 md:p-9">
+
+              <div class="flex flex-wrap items-center gap-3 mb-5">
+
+                <span
+                  id="liveBadge"
+                  class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 text-red-600 text-xs font-bold uppercase tracking-wider"
+                >
+
+                  <span class="w-2 h-2 rounded-full bg-red-500 live-pulse"></span>
+
+                  LIVE NOW
+
+                </span>
+
+              </div>
+
+
+              <h2
+                id="liveTitle"
+                class="font-display text-3xl md:text-4xl text-navy"
+              >
+                Live Service
+              </h2>
+
+
+              <p
+                id="liveDescription"
+                class="mt-4 text-black/60 leading-7"
+              >
+              </p>
+
+
+              <div class="mt-7 grid sm:grid-cols-2 gap-4">
+
+
+                <!-- Date -->
+                <div
+                  id="dateBox"
+                  class="rounded-2xl bg-[#F7F7F5] p-5"
+                >
+
+                  <div class="text-xs uppercase tracking-wider text-black/40 font-bold">
+                    Date
+                  </div>
+
+                  <div
+                    id="liveDate"
+                    class="mt-2 font-semibold text-navy"
+                  >
+                    —
+                  </div>
+
+                </div>
+
+
+                <!-- Time -->
+                <div
+                  id="timeBox"
+                  class="rounded-2xl bg-[#F7F7F5] p-5"
+                >
+
+                  <div class="text-xs uppercase tracking-wider text-black/40 font-bold">
+                    Time
+                  </div>
+
+                  <div
+                    id="liveTime"
+                    class="mt-2 font-semibold text-navy"
+                  >
+                    —
+                  </div>
+
+                </div>
+
+
+                <!-- Location -->
+                <div
+                  id="locationBox"
+                  class="rounded-2xl bg-[#F7F7F5] p-5 sm:col-span-2"
+                >
+
+                  <div class="text-xs uppercase tracking-wider text-black/40 font-bold">
+                    Location
+                  </div>
+
+                  <div
+                    id="liveLocation"
+                    class="mt-2 font-semibold text-navy"
+                  >
+                    —
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Sidebar -->
+            <div class="bg-navy rounded-3xl p-7 text-white h-fit">
+
+              <div class="w-12 h-12 rounded-2xl bg-gold text-navy grid place-items-center text-xl font-bold">
+                MS
+              </div>
+
+
+              <h3 class="font-display text-2xl mt-6">
+                Mustard Seed Gospel Church
+              </h3>
+
+
+              <p class="text-white/60 text-sm leading-6 mt-3">
+                Home of Success. A people committed to establishing God's
+                kingdom and making every member a success.
+              </p>
+
+
+              <a
+                href="prayer-request.html"
+                class="mt-7 inline-flex w-full justify-center rounded-full bg-white text-navy px-5 py-3 font-semibold text-sm hover:bg-gold transition"
+              >
+                Send a Prayer Request
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             NOT LIVE
+        ====================================================== -->
+
+        <div
+          id="notLiveState"
+          class="hidden bg-navy rounded-3xl min-h-[460px] flex items-center justify-center text-white px-6"
+        >
+
+          <div class="text-center max-w-xl">
+
+            <div
+              class="mx-auto w-20 h-20 rounded-full bg-white/10 flex items-center justify-center text-3xl"
+            >
+              ▶
+            </div>
+
+
+            <h2 class="font-display text-4xl md:text-5xl mt-7">
+              We Are Not Live Right Now
+            </h2>
+
+
+            <p class="mt-5 text-white/60 leading-7">
+              Our live broadcast is currently offline. Please check back
+              during one of our services.
+            </p>
+
+
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+
+              <a
+                href="index.html#events"
+                class="px-6 py-3 rounded-full bg-gold text-navy font-semibold text-sm"
+              >
+                See Upcoming Events
+              </a>
+
+              <a
+                href="sermons.html"
+                class="px-6 py-3 rounded-full border border-white/20 text-white font-semibold text-sm"
+              >
+                Watch Sermons
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             STARTING SOON
+        ====================================================== -->
+
+        <div
+          id="startingSoonState"
+          class="hidden bg-navy rounded-3xl min-h-[460px] flex items-center justify-center text-white px-6"
+        >
+
+          <div class="text-center max-w-xl">
+
+            <div
+              class="mx-auto w-20 h-20 rounded-full bg-white/10 flex items-center justify-center text-3xl live-pulse"
+            >
+              🔴
+            </div>
+
+
+            <h2 class="font-display text-4xl md:text-5xl mt-7">
+              Live Stream Is Starting Soon
+            </h2>
+
+
+            <p class="mt-5 text-white/60 leading-7">
+              The service has started, but the live video has not been
+              connected yet. Please stay on this page.
+            </p>
+
+
+            <div class="mt-7 text-sm text-white/50">
+              This page updates automatically.
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             ERROR
+        ====================================================== -->
+
+        <div
+          id="errorState"
+          class="hidden bg-red-50 border border-red-100 rounded-3xl p-8 text-center"
+        >
+
+          <h2 class="font-display text-3xl text-red-700">
+            Unable to Load Live Stream
+          </h2>
+
+          <p
+            id="errorMessage"
+            class="mt-3 text-red-600/80"
+          >
+            Please try again later.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SCRIPTURE
+    ========================================================== -->
+
+    <section class="bg-gold">
+
+      <div class="max-w-[1000px] mx-auto px-6 md:px-8 py-16 text-center">
+
+        <div class="text-navy/60 text-xs uppercase tracking-[0.2em] font-bold">
+          Our Word
+        </div>
+
+        <p class="font-display text-3xl md:text-4xl text-navy mt-4">
+          “But upon mount Zion shall be deliverance, and there shall be
+          holiness; and the house of Jacob shall possess their possessions.”
+        </p>
+
+        <div class="mt-5 font-semibold text-navy/70">
+          Obadiah 1:17
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+
+  <footer class="bg-navy text-white">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-14">
+
+      <div class="grid md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr] gap-10">
+
+
+        <!-- Church -->
+        <div>
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-10 h-10 rounded-full bg-white text-navy grid place-items-center font-bold">
+              SM
+            </div>
+
+            <div>
+
+              <div class="font-bold">
+                Mustard Seed Gospel Church
+              </div>
+
+              <div class="text-[11px] text-white/40 tracking-[0.18em] uppercase">
+                Home of Success
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <p class="text-white/50 text-sm leading-7 mt-5 max-w-sm">
+            A people committed to establishing God's kingdom and making every
+            member a success.
+          </p>
+
+        </div>
+
+
+
+        <!-- Visit Us -->
+        <div>
+
+          <h3 class="font-semibold">
+            Visit Us
+          </h3>
+
+          <div class="mt-5 space-y-4 text-sm text-white/50">
+
+            <p>
+              No 27 Melekwe st.owa, Agbor
+            </p>
+
+            <p>
+              Sunday • 7:00 AM & 9:00 AM
+            </p>
+
+            <p>
+              Tue & Thu • 5:00 PM
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Quick Links -->
+        <div>
+
+          <h3 class="font-semibold">
+            Quick Links
+          </h3>
+
+          <div class="mt-5 flex flex-col gap-3 text-sm text-white/50">
+
+            <a href="sermons.html" class="hover:text-white transition">
+              Sermons
+            </a>
+
+            <a href="index.html#events" class="hover:text-white transition">
+              Events
+            </a>
+
+            <a href="give.html" class="hover:text-white transition">
+              Give
+            </a>
+
+            <a href="prayer-request.html" class="hover:text-white transition">
+              Prayer Request
+            </a>
+
+            <a href="contact.html" class="hover:text-white transition">
+              Contact
+            </a>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Join Online -->
+        <div>
+
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+
+            <div class="text-gold text-xs font-bold uppercase tracking-wider">
+              Stay Connected
+            </div>
+
+            <h3 class="font-display text-2xl mt-3">
+              Join Online
+            </h3>
+
+            <p class="text-white/50 text-sm leading-6 mt-3">
+              Worship with us online from wherever you are.
+            </p>
+
+            <a
+              href="join-online.html"
+              class="mt-5 inline-flex rounded-full bg-white text-navy px-5 py-3 text-sm font-semibold"
+            >
+              Join Online →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Bottom -->
+      <div
+        class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+      >
+
+        <div class="text-xs text-white/40">
+          © 2026 Mustard Seed Gospel Church. All rights reserved.
+        </div>
+
+        <div class="flex gap-5 text-xs text-white/40">
+
+          <a href="privacy.html" class="hover:text-white">
+            Privacy
+          </a>
+
+          <a href="terms.html" class="hover:text-white">
+            Terms
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =========================================================
+       REACT + FIREBASE
+  ========================================================== -->
+
+  <script type="module">
+
+    import React from "https://esm.sh/react@18.3.1";
+
+    import {
+      createRoot
+    } from "https://esm.sh/react-dom@18.3.1/client";
+
+    import {
+      doc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import {
+      db
+    } from "./firebase.js";
+
+
+    // =========================================================
+    // MOBILE MENU
+    // =========================================================
+
+    const mobileMenuButton =
+      document.getElementById("mobileMenuButton");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+
+    mobileMenuButton.addEventListener("click", () => {
+
+      mobileMenu.classList.toggle("hidden");
+
+    });
+
+
+
+    // =========================================================
+    // ELEMENTS
+    // =========================================================
+
+    const loadingState =
+      document.getElementById("loadingState");
+
+    const liveContent =
+      document.getElementById("liveContent");
+
+    const notLiveState =
+      document.getElementById("notLiveState");
+
+    const startingSoonState =
+      document.getElementById("startingSoonState");
+
+    const errorState =
+      document.getElementById("errorState");
+
+    const errorMessage =
+      document.getElementById("errorMessage");
+
+    const livePlayer =
+      document.getElementById("livePlayer");
+
+    const statusText =
+      document.getElementById("statusText");
+
+    const statusDot =
+      document.getElementById("statusDot");
+
+    const pageTitle =
+      document.getElementById("pageTitle");
+
+    const pageDescription =
+      document.getElementById("pageDescription");
+
+    const liveTitle =
+      document.getElementById("liveTitle");
+
+    const liveDescription =
+      document.getElementById("liveDescription");
+
+    const liveDate =
+      document.getElementById("liveDate");
+
+    const liveTime =
+      document.getElementById("liveTime");
+
+    const liveLocation =
+      document.getElementById("liveLocation");
+
+
+
+    // =========================================================
+    // SHOW / HIDE STATES
+    // =========================================================
+
+    function hideAllStates() {
+
+      loadingState.classList.add("hidden");
+
+      liveContent.classList.add("hidden");
+
+      notLiveState.classList.add("hidden");
+
+      startingSoonState.classList.add("hidden");
+
+      errorState.classList.add("hidden");
+
+    }
+
+
+    function showLoading() {
+
+      hideAllStates();
+
+      loadingState.classList.remove("hidden");
+
+    }
+
+
+    function showNotLive() {
+
+      hideAllStates();
+
+      notLiveState.classList.remove("hidden");
+
+      statusText.textContent = "Not Live";
+
+      statusDot.className =
+        "w-2 h-2 rounded-full bg-white/40";
+
+    }
+
+
+    function showStartingSoon() {
+
+      hideAllStates();
+
+      startingSoonState.classList.remove("hidden");
+
+      statusText.textContent = "Live";
+
+      statusDot.className =
+        "w-2 h-2 rounded-full bg-red-500 live-pulse";
+
+    }
+
+
+    function showLive() {
+
+      hideAllStates();
+
+      liveContent.classList.remove("hidden");
+
+      statusText.textContent = "Live Now";
+
+      statusDot.className =
+        "w-2 h-2 rounded-full bg-red-500 live-pulse";
+
+    }
+
+
+    function showError(message) {
+
+      hideAllStates();
+
+      errorState.classList.remove("hidden");
+
+      errorMessage.textContent =
+        message || "Please try again later.";
+
+    }
+
+
+
+    // =========================================================
+    // YOUTUBE URL HANDLING
+    // =========================================================
+
+    function getYouTubeVideoId(url) {
+
+      if (!url) return null;
+
+      try {
+
+        const parsed =
+          new URL(url.trim());
+
+        const hostname =
+          parsed.hostname.toLowerCase();
+
+        const pathname =
+          parsed.pathname;
+
+
+        // -----------------------------------------------------
+        // youtube.com/live/VIDEO_ID
+        // Example:
+        // https://www.youtube.com/live/sQgtcSZwzbg?si=...
+        // -----------------------------------------------------
+
+        if (
+          hostname === "youtube.com" ||
+          hostname === "www.youtube.com" ||
+          hostname === "m.youtube.com"
+        ) {
+
+          if (pathname.startsWith("/live/")) {
+
+            const id =
+              pathname.split("/live/")[1].split("/")[0];
+
+            if (id) return id;
+
+          }
+
+
+          // ---------------------------------------------------
+          // youtube.com/watch?v=VIDEO_ID
+          // ---------------------------------------------------
+
+          const watchId =
+            parsed.searchParams.get("v");
+
+          if (watchId) {
+
+            return watchId;
+
+          }
+
+
+          // ---------------------------------------------------
+          // youtube.com/embed/VIDEO_ID
+          // ---------------------------------------------------
+
+          if (pathname.startsWith("/embed/")) {
+
+            const id =
+              pathname.split("/embed/")[1].split("/")[0];
+
+            if (id) return id;
+
+          }
+
+        }
+
+
+        // -----------------------------------------------------
+        // youtu.be/VIDEO_ID
+        // -----------------------------------------------------
+
+        if (hostname === "youtu.be") {
+
+          const id =
+            pathname.replace("/", "").split("/")[0];
+
+          if (id) return id;
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "YouTube URL error:",
+          error
+        );
+
+      }
+
+      return null;
+
+    }
+
+
+
+    function isYouTubeUrl(url) {
+
+      if (!url) return false;
+
+      try {
+
+        const hostname =
+          new URL(url.trim()).hostname.toLowerCase();
+
+        return (
+          hostname === "youtube.com" ||
+          hostname === "www.youtube.com" ||
+          hostname === "m.youtube.com" ||
+          hostname === "youtu.be"
+        );
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+
+
+    // =========================================================
+    // FACEBOOK URL HANDLING
+    // =========================================================
+
+    function isFacebookUrl(url) {
+
+      if (!url) return false;
+
+      try {
+
+        const hostname =
+          new URL(url.trim()).hostname.toLowerCase();
+
+        return (
+          hostname === "facebook.com" ||
+          hostname === "www.facebook.com" ||
+          hostname.endsWith(".facebook.com")
+        );
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+
+
+    function getFacebookEmbedUrl(url) {
+
+      const encodedUrl =
+        encodeURIComponent(url.trim());
+
+      return (
+        "https://www.facebook.com/plugins/video.php" +
+        "?href=" +
+        encodedUrl +
+        "&show_text=false" +
+        "&width=1280"
+      );
+
+    }
+
+
+
+    // =========================================================
+    // CREATE YOUTUBE PLAYER
+    // =========================================================
+
+    function renderYouTubePlayer(videoId) {
+
+      livePlayer.innerHTML = "";
+
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "relative w-full aspect-video bg-black";
+
+
+      const iframe =
+        document.createElement("iframe");
+
+
+      iframe.className =
+        "absolute inset-0 w-full h-full";
+
+
+      iframe.src =
+        "https://www.youtube.com/embed/" +
+        encodeURIComponent(videoId) +
+        "?autoplay=1" +
+        "&playsinline=1" +
+        "&rel=0";
+
+
+      iframe.title =
+        "Mustard Seed Gospel Church Live Stream";
+
+
+      iframe.frameBorder = "0";
+
+
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+
+      iframe.allowFullscreen = true;
+
+
+      wrapper.appendChild(iframe);
+
+      livePlayer.appendChild(wrapper);
+
+    }
+
+
+
+    // =========================================================
+    // CREATE FACEBOOK PLAYER
+    // =========================================================
+
+    function renderFacebookPlayer(url) {
+
+      livePlayer.innerHTML = "";
+
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "relative w-full aspect-video bg-black";
+
+
+      const iframe =
+        document.createElement("iframe");
+
+
+      iframe.className =
+        "absolute inset-0 w-full h-full";
+
+
+      iframe.src =
+        getFacebookEmbedUrl(url);
+
+
+      iframe.title =
+        "Mustard Seed Gospel Church Facebook Live";
+
+
+      iframe.style.border =
+        "none";
+
+
+      iframe.style.overflow =
+        "hidden";
+
+
+      iframe.setAttribute(
+        "scrolling",
+        "no"
+      );
+
+
+      iframe.setAttribute(
+        "frameborder",
+        "0"
+      );
+
+
+      iframe.allow =
+        "autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share";
+
+
+      iframe.allowFullscreen = true;
+
+
+      wrapper.appendChild(iframe);
+
+      livePlayer.appendChild(wrapper);
+
+    }
+
+
+
+    // =========================================================
+    // OTHER STREAM URL
+    // =========================================================
+
+    function renderOtherStream(url) {
+
+      livePlayer.innerHTML = "";
+
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "relative w-full aspect-video bg-black flex items-center justify-center p-8 text-center";
+
+
+      wrapper.innerHTML = `
+
+        <div class="text-white max-w-md">
+
+          <div class="text-4xl mb-5">
+            🔴
+          </div>
+
+          <h3 class="font-display text-3xl">
+            Live Stream Available
+          </h3>
+
+          <p class="text-white/60 mt-3 leading-6">
+            This stream type cannot be embedded directly by this player.
+          </p>
+
+          <a
+            href="${escapeHtml(url)}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex mt-6 px-6 py-3 rounded-full bg-white text-navy font-semibold"
+          >
+            Open Live Stream
+          </a>
+
+        </div>
+
+      `;
+
+
+      livePlayer.appendChild(wrapper);
+
+    }
+
+
+
+    // =========================================================
+    // NO URL PLAYER
+    // =========================================================
+
+    function renderNoStream() {
+
+      livePlayer.innerHTML = "";
+
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "relative w-full aspect-video bg-navy flex items-center justify-center p-8 text-center";
+
+
+      wrapper.innerHTML = `
+
+        <div class="text-white max-w-md">
+
+          <div class="text-5xl mb-5 live-pulse">
+            🔴
+          </div>
+
+          <h3 class="font-display text-3xl">
+            Live Stream Is Starting Soon
+          </h3>
+
+          <p class="text-white/60 mt-4 leading-7">
+            The church is live, but the video stream has not been connected yet.
+            Please stay on this page.
+          </p>
+
+        </div>
+
+      `;
+
+
+      livePlayer.appendChild(wrapper);
+
+    }
+
+
+
+    // =========================================================
+    // ESCAPE HTML
+    // =========================================================
+
+    function escapeHtml(value) {
+
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+
+    // =========================================================
+    // RENDER STREAM
+    // =========================================================
+
+    function renderStream(streamUrl) {
+
+      const url =
+        String(streamUrl || "").trim();
+
+
+      // No URL
+      if (!url) {
+
+        renderNoStream();
+
+        return;
+
+      }
+
+
+      // YouTube
+      if (isYouTubeUrl(url)) {
+
+        const videoId =
+          getYouTubeVideoId(url);
+
+
+        if (videoId) {
+
+          renderYouTubePlayer(videoId);
+
+          return;
+
+        }
+
+      }
+
+
+      // Facebook
+      if (isFacebookUrl(url)) {
+
+        renderFacebookPlayer(url);
+
+        return;
+
+      }
+
+
+      // Other stream
+      renderOtherStream(url);
+
+    }
+
+
+
+    // =========================================================
+    // FORMAT DATE
+    // =========================================================
+
+    function formatDate(value) {
+
+      if (!value) return "—";
+
+
+      try {
+
+        let date;
+
+
+        if (
+          typeof value === "object" &&
+          value.seconds
+        ) {
+
+          date =
+            new Date(
+              value.seconds * 1000
+            );
+
+        } else {
+
+          date =
+            new Date(value);
+
+        }
+
+
+        if (isNaN(date.getTime())) {
+
+          return String(value);
+
+        }
+
+
+        return date.toLocaleDateString(
+          "en-NG",
+          {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+          }
+        );
+
+      } catch {
+
+        return String(value);
+
+      }
+
+    }
+
+
+
+    // =========================================================
+    // UPDATE DETAILS
+    // =========================================================
+
+    function updateDetails(data) {
+
+      const title =
+        data.title ||
+        "Mustard Seed Gospel Church Live Service";
+
+
+      const description =
+        data.description ||
+        "Join us online for a powerful time in God's presence.";
+
+
+      pageTitle.textContent =
+        data.title ||
+        "Watch Live";
+
+
+      pageDescription.textContent =
+        description;
+
+
+      liveTitle.textContent =
+        title;
+
+
+      liveDescription.textContent =
+        description;
+
+
+      liveDate.textContent =
+        formatDate(data.date);
+
+
+      liveTime.textContent =
+        data.startTime ||
+        "Live";
+
+
+      liveLocation.textContent =
+        data.location ||
+        "Mustard Seed Gospel Church";
+
+    }
+
+
+
+    // =========================================================
+    // FIREBASE LIVE LISTENER
+    // =========================================================
+
+    showLoading();
+
+
+    const liveRef =
+      doc(db, "live", "current");
+
+
+    onSnapshot(
+
+      liveRef,
+
+      (snapshot) => {
+
+        if (!snapshot.exists()) {
+
+          showNotLive();
+
+          return;
+
+        }
+
+
+        const data =
+          snapshot.data();
+
+
+        updateDetails(data);
+
+
+        const isLive =
+          data.isLive === true;
+
+
+        const streamUrl =
+          data.streamUrl ||
+          "";
+
+
+        // -----------------------------------------------------
+        // IMPORTANT
+        //
+        // LIVE status depends ONLY on isLive.
+        //
+        // The stream URL is NOT required for LIVE status.
+        // -----------------------------------------------------
+
+        if (!isLive) {
+
+          showNotLive();
+
+          livePlayer.innerHTML = "";
+
+          return;
+
+        }
+
+
+        // -----------------------------------------------------
+        // Live is ON
+        // -----------------------------------------------------
+
+        if (!streamUrl.trim()) {
+
+          showStartingSoon();
+
+          return;
+
+        }
+
+
+        // -----------------------------------------------------
+        // Live is ON + URL exists
+        // -----------------------------------------------------
+
+        showLive();
+
+        renderStream(streamUrl);
+
+      },
+
+
+      (error) => {
+
+        console.error(
+          "Live listener error:",
+          error
+        );
+
+
+        showError(
+          "We could not connect to the live stream right now. Please try again later."
+        );
+
+      }
+
+    );
+
+  </script>
+
+</body>
+  </html>
