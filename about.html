@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>About Us | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .font-fraunces {
+      font-family: 'Fraunces', serif;
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F7F5] text-[#0A1931]">
+
+  <!-- HEADER -->
+  <header class="bg-[#0A1931] text-white sticky top-0 z-50 shadow-lg">
+
+    <!-- Top Bar -->
+    <div class="border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs sm:text-sm">
+
+        <div class="flex items-center gap-4">
+          <span id="serviceInfo">
+            Sunday Services: 8:00 AM & 10:00 AM WAT
+          </span>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <span id="churchAddress">
+            Agbor, Delta State
+          </span>
+
+          <a
+            href="watch-live.html"
+            class="text-[#D4AF37] hover:text-white transition"
+          >
+            Watch Live
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+
+      <div class="flex items-center justify-between">
+
+        <!-- Logo / Church Name -->
+        <a href="index.html" class="flex items-center gap-3">
+
+          <div class="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+            MSGC
+          </div>
+
+          <div>
+            <div
+              id="churchName"
+              class="font-fraunces text-lg sm:text-xl font-bold"
+            >
+              Mustard Seed Gospel Church
+            </div>
+
+            <div
+              id="churchTagline"
+              class="text-xs text-white/60"
+            >
+              Home of Success
+            </div>
+          </div>
+
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+          <a href="index.html" class="hover:text-[#D4AF37] transition">
+            Home
+          </a>
+
+          <a href="sermons.html" class="hover:text-[#D4AF37] transition">
+            Sermons
+          </a>
+
+          <a href="about.html" class="text-[#D4AF37]">
+            About
+          </a>
+
+          <a href="watch-live.html" class="hover:text-[#D4AF37] transition">
+            Live
+          </a>
+
+          <a href="index.html#events" class="hover:text-[#D4AF37] transition">
+            Events
+          </a>
+
+          <a href="give.html" class="hover:text-[#D4AF37] transition">
+            Give
+          </a>
+
+          <a href="contact.html" class="hover:text-[#D4AF37] transition">
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="bg-[#D4AF37] text-[#0A1931] px-5 py-2.5 rounded-full font-semibold hover:bg-white transition"
+          >
+            Join Online
+          </a>
+
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuBtn"
+          class="lg:hidden text-white text-2xl"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden mt-5 border-t border-white/10 pt-4"
+      >
+
+        <div class="flex flex-col gap-4 text-sm">
+
+          <a href="index.html" class="hover:text-[#D4AF37]">
+            Home
+          </a>
+
+          <a href="sermons.html" class="hover:text-[#D4AF37]">
+            Sermons
+          </a>
+
+          <a href="about.html" class="text-[#D4AF37]">
+            About
+          </a>
+
+          <a href="watch-live.html" class="hover:text-[#D4AF37]">
+            Live
+          </a>
+
+          <a href="index.html#events" class="hover:text-[#D4AF37]">
+            Events
+          </a>
+
+          <a href="give.html" class="hover:text-[#D4AF37]">
+            Give
+          </a>
+
+          <a href="contact.html" class="hover:text-[#D4AF37]">
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="bg-[#D4AF37] text-[#0A1931] px-5 py-3 rounded-full font-semibold text-center"
+          >
+            Join Online
+          </a>
+
+        </div>
+
+      </div>
+
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="relative bg-[#0A1931] text-white overflow-hidden">
+
+    <div class="absolute inset-0">
+      <img
+        src="IMG-20250929-WA0351.jpg"
+        alt="Mustard Seed Gospel Church"
+        class="w-full h-full object-cover opacity-30"
+      />
+      <div class="absolute inset-0 bg-[#0A1931]/70"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+
+      <div class="max-w-3xl">
+
+        <p class="text-[#D4AF37] font-semibold uppercase tracking-widest text-sm mb-4">
+          About Us
+        </p>
+
+        <h1 class="font-fraunces text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+          A Church Where Faith, Purpose & Success Come Alive
+        </h1>
+
+        <p class="text-white/80 text-base sm:text-lg leading-relaxed max-w-2xl">
+          Welcome to Mustard Seed Gospel Church, a place where people encounter
+          God, grow in faith, discover purpose, and become all that God has
+          called them to be.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ABOUT INTRO -->
+  <section class="py-16 sm:py-20 lg:py-24">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <!-- Image -->
+        <div class="relative">
+
+          <div class="rounded-3xl overflow-hidden shadow-xl">
+
+            <img
+              src="IMG-20260811-WA0026.jpg"
+              alt="Mustard Seed Gospel Church"
+              class="w-full h-[400px] sm:h-[500px] object-cover"
+            />
+
+          </div>
+
+          <div class="absolute -bottom-6 -right-4 sm:-right-6 bg-[#D4AF37] text-[#0A1931] rounded-2xl px-6 py-5 shadow-xl">
+
+            <div class="font-fraunces text-3xl font-bold">
+              Faith
+            </div>
+
+            <div class="text-sm font-semibold">
+              • Purpose • Success
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Text -->
+        <div>
+
+          <p class="text-[#D4AF37] font-semibold uppercase tracking-widest text-sm mb-3">
+            Who We Are
+          </p>
+
+          <h2 class="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A1931] mb-6">
+            Welcome Home
+          </h2>
+
+          <div class="space-y-5 text-gray-600 leading-relaxed">
+
+            <p>
+              Mustard Seed Gospel Church is a Christ-centered church committed
+              to helping people know God, grow in His Word, and live out their
+              God-given purpose.
+            </p>
+
+            <p>
+              We believe that every person has a purpose in God and that
+              through faith, the Word of God, prayer, and genuine fellowship,
+              lives can be transformed.
+            </p>
+
+            <p>
+              Whether you are joining us for the first time or you have been
+              part of our church family for years, there is a place for you
+              here.
+            </p>
+
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+
+            <a
+              href="join-online.html"
+              class="inline-flex items-center justify-center bg-[#0A1931] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#D4AF37] hover:text-[#0A1931] transition"
+            >
+              Join Us
+            </a>
+
+            <a
+              href="sermons.html"
+              class="inline-flex items-center justify-center border-2 border-[#0A1931] text-[#0A1931] px-6 py-3 rounded-full font-semibold hover:bg-[#0A1931] hover:text-white transition"
+            >
+              Explore Sermons
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OUR VISION -->
+  <section class="bg-white py-16 sm:py-20">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-14">
+
+        <p class="text-[#D4AF37] font-semibold uppercase tracking-widest text-sm mb-3">
+          Our Vision
+        </p>
+
+        <h2 class="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0A1931] mb-5">
+          Building People. Changing Lives.
+        </h2>
+
+        <p class="text-gray-600 leading-relaxed">
+          We desire to see people transformed by the Gospel and equipped to
+          make a meaningful impact in their families, communities, workplaces,
+          and generation.
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Card -->
+        <div class="bg-[#F7F7F5] rounded-3xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-2xl bg-[#0A1931] text-[#D4AF37] flex items-center justify-center text-2xl mb-6">
+            ✝
+          </div>
+
+          <h3 class="font-fraunces text-2xl font-bold mb-4">
+            Know God
+          </h3>
+
+          <p class="text-gray-600 leading-relaxed">
+            We help people develop a genuine relationship with Jesus Christ
+            through the Gospel, prayer, worship, and the Word of God.
+          </p>
+
+        </div>
+
+
+        <!-- Card -->
+        <div class="bg-[#F7F7F5] rounded-3xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-2xl bg-[#0A1931] text-[#D4AF37] flex items-center justify-center text-2xl mb-6">
+            ◎
+          </div>
+
+          <h3 class="font-fraunces text-2xl font-bold mb-4">
+            Discover Purpose
+          </h3>
+
+          <p class="text-gray-600 leading-relaxed">
+            We believe every believer has a God-given assignment. Our desire
+            is to help people discover their gifts and walk confidently in
+            their purpose.
+          </p>
+
+        </div>
+
+
+        <!-- Card -->
+        <div class="bg-[#F7F7F5] rounded-3xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-2xl bg-[#0A1931] text-[#D4AF37] flex items-center justify-center text-2xl mb-6">
+            ★
+          </div>
+
+          <h3 class="font-fraunces text-2xl font-bold mb-4">
+            Make an Impact
+          </h3>
+
+          <p class="text-gray-600 leading-relaxed">
+            We equip people to influence their world with faith, excellence,
+            love, integrity, and the message of Jesus Christ.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OUR VALUES -->
+  <section class="py-16 sm:py-20 lg:py-24">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+        <div>
+
+          <p class="text-[#D4AF37] font-semibold uppercase tracking-widest text-sm mb-3">
+            What We Believe
+          </p>
+
+          <h2 class="font-fraunces text-3xl sm:text-4xl font-bold text-[#0A1931] mb-6">
+            Our Core Values
+          </h2>
+
+          <p class="text-gray-600 leading-relaxed">
+            Everything we do is shaped by our love for God, our commitment to
+            His Word, and our desire to serve people.
+          </p>
+
+        </div>
+
+
+        <div class="space-y-5">
+
+          <div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+
+            <div class="w-10 h-10 shrink-0 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+              1
+            </div>
+
+            <div>
+              <h3 class="font-bold text-lg mb-1">
+                Faith
+              </h3>
+
+              <p class="text-gray-600 text-sm leading-relaxed">
+                We trust God and His Word, believing that nothing is impossible
+                with Him.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+
+            <div class="w-10 h-10 shrink-0 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+              2
+            </div>
+
+            <div>
+              <h3 class="font-bold text-lg mb-1">
+                Love
+              </h3>
+
+              <p class="text-gray-600 text-sm leading-relaxed">
+                We choose to love God and people genuinely, showing grace,
+                compassion, and kindness.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+
+            <div class="w-10 h-10 shrink-0 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+              3
+            </div>
+
+            <div>
+              <h3 class="font-bold text-lg mb-1">
+                Excellence
+              </h3>
+
+              <p class="text-gray-600 text-sm leading-relaxed">
+                We honor God by giving our best and pursuing excellence in
+                everything entrusted to us.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="flex gap-5 p-6 bg-white rounded-2xl shadow-sm border border-gray-100">
+
+            <div class="w-10 h-10 shrink-0 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+              4
+            </div>
+
+            <div>
+              <h3 class="font-bold text-lg mb-1">
+                Service
+              </h3>
+
+              <p class="text-gray-600 text-sm leading-relaxed">
+                We serve God and others with humility, commitment, and a heart
+                that wants to make a difference.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CALL TO ACTION -->
+  <section class="bg-[#0A1931] text-white py-16 sm:py-20">
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+      <p class="text-[#D4AF37] font-semibold uppercase tracking-widest text-sm mb-4">
+        You Have a Place Here
+      </p>
+
+      <h2 class="font-fraunces text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+        Come and Experience Church With Us
+      </h2>
+
+      <p class="text-white/70 max-w-2xl mx-auto leading-relaxed mb-8">
+        Join us for worship, the Word, fellowship, and an encounter with God.
+        We would love to have you as part of the Mustard Seed Gospel Church
+        family.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+        <a
+          href="join-online.html"
+          class="bg-[#D4AF37] text-[#0A1931] px-7 py-3.5 rounded-full font-bold hover:bg-white transition"
+        >
+          Join Online
+        </a>
+
+        <a
+          href="contact.html"
+          class="border-2 border-white/30 text-white px-7 py-3.5 rounded-full font-bold hover:bg-white hover:text-[#0A1931] transition"
+        >
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-[#071225] text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- Church -->
+        <div>
+
+          <div class="flex items-center gap-3 mb-5">
+
+            <div class="w-10 h-10 rounded-full bg-[#D4AF37] flex items-center justify-center text-[#0A1931] font-bold">
+              MSGC
+            </div>
+
+            <div>
+              <div
+                id="footerChurchName"
+                class="font-fraunces font-bold"
+              >
+                Mustard Seed Gospel Church
+              </div>
+
+              <div
+                id="footerTagline"
+                class="text-xs text-white/50"
+              >
+                Home of Success
+              </div>
+            </div>
+
+          </div>
+
+          <p
+            id="footerText"
+            class="text-white/60 text-sm leading-relaxed"
+          >
+            A place to know God, discover purpose, and make an impact.
+          </p>
+
+        </div>
+
+
+        <!-- Explore -->
+        <div>
+
+          <h3 class="font-bold mb-5">
+            Explore
+          </h3>
+
+          <div class="space-y-3 text-sm text-white/60">
+
+            <a href="index.html" class="block hover:text-[#D4AF37] transition">
+              Home
+            </a>
+
+            <a href="about.html" class="block hover:text-[#D4AF37] transition">
+              About
+            </a>
+
+            <a href="sermons.html" class="block hover:text-[#D4AF37] transition">
+              Sermons
+            </a>
+
+            <a href="watch-live.html" class="block hover:text-[#D4AF37] transition">
+              Watch Live
+            </a>
+
+            <a href="index.html#events" class="block hover:text-[#D4AF37] transition">
+              Events
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Get Involved -->
+        <div>
+
+          <h3 class="font-bold mb-5">
+            Get Involved
+          </h3>
+
+          <div class="space-y-3 text-sm text-white/60">
+
+            <a href="prayer-request.html" class="block hover:text-[#D4AF37] transition">
+              Prayer Request
+            </a>
+
+            <a href="departments.html" class="block hover:text-[#D4AF37] transition">
+              Join a Department
+            </a>
+
+            <a href="give.html" class="block hover:text-[#D4AF37] transition">
+              Give Online
+            </a>
+
+            <a href="wofbi.html" class="block hover:text-[#D4AF37] transition">
+              WOFBI
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Contact -->
+        <div>
+
+          <h3 class="font-bold mb-5">
+            Contact
+          </h3>
+
+          <div class="space-y-3 text-sm text-white/60">
+
+            <p id="footerAddress">
+              Agbor, Delta State
+            </p>
+
+            <p id="footerEmail">
+              Email available on request
+            </p>
+
+            <p id="footerPhone">
+              Contact the church office
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Bottom Footer -->
+    <div class="border-t border-white/10">
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/40">
+
+        <p>
+          © <span id="year"></span> Mustard Seed Gospel Church. All rights reserved.
+        </p>
+
+        <div class="flex gap-5">
+
+          <a href="privacy.html" class="hover:text-white transition">
+            Privacy Policy
+          </a>
+
+          <a href="terms.html" class="hover:text-white transition">
+            Terms & Conditions
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- FIREBASE + PAGE SCRIPT -->
+  <script type="module">
+
+    import { db } from "./firebase.js";
+
+    import {
+      doc,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+
+    // Firebase Church Settings
+    const settingsRef = doc(db, "settings", "church");
+
+    onSnapshot(
+      settingsRef,
+      (snapshot) => {
+
+        if (!snapshot.exists()) {
+          return;
+        }
+
+        const settings = snapshot.data();
+
+
+        // Church name
+        if (settings.churchName) {
+
+          document.getElementById("churchName").textContent =
+            settings.churchName;
+
+          document.getElementById("footerChurchName").textContent =
+            settings.churchName;
+
+        }
+
+
+        // Tagline
+        if (settings.tagline) {
+
+          document.getElementById("churchTagline").textContent =
+            settings.tagline;
+
+          document.getElementById("footerTagline").textContent =
+            settings.tagline;
+
+        }
+
+
+        // Address
+        if (settings.address) {
+
+          document.getElementById("churchAddress").textContent =
+            settings.address;
+
+          document.getElementById("footerAddress").textContent =
+            settings.address;
+
+        }
+
+
+        // Sunday service
+        if (settings.sundayService) {
+
+          document.getElementById("serviceInfo").textContent =
+            settings.sundayService;
+
+        }
+
+
+        // Footer
+        if (settings.footerText) {
+
+          document.getElementById("footerText").textContent =
+            settings.footerText;
+
+        }
+
+
+        // Email
+        if (settings.email) {
+
+          document.getElementById("footerEmail").textContent =
+            settings.email;
+
+        }
+
+
+        // Phone
+        if (settings.phone) {
+
+          document.getElementById("footerPhone").textContent =
+            settings.phone;
+
+        }
+
+      },
+
+      (error) => {
+        console.error("Error loading church settings:", error);
+      }
+
+    );
+
+  </script>
+
+</body>
+</html>
