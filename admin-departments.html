@@ -1,0 +1,2419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow, noarchive"
+  >
+
+  <title>Departments Management | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- SECURITY SCREEN -->
+  <div
+    id="securityScreen"
+    class="fixed inset-0 z-[9999] flex items-center justify-center bg-navy"
+  >
+    <div class="px-6 text-center text-white">
+
+      <div
+        class="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-white/20 border-t-gold"
+      ></div>
+
+      <p class="text-sm">
+        Verifying administrator access...
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- SIDEBAR -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-50 w-64 -translate-x-full bg-navy text-white transition-transform duration-300 lg:translate-x-0"
+  >
+
+    <!-- BRAND -->
+    <div class="flex h-20 items-center border-b border-white/10 px-6">
+
+      <div class="h-12 w-12 shrink-0">
+        <img
+          src="images/church-logo.png"
+          alt="Mustard Seed Gospel Church Logo"
+          class="h-full w-full object-contain"
+        >
+      </div>
+
+      <div class="ml-3">
+        <h1 class="text-sm font-bold">
+          Mustard Seed
+        </h1>
+
+        <p class="text-xs text-gray-300">
+          Admin Panel
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="space-y-1 p-4">
+
+      <a
+        href="admin-dashboard.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="admin-events.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Events
+      </a>
+
+      <a
+        href="admin-sermons.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Sermons
+      </a>
+
+      <a
+        href="admin-live.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Live Service
+      </a>
+
+      <a
+        href="admin-prayer-requests.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Prayer Requests
+      </a>
+
+      <a
+        href="admin-contacts-messges.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Contact Messages
+      </a>
+
+      <a
+        href="admin.giving.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Giving
+      </a>
+
+      <a
+        href="admin-departments.html"
+        class="block rounded-lg bg-gold px-4 py-3 text-sm font-semibold text-navy"
+      >
+        Departments
+      </a>
+
+      <a
+        href="admin-settings.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Settings
+      </a>
+
+
+      <div class="my-4 border-t border-white/10"></div>
+
+
+      <a
+        href="index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        View Website
+      </a>
+
+
+      <button
+        id="logoutBtn"
+        type="button"
+        class="mt-2 w-full rounded-lg px-4 py-3 text-left text-sm text-red-300 hover:bg-red-500/10"
+      >
+        Logout
+      </button>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- MOBILE OVERLAY -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"
+  ></div>
+
+
+  <!-- MAIN -->
+  <main class="min-h-screen lg:ml-64">
+
+    <!-- HEADER -->
+    <header
+      class="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6"
+    >
+
+      <div class="flex items-center gap-3">
+
+        <button
+          id="menuBtn"
+          type="button"
+          aria-label="Open menu"
+          class="rounded-lg p-2 text-gray-600 hover:bg-gray-100 lg:hidden"
+        >
+          ☰
+        </button>
+
+        <div>
+
+          <h2 class="text-xl font-bold text-navy">
+            Departments
+          </h2>
+
+          <p class="text-xs text-gray-500">
+            Manage church departments
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div
+        id="adminEmail"
+        class="hidden text-sm text-gray-500 sm:block"
+      ></div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="p-4 sm:p-6">
+
+      <!-- TOP ACTIONS -->
+      <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+
+          <h3 class="text-lg font-bold text-navy">
+            Department Directory
+          </h3>
+
+          <p class="text-sm text-gray-500">
+            Add and manage the departments displayed on the church website.
+          </p>
+
+        </div>
+
+
+        <button
+          id="addDepartmentBtn"
+          type="button"
+          class="rounded-lg bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy/90"
+        >
+          + Add Department
+        </button>
+
+      </div>
+
+
+      <!-- STATS -->
+      <div class="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-3">
+
+        <div class="rounded-xl bg-white p-5 shadow-sm">
+
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Total
+          </p>
+
+          <p
+            id="totalCount"
+            class="mt-2 text-3xl font-bold text-navy"
+          >
+            0
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl bg-white p-5 shadow-sm">
+
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Published
+          </p>
+
+          <p
+            id="publishedCount"
+            class="mt-2 text-3xl font-bold text-green-600"
+          >
+            0
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl bg-white p-5 shadow-sm">
+
+          <p class="text-xs font-semibold uppercase tracking-wide text-gray-400">
+            Hidden
+          </p>
+
+          <p
+            id="hiddenCount"
+            class="mt-2 text-3xl font-bold text-gray-500"
+          >
+            0
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- SEARCH / FILTER -->
+      <div class="mb-6 rounded-xl bg-white p-4 shadow-sm">
+
+        <div class="grid gap-3 md:grid-cols-[1fr_180px_auto]">
+
+          <div>
+
+            <label
+              for="searchInput"
+              class="sr-only"
+            >
+              Search departments
+            </label>
+
+            <input
+              id="searchInput"
+              type="search"
+              maxlength="100"
+              autocomplete="off"
+              placeholder="Search departments..."
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+            >
+
+          </div>
+
+
+          <select
+            id="filterSelect"
+            class="rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+          >
+            <option value="all">All Departments</option>
+            <option value="published">Published</option>
+            <option value="hidden">Hidden</option>
+          </select>
+
+
+          <button
+            id="refreshBtn"
+            type="button"
+            class="rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+          >
+            Refresh
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+      <div
+        id="statusMessage"
+        class="mb-6 hidden rounded-lg border p-4 text-sm"
+        role="alert"
+        aria-live="polite"
+      ></div>
+
+
+      <!-- DEPARTMENTS -->
+      <div
+        id="departmentsList"
+        class="space-y-4"
+      ></div>
+
+
+      <!-- EMPTY STATE -->
+      <div
+        id="emptyState"
+        class="hidden rounded-2xl bg-white p-10 text-center shadow-sm"
+      >
+
+        <div class="text-4xl">
+          🏛️
+        </div>
+
+        <h3 class="mt-4 text-lg font-bold text-navy">
+          No departments found
+        </h3>
+
+        <p class="mt-2 text-sm text-gray-500">
+          Add your first church department to get started.
+        </p>
+
+        <button
+          id="emptyAddBtn"
+          type="button"
+          class="mt-5 rounded-lg bg-navy px-5 py-3 text-sm font-semibold text-white"
+        >
+          Add Department
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- DEPARTMENT MODAL -->
+  <div
+    id="departmentModal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modalTitle"
+  >
+
+    <div
+      class="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+    >
+
+      <!-- MODAL HEADER -->
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b bg-white px-5 py-4 sm:px-6">
+
+        <div>
+
+          <h3
+            id="modalTitle"
+            class="text-lg font-bold text-navy"
+          >
+            Add Department
+          </h3>
+
+          <p class="text-xs text-gray-500">
+            Enter the department information below.
+          </p>
+
+        </div>
+
+
+        <button
+          id="closeModalBtn"
+          type="button"
+          aria-label="Close"
+          class="rounded-lg p-2 text-xl text-gray-500 hover:bg-gray-100"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- FORM -->
+      <form
+        id="departmentForm"
+        class="space-y-5 p-5 sm:p-6"
+        autocomplete="off"
+      >
+
+        <input
+          id="departmentId"
+          type="hidden"
+        >
+
+
+        <!-- NAME -->
+        <div>
+
+          <label
+            for="departmentName"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            Department Name *
+          </label>
+
+          <input
+            id="departmentName"
+            type="text"
+            maxlength="100"
+            required
+            class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+            placeholder="e.g. Choir"
+          >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+        <div>
+
+          <label
+            for="departmentDescription"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            Description
+          </label>
+
+          <textarea
+            id="departmentDescription"
+            rows="4"
+            maxlength="1000"
+            class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+            placeholder="Briefly describe this department..."
+          ></textarea>
+
+          <p class="mt-1 text-xs text-gray-400">
+            Maximum 1000 characters.
+          </p>
+
+        </div>
+
+
+        <!-- LEADER -->
+        <div class="grid gap-5 md:grid-cols-2">
+
+          <div>
+
+            <label
+              for="departmentLeader"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              Department Leader
+            </label>
+
+            <input
+              id="departmentLeader"
+              type="text"
+              maxlength="120"
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+              placeholder="Leader's name"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label
+              for="departmentContact"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              Contact
+            </label>
+
+            <input
+              id="departmentContact"
+              type="text"
+              maxlength="150"
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+              placeholder="Phone, email, or other contact"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- MEETING -->
+        <div class="grid gap-5 md:grid-cols-2">
+
+          <div>
+
+            <label
+              for="meetingDay"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              Meeting Day
+            </label>
+
+            <input
+              id="meetingDay"
+              type="text"
+              maxlength="80"
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+              placeholder="e.g. Saturday"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label
+              for="meetingTime"
+              class="mb-2 block text-sm font-semibold text-gray-700"
+            >
+              Meeting Time
+            </label>
+
+            <input
+              id="meetingTime"
+              type="text"
+              maxlength="80"
+              class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+              placeholder="e.g. 4:00 PM"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- LOCATION -->
+        <div>
+
+          <label
+            for="meetingLocation"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            Meeting Location
+          </label>
+
+          <input
+            id="meetingLocation"
+            type="text"
+            maxlength="200"
+            class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+            placeholder="e.g. Church Auditorium"
+          >
+
+        </div>
+
+
+        <!-- IMAGE -->
+        <div>
+
+          <label
+            for="imagePath"
+            class="mb-2 block text-sm font-semibold text-gray-700"
+          >
+            Image Path
+          </label>
+
+          <input
+            id="imagePath"
+            type="text"
+            maxlength="300"
+            autocomplete="off"
+            class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+            placeholder="images/choir.jpg"
+          >
+
+          <p class="mt-1 text-xs text-gray-400">
+            Example: images/choir.jpg
+          </p>
+
+        </div>
+
+
+        <!-- PUBLISHED -->
+        <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+
+          <label class="flex cursor-pointer items-center gap-3">
+
+            <input
+              id="published"
+              type="checkbox"
+              class="h-5 w-5 rounded border-gray-300 text-navy focus:ring-gold"
+              checked
+            >
+
+            <span>
+
+              <span class="block text-sm font-semibold text-gray-700">
+                Publish this department
+              </span>
+
+              <span class="block text-xs text-gray-500">
+                Published departments can appear on the public website.
+              </span>
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- FORM STATUS -->
+        <div
+          id="formMessage"
+          class="hidden rounded-lg border p-3 text-sm"
+          role="alert"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- BUTTONS -->
+        <div class="flex flex-col-reverse gap-3 border-t pt-5 sm:flex-row sm:justify-end">
+
+          <button
+            id="cancelBtn"
+            type="button"
+            class="rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+
+          <button
+            id="saveDepartmentBtn"
+            type="submit"
+            class="rounded-lg bg-navy px-5 py-3 text-sm font-semibold text-white hover:bg-navy/90 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Save Department
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- FIREBASE -->
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+    import {
+      collection,
+      doc,
+      getDoc,
+      getDocs,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    /* ========================================================
+       ELEMENTS
+    ======================================================== */
+
+    const securityScreen =
+      document.getElementById("securityScreen");
+
+    const adminEmail =
+      document.getElementById("adminEmail");
+
+    const departmentsList =
+      document.getElementById("departmentsList");
+
+    const emptyState =
+      document.getElementById("emptyState");
+
+    const totalCount =
+      document.getElementById("totalCount");
+
+    const publishedCount =
+      document.getElementById("publishedCount");
+
+    const hiddenCount =
+      document.getElementById("hiddenCount");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const filterSelect =
+      document.getElementById("filterSelect");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const addDepartmentBtn =
+      document.getElementById("addDepartmentBtn");
+
+    const emptyAddBtn =
+      document.getElementById("emptyAddBtn");
+
+    const departmentModal =
+      document.getElementById("departmentModal");
+
+    const closeModalBtn =
+      document.getElementById("closeModalBtn");
+
+    const cancelBtn =
+      document.getElementById("cancelBtn");
+
+    const departmentForm =
+      document.getElementById("departmentForm");
+
+    const departmentId =
+      document.getElementById("departmentId");
+
+    const departmentName =
+      document.getElementById("departmentName");
+
+    const departmentDescription =
+      document.getElementById("departmentDescription");
+
+    const departmentLeader =
+      document.getElementById("departmentLeader");
+
+    const departmentContact =
+      document.getElementById("departmentContact");
+
+    const meetingDay =
+      document.getElementById("meetingDay");
+
+    const meetingTime =
+      document.getElementById("meetingTime");
+
+    const meetingLocation =
+      document.getElementById("meetingLocation");
+
+    const imagePath =
+      document.getElementById("imagePath");
+
+    const published =
+      document.getElementById("published");
+
+    const saveDepartmentBtn =
+      document.getElementById("saveDepartmentBtn");
+
+    const formMessage =
+      document.getElementById("formMessage");
+
+    const statusMessage =
+      document.getElementById("statusMessage");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const sidebarOverlay =
+      document.getElementById("sidebarOverlay");
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+
+    /* ========================================================
+       STATE
+    ======================================================== */
+
+    let departments = [];
+
+    let isAuthorized = false;
+
+
+    /* ========================================================
+       SAFE TEXT HELPERS
+    ======================================================== */
+
+    function cleanText(value, maxLength = 1000) {
+
+      if (typeof value !== "string") {
+        return "";
+      }
+
+      return value
+        .trim()
+        .slice(0, maxLength);
+    }
+
+
+    function escapeTextForDisplay(value) {
+
+      return cleanText(
+        value,
+        2000
+      );
+    }
+
+
+    /* ========================================================
+       STATUS MESSAGES
+    ======================================================== */
+
+    function showStatus(message, type = "success") {
+
+      statusMessage.textContent =
+        message;
+
+      statusMessage.className =
+        "mb-6 rounded-lg border p-4 text-sm";
+
+      if (type === "success") {
+
+        statusMessage.classList.add(
+          "border-green-200",
+          "bg-green-50",
+          "text-green-800"
+        );
+
+      } else {
+
+        statusMessage.classList.add(
+          "border-red-200",
+          "bg-red-50",
+          "text-red-800"
+        );
+      }
+
+      window.setTimeout(() => {
+
+        statusMessage.classList.add(
+          "hidden"
+        );
+
+      }, 5000);
+    }
+
+
+    function showFormMessage(message, type = "error") {
+
+      formMessage.textContent =
+        message;
+
+      formMessage.className =
+        "rounded-lg border p-3 text-sm";
+
+      if (type === "success") {
+
+        formMessage.classList.add(
+          "border-green-200",
+          "bg-green-50",
+          "text-green-800"
+        );
+
+      } else {
+
+        formMessage.classList.add(
+          "border-red-200",
+          "bg-red-50",
+          "text-red-800"
+        );
+      }
+    }
+
+
+    /* ========================================================
+       MODAL
+    ======================================================== */
+
+    function openModal(department = null) {
+
+      formMessage.classList.add(
+        "hidden"
+      );
+
+
+      if (department) {
+
+        document.getElementById(
+          "modalTitle"
+        ).textContent =
+          "Edit Department";
+
+
+        departmentId.value =
+          department.id;
+
+
+        departmentName.value =
+          cleanText(
+            department.name,
+            100
+          );
+
+
+        departmentDescription.value =
+          cleanText(
+            department.description,
+            1000
+          );
+
+
+        departmentLeader.value =
+          cleanText(
+            department.leader,
+            120
+          );
+
+
+        departmentContact.value =
+          cleanText(
+            department.contact,
+            150
+          );
+
+
+        meetingDay.value =
+          cleanText(
+            department.meetingDay,
+            80
+          );
+
+
+        meetingTime.value =
+          cleanText(
+            department.meetingTime,
+            80
+          );
+
+
+        meetingLocation.value =
+          cleanText(
+            department.meetingLocation,
+            200
+          );
+
+
+        imagePath.value =
+          cleanText(
+            department.image,
+            300
+          );
+
+
+        published.checked =
+          department.published === true;
+
+
+        saveDepartmentBtn.textContent =
+          "Update Department";
+
+      } else {
+
+        document.getElementById(
+          "modalTitle"
+        ).textContent =
+          "Add Department";
+
+
+        departmentForm.reset();
+
+        departmentId.value =
+          "";
+
+        published.checked =
+          true;
+
+        saveDepartmentBtn.textContent =
+          "Save Department";
+      }
+
+
+      departmentModal.classList.remove(
+        "hidden"
+      );
+
+      departmentModal.classList.add(
+        "flex"
+      );
+
+
+      setTimeout(() => {
+
+        departmentName.focus();
+
+      }, 50);
+    }
+
+
+    function closeModal() {
+
+      departmentModal.classList.add(
+        "hidden"
+      );
+
+      departmentModal.classList.remove(
+        "flex"
+      );
+
+      departmentForm.reset();
+
+      departmentId.value =
+        "";
+
+      published.checked =
+        true;
+
+      formMessage.classList.add(
+        "hidden"
+      );
+    }
+
+
+    addDepartmentBtn.addEventListener(
+      "click",
+      () => openModal()
+    );
+
+
+    emptyAddBtn.addEventListener(
+      "click",
+      () => openModal()
+    );
+
+
+    closeModalBtn.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    cancelBtn.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    departmentModal.addEventListener(
+      "click",
+      (event) => {
+
+        if (
+          event.target ===
+          departmentModal
+        ) {
+
+          closeModal();
+        }
+
+      }
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (
+          event.key === "Escape" &&
+          !departmentModal.classList.contains("hidden")
+        ) {
+
+          closeModal();
+        }
+
+      }
+    );
+
+
+    /* ========================================================
+       GET FORM DATA
+    ======================================================== */
+
+    function getFormData() {
+
+      return {
+
+        name:
+          cleanText(
+            departmentName.value,
+            100
+          ),
+
+        description:
+          cleanText(
+            departmentDescription.value,
+            1000
+          ),
+
+        leader:
+          cleanText(
+            departmentLeader.value,
+            120
+          ),
+
+        contact:
+          cleanText(
+            departmentContact.value,
+            150
+          ),
+
+        meetingDay:
+          cleanText(
+            meetingDay.value,
+            80
+          ),
+
+        meetingTime:
+          cleanText(
+            meetingTime.value,
+            80
+          ),
+
+        meetingLocation:
+          cleanText(
+            meetingLocation.value,
+            200
+          ),
+
+        image:
+          cleanText(
+            imagePath.value,
+            300
+          ),
+
+        published:
+          published.checked
+      };
+    }
+
+
+    /* ========================================================
+       VALIDATE FORM
+    ======================================================== */
+
+    function validateDepartment(data) {
+
+      if (!data.name) {
+
+        return "Department name is required.";
+      }
+
+
+      if (data.name.length < 2) {
+
+        return "Department name is too short.";
+      }
+
+
+      /*
+        Basic path protection.
+
+        We allow normal local image paths but reject dangerous
+        protocols such as javascript: and data:.
+      */
+
+      if (data.image) {
+
+        const lowerImage =
+          data.image.toLowerCase();
+
+
+        if (
+          lowerImage.startsWith("javascript:") ||
+          lowerImage.startsWith("data:") ||
+          lowerImage.startsWith("vbscript:")
+        ) {
+
+          return "Invalid image path.";
+        }
+      }
+
+
+      return null;
+    }
+
+
+    /* ========================================================
+       SAVE DEPARTMENT
+    ======================================================== */
+
+    departmentForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        if (!isAuthorized) {
+
+          showFormMessage(
+            "Your administrator session is no longer valid."
+          );
+
+          return;
+        }
+
+
+        const data =
+          getFormData();
+
+
+        const validationError =
+          validateDepartment(data);
+
+
+        if (validationError) {
+
+          showFormMessage(
+            validationError
+          );
+
+          return;
+        }
+
+
+        saveDepartmentBtn.disabled =
+          true;
+
+        saveDepartmentBtn.textContent =
+          departmentId.value
+            ? "Updating..."
+            : "Saving...";
+
+
+        try {
+
+          /*
+            Only the fields defined here are written to
+            Firestore. Unexpected form data is not accepted.
+          */
+
+          const safeData = {
+
+            name:
+              data.name,
+
+            description:
+              data.description,
+
+            leader:
+              data.leader,
+
+            contact:
+              data.contact,
+
+            meetingDay:
+              data.meetingDay,
+
+            meetingTime:
+              data.meetingTime,
+
+            meetingLocation:
+              data.meetingLocation,
+
+            image:
+              data.image,
+
+            published:
+              data.published,
+
+            updatedAt:
+              serverTimestamp()
+          };
+
+
+          if (departmentId.value) {
+
+            const departmentRef =
+              doc(
+                db,
+                "departments",
+                departmentId.value
+              );
+
+
+            await updateDoc(
+              departmentRef,
+              safeData
+            );
+
+
+            showStatus(
+              "Department updated successfully.",
+              "success"
+            );
+
+          } else {
+
+            await addDoc(
+              collection(
+                db,
+                "departments"
+              ),
+              {
+                ...safeData,
+                createdAt:
+                  serverTimestamp()
+              }
+            );
+
+
+            showStatus(
+              "Department added successfully.",
+              "success"
+            );
+          }
+
+
+          closeModal();
+
+          await loadDepartments();
+
+        } catch (error) {
+
+          console.error(
+            "Department save error:",
+            error
+          );
+
+
+          showFormMessage(
+            "Unable to save the department. Please try again."
+          );
+
+        } finally {
+
+          saveDepartmentBtn.disabled =
+            false;
+
+          saveDepartmentBtn.textContent =
+            departmentId.value
+              ? "Update Department"
+              : "Save Department";
+        }
+
+      }
+    );
+
+
+    /* ========================================================
+       LOAD DEPARTMENTS
+    ======================================================== */
+
+    async function loadDepartments() {
+
+      departmentsList.innerHTML = "";
+
+      emptyState.classList.add(
+        "hidden"
+      );
+
+
+      try {
+
+        const snapshot =
+          await getDocs(
+            collection(
+              db,
+              "departments"
+            )
+          );
+
+
+        departments =
+          snapshot.docs.map(
+            item => ({
+
+              id:
+                item.id,
+
+              ...item.data()
+            })
+          );
+
+
+        /*
+          Sort newest first without relying on a Firestore
+          orderBy index.
+        */
+
+        departments.sort(
+          (a, b) => {
+
+            const aTime =
+              getTimestampValue(
+                a.createdAt
+              );
+
+            const bTime =
+              getTimestampValue(
+                b.createdAt
+              );
+
+            return bTime - aTime;
+          }
+        );
+
+
+        updateStats();
+
+        renderDepartments();
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load departments:",
+          error
+        );
+
+
+        showStatus(
+          "Unable to load departments. Please refresh the page.",
+          "error"
+        );
+
+        departments = [];
+
+        updateStats();
+
+        renderDepartments();
+      }
+    }
+
+
+    /* ========================================================
+       TIMESTAMP
+    ======================================================== */
+
+    function getTimestampValue(timestamp) {
+
+      if (!timestamp) {
+        return 0;
+      }
+
+
+      if (
+        typeof timestamp.toMillis ===
+        "function"
+      ) {
+
+        return timestamp.toMillis();
+      }
+
+
+      if (
+        typeof timestamp.seconds ===
+        "number"
+      ) {
+
+        return timestamp.seconds * 1000;
+      }
+
+
+      if (
+        typeof timestamp === "string"
+      ) {
+
+        const parsed =
+          Date.parse(timestamp);
+
+        return Number.isNaN(parsed)
+          ? 0
+          : parsed;
+      }
+
+
+      return 0;
+    }
+
+
+    /* ========================================================
+       DATE
+    ======================================================== */
+
+    function formatDate(timestamp) {
+
+      const value =
+        getTimestampValue(
+          timestamp
+        );
+
+
+      if (!value) {
+        return "Date not available";
+      }
+
+
+      try {
+
+        return new Intl.DateTimeFormat(
+          "en-NG",
+          {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+          }
+        ).format(
+          new Date(value)
+        );
+
+      } catch {
+
+        return "Date not available";
+      }
+    }
+
+
+    /* ========================================================
+       STATS
+    ======================================================== */
+
+    function updateStats() {
+
+      const total =
+        departments.length;
+
+
+      const publishedTotal =
+        departments.filter(
+          item =>
+            item.published === true
+        ).length;
+
+
+      const hiddenTotal =
+        total - publishedTotal;
+
+
+      totalCount.textContent =
+        String(total);
+
+
+      publishedCount.textContent =
+        String(publishedTotal);
+
+
+      hiddenCount.textContent =
+        String(hiddenTotal);
+    }
+
+
+    /* ========================================================
+       FILTERING
+    ======================================================== */
+
+    function getFilteredDepartments() {
+
+      const search =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+
+      const filter =
+        filterSelect.value;
+
+
+      return departments.filter(
+        department => {
+
+          const searchableText =
+            [
+              department.name,
+              department.description,
+              department.leader,
+              department.contact,
+              department.meetingDay,
+              department.meetingTime,
+              department.meetingLocation
+            ]
+              .filter(Boolean)
+              .join(" ")
+              .toLowerCase();
+
+
+          const matchesSearch =
+            !search ||
+            searchableText.includes(
+              search
+            );
+
+
+          let matchesFilter =
+            true;
+
+
+          if (
+            filter === "published"
+          ) {
+
+            matchesFilter =
+              department.published === true;
+
+          } else if (
+            filter === "hidden"
+          ) {
+
+            matchesFilter =
+              department.published !== true;
+          }
+
+
+          return (
+            matchesSearch &&
+            matchesFilter
+          );
+
+        }
+      );
+    }
+
+
+    /* ========================================================
+       RENDER
+    ======================================================== */
+
+    function renderDepartments() {
+
+      departmentsList.innerHTML = "";
+
+
+      const filtered =
+        getFilteredDepartments();
+
+
+      if (
+        filtered.length === 0
+      ) {
+
+        emptyState.classList.remove(
+          "hidden"
+        );
+
+        return;
+      }
+
+
+      emptyState.classList.add(
+        "hidden"
+      );
+
+
+      filtered.forEach(
+        department => {
+
+          const card =
+            createDepartmentCard(
+              department
+            );
+
+
+          departmentsList.appendChild(
+            card
+          );
+        }
+      );
+    }
+
+
+    /* ========================================================
+       CREATE CARD
+    ======================================================== */
+
+    function createDepartmentCard(
+      department
+    ) {
+
+      const card =
+        document.createElement(
+          "div"
+        );
+
+
+      card.className =
+        "rounded-2xl bg-white p-5 shadow-sm sm:p-6";
+
+
+      /* HEADER */
+
+      const header =
+        document.createElement(
+          "div"
+        );
+
+
+      header.className =
+        "flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between";
+
+
+      const titleArea =
+        document.createElement(
+          "div"
+        );
+
+
+      titleArea.className =
+        "min-w-0";
+
+
+      const titleRow =
+        document.createElement(
+          "div"
+        );
+
+
+      titleRow.className =
+        "flex flex-wrap items-center gap-2";
+
+
+      const title =
+        document.createElement(
+          "h4"
+        );
+
+
+      title.className =
+        "text-lg font-bold text-navy";
+
+
+      title.textContent =
+        escapeTextForDisplay(
+          department.name
+        );
+
+
+      titleRow.appendChild(
+        title
+      );
+
+
+      const badge =
+        document.createElement(
+          "span"
+        );
+
+
+      badge.className =
+        department.published === true
+          ? "rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700"
+          : "rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600";
+
+
+      badge.textContent =
+        department.published === true
+          ? "Published"
+          : "Hidden";
+
+
+      titleRow.appendChild(
+        badge
+      );
+
+
+      titleArea.appendChild(
+        titleRow
+      );
+
+
+      if (
+        department.description
+      ) {
+
+        const description =
+          document.createElement(
+            "p"
+          );
+
+
+        description.className =
+          "mt-2 max-w-2xl text-sm leading-6 text-gray-500";
+
+
+        description.textContent =
+          escapeTextForDisplay(
+            department.description
+          );
+
+
+        titleArea.appendChild(
+          description
+        );
+      }
+
+
+      header.appendChild(
+        titleArea
+      );
+
+
+      /* ACTIONS */
+
+      const actions =
+        document.createElement(
+          "div"
+        );
+
+
+      actions.className =
+        "flex shrink-0 gap-2";
+
+
+      const editButton =
+        document.createElement(
+          "button"
+        );
+
+
+      editButton.type =
+        "button";
+
+
+      editButton.className =
+        "rounded-lg border border-gray-300 px-4 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50";
+
+
+      editButton.textContent =
+        "Edit";
+
+
+      editButton.addEventListener(
+        "click",
+        () => {
+
+          openModal(
+            department
+          );
+
+        }
+      );
+
+
+      actions.appendChild(
+        editButton
+      );
+
+
+      const deleteButton =
+        document.createElement(
+          "button"
+        );
+
+
+      deleteButton.type =
+        "button";
+
+
+      deleteButton.className =
+        "rounded-lg border border-red-200 px-4 py-2 text-xs font-semibold text-red-600 hover:bg-red-50";
+
+
+      deleteButton.textContent =
+        "Delete";
+
+
+      deleteButton.addEventListener(
+        "click",
+        () => {
+
+          deleteDepartment(
+            department.id,
+            department.name
+          );
+
+        }
+      );
+
+
+      actions.appendChild(
+        deleteButton
+      );
+
+
+      header.appendChild(
+        actions
+      );
+
+
+      card.appendChild(
+        header
+      );
+
+
+      /* DETAILS */
+
+      const details =
+        document.createElement(
+          "div"
+        );
+
+
+      details.className =
+        "mt-5 grid gap-3 border-t pt-5 sm:grid-cols-2 lg:grid-cols-4";
+
+
+      addDetail(
+        details,
+        "Leader",
+        department.leader
+      );
+
+
+      addDetail(
+        details,
+        "Contact",
+        department.contact
+      );
+
+
+      addDetail(
+        details,
+        "Meeting",
+        [
+          department.meetingDay,
+          department.meetingTime
+        ]
+          .filter(Boolean)
+          .join(" • ")
+      );
+
+
+      addDetail(
+        details,
+        "Location",
+        department.meetingLocation
+      );
+
+
+      card.appendChild(
+        details
+      );
+
+
+      /* FOOTER */
+
+      const footer =
+        document.createElement(
+          "div"
+        );
+
+
+      footer.className =
+        "mt-5 border-t pt-4 text-xs text-gray-400";
+
+
+      footer.textContent =
+        `Added: ${formatDate(department.createdAt)}`;
+
+
+      card.appendChild(
+        footer
+      );
+
+
+      return card;
+    }
+
+
+    /* ========================================================
+       DETAIL ITEM
+    ======================================================== */
+
+    function addDetail(
+      parent,
+      label,
+      value
+    ) {
+
+      const wrapper =
+        document.createElement(
+          "div"
+        );
+
+
+      wrapper.className =
+        "rounded-lg bg-gray-50 p-3";
+
+
+      const labelElement =
+        document.createElement(
+          "div"
+        );
+
+
+      labelElement.className =
+        "text-[10px] font-bold uppercase tracking-wider text-gray-400";
+
+
+      labelElement.textContent =
+        label;
+
+
+      const valueElement =
+        document.createElement(
+          "div"
+        );
+
+
+      valueElement.className =
+        "mt-1 break-words text-sm font-medium text-gray-700";
+
+
+      valueElement.textContent =
+        value
+          ? escapeTextForDisplay(
+              value
+            )
+          : "Not provided";
+
+
+      wrapper.appendChild(
+        labelElement
+      );
+
+
+      wrapper.appendChild(
+        valueElement
+      );
+
+
+      parent.appendChild(
+        wrapper
+      );
+    }
+
+
+    /* ========================================================
+       DELETE
+    ======================================================== */
+
+    async function deleteDepartment(
+      id,
+      name
+    ) {
+
+      if (!isAuthorized) {
+
+        showStatus(
+          "Your administrator session is no longer valid.",
+          "error"
+        );
+
+        return;
+      }
+
+
+      const confirmed =
+        window.confirm(
+          `Delete "${name || "this department"}"? This action cannot be undone.`
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      try {
+
+        await deleteDoc(
+          doc(
+            db,
+            "departments",
+            id
+          )
+        );
+
+
+        showStatus(
+          "Department deleted successfully.",
+          "success"
+        );
+
+
+        await loadDepartments();
+
+      } catch (error) {
+
+        console.error(
+          "Department deletion error:",
+          error
+        );
+
+
+        showStatus(
+          "Unable to delete the department.",
+          "error"
+        );
+      }
+    }
+
+
+    /* ========================================================
+       SEARCH / FILTER
+    ======================================================== */
+
+    searchInput.addEventListener(
+      "input",
+      renderDepartments
+    );
+
+
+    filterSelect.addEventListener(
+      "change",
+      renderDepartments
+    );
+
+
+    refreshBtn.addEventListener(
+      "click",
+      async () => {
+
+        refreshBtn.disabled =
+          true;
+
+        refreshBtn.textContent =
+          "Refreshing...";
+
+
+        await loadDepartments();
+
+
+        refreshBtn.disabled =
+          false;
+
+        refreshBtn.textContent =
+          "Refresh";
+      }
+    );
+
+
+    /* ========================================================
+       LOGOUT
+    ======================================================== */
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await signOut(
+            auth
+          );
+
+
+          window.location.replace(
+            "admin.login.html"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+
+          showStatus(
+            "Unable to logout. Please try again.",
+            "error"
+          );
+        }
+      }
+    );
+
+
+    /* ========================================================
+       MOBILE SIDEBAR
+    ======================================================== */
+
+    function openSidebar() {
+
+      sidebar.classList.remove(
+        "-translate-x-full"
+      );
+
+      sidebarOverlay.classList.remove(
+        "hidden"
+      );
+    }
+
+
+    function closeSidebar() {
+
+      sidebar.classList.add(
+        "-translate-x-full"
+      );
+
+      sidebarOverlay.classList.add(
+        "hidden"
+      );
+    }
+
+
+    menuBtn.addEventListener(
+      "click",
+      openSidebar
+    );
+
+
+    sidebarOverlay.addEventListener(
+      "click",
+      closeSidebar
+    );
+
+
+    /* ========================================================
+       AUTHORIZATION
+    ======================================================== */
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.replace(
+            "admin.login.html"
+          );
+
+          return;
+        }
+
+
+        try {
+
+          /*
+            Direct lookup of the current user's admin document.
+
+            We do NOT download the entire admins collection.
+          */
+
+          const adminRef =
+            doc(
+              db,
+              "admins",
+              user.uid
+            );
+
+
+          const adminSnapshot =
+            await getDoc(
+              adminRef
+            );
+
+
+          if (
+            !adminSnapshot.exists()
+          ) {
+
+            await signOut(
+              auth
+            );
+
+
+            window.location.replace(
+              "admin.login.html"
+            );
+
+            return;
+          }
+
+
+          const adminData =
+            adminSnapshot.data();
+
+
+          if (
+            adminData.active !== true
+          ) {
+
+            await signOut(
+              auth
+            );
+
+
+            window.location.replace(
+              "admin.login.html"
+            );
+
+            return;
+          }
+
+
+          /*
+            Authorization successful.
+          */
+
+          isAuthorized =
+            true;
+
+
+          adminEmail.textContent =
+            user.email || "Administrator";
+
+
+          /*
+            Load department data only after
+            authorization succeeds.
+          */
+
+          await loadDepartments();
+
+
+          /*
+            Reveal the page only after
+            authorization has completed.
+          */
+
+          securityScreen.classList.add(
+            "hidden"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Admin authorization error:",
+            error
+          );
+
+
+          isAuthorized =
+            false;
+
+
+          window.location.replace(
+            "admin.login.html"
+          );
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
