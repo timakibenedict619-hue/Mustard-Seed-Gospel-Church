@@ -818,22 +818,40 @@
 
       if (audioUrl) {
 
-        actionButtons += `
+  actionButtons += `
 
-          <a
-            href="${escapeHTML(audioUrl)}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 border border-[#0A1931]/15 navy text-[#0A1931] px-5 py-3 rounded-full font-semibold text-sm hover:bg-gray-50 transition"
-          >
+    <div class="w-full mt-2">
 
-            🎧 Listen
+      <audio
+        controls
+        preload="metadata"
+        class="w-full"
+        src="${escapeHTML(audioUrl)}"
+        onerror="this.parentElement.innerHTML='<p class=&quot;text-sm text-red-500&quot;>Audio could not be loaded. Please try again later.</p>'"
+      ></audio>
 
-          </a>
+    </div>
 
-        `;
+  `;
 
-      }
+}
+
+        
+
+          
+          
+            
+            
+            
+          
+
+            
+
+          
+
+        
+
+      
 
 
       /*
