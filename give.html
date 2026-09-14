@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description" content="Give and support the work of Mustard Seed Gospel Church." />
+  <meta name="robots" content="index, follow" />
+
+  <title>Give | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0A1931;
+      --gold: #D4AF37;
+      --cream: #F7F7F5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: #111;
+      background: var(--cream);
+    }
+
+    .serif {
+      font-family: "Fraunces", serif;
+    }
+
+    .navy {
+      color: var(--navy);
+    }
+
+    .bg-navy {
+      background-color: var(--navy);
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .bg-gold {
+      background-color: var(--gold);
+    }
+
+    .bg-cream {
+      background-color: var(--cream);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8">
+      <div class="h-[76px] flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+
+          <div class="w-11 h-11 shrink-0">
+            <img
+              src="images/church-logo.png"
+              alt="Mustard Seed Gospel Church Logo"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div class="leading-tight">
+            <div class="font-bold text-[14px] md:text-[15px] text-navy">
+              Mustard Seed Gospel Church
+            </div>
+
+            <div class="text-[11px] tracking-[0.15em] uppercase text-black/45">
+              Home of Success
+            </div>
+          </div>
+
+        </a>
+
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-7 text-[13px] font-semibold">
+
+          <a
+            href="index.html"
+            class="text-black/70 hover:text-navy transition"
+          >
+            Home
+          </a>
+
+          <a
+            href="sermons.html"
+            class="text-black/70 hover:text-navy transition"
+          >
+            Sermons
+          </a>
+
+          <a
+            href="about.html"
+            class="text-black/70 hover:text-navy transition"
+          >
+            About
+          </a>
+
+          <a
+            href="index.html#live"
+            class="text-black/70 hover:text-navy transition"
+          >
+            Live
+          </a>
+
+          <a
+            href="index.html#events"
+            class="text-black/70 hover:text-navy transition"
+          >
+            Events
+          </a>
+
+          <a
+            href="give.html"
+            class="text-navy font-bold"
+          >
+            Give
+          </a>
+
+          <a
+            href="index.html#contact"
+            class="text-black/70 hover:text-navy transition"
+          >
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="h-10 px-5 rounded-full bg-navy text-white flex items-center justify-center hover:opacity-90 transition"
+          >
+            Join Online
+          </a>
+
+        </nav>
+
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="menuButton"
+          type="button"
+          class="lg:hidden w-11 h-11 rounded-full border border-black/10 flex items-center justify-center text-navy"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <svg
+            id="menuIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobileMenu"
+      class="hidden lg:hidden border-t border-black/5 bg-white"
+    >
+      <div class="px-6 py-5 flex flex-col gap-1">
+
+        <a
+          href="index.html"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          Home
+        </a>
+
+        <a
+          href="sermons.html"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          Sermons
+        </a>
+
+        <a
+          href="about.html"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          About
+        </a>
+
+        <a
+          href="index.html#live"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          Live
+        </a>
+
+        <a
+          href="index.html#events"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          Events
+        </a>
+
+        <a
+          href="give.html"
+          class="px-4 py-3 rounded-xl bg-navy text-white text-[14px] font-semibold"
+        >
+          Give
+        </a>
+
+        <a
+          href="index.html#contact"
+          class="px-4 py-3 rounded-xl text-[14px] font-semibold hover:bg-cream"
+        >
+          Contact
+        </a>
+
+        <a
+          href="join-online.html"
+          class="mt-2 h-11 rounded-full bg-gold text-navy font-bold flex items-center justify-center"
+        >
+          Join Online
+        </a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- PAGE HERO -->
+  <section class="bg-navy relative overflow-hidden">
+
+    <div class="absolute inset-0 opacity-[0.05]">
+      <div class="absolute -right-20 -top-20 w-[420px] h-[420px] rounded-full border-[70px] border-gold"></div>
+      <div class="absolute -left-24 -bottom-40 w-[500px] h-[500px] rounded-full border-[70px] border-gold"></div>
+    </div>
+
+    <div class="relative max-w-[1280px] mx-auto px-6 md:px-8 py-20 md:py-28">
+
+      <div class="max-w-[720px]">
+
+        <div class="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-bold text-gold">
+          <span class="w-6 h-[1px] bg-gold"></span>
+          Giving
+        </div>
+
+        <h1
+          id="heroTitle"
+          class="serif mt-5 text-[48px] md:text-[72px] leading-[0.95] tracking-[-0.04em] font-bold text-white"
+        >
+          Give With
+          <span class="text-gold"> Purpose.</span>
+        </h1>
+
+        <p
+          id="heroDescription"
+          class="mt-6 text-[16px] md:text-[18px] leading-[1.7] text-white/70 max-w-[620px]"
+        >
+          Your generosity helps us advance the Gospel, support God's work,
+          reach lives, and build a church where people can discover their
+          purpose and become all that God has called them to be.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- INTRODUCTION -->
+  <section class="bg-white">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-24">
+
+      <div class="grid md:grid-cols-[1fr_1fr] gap-12 md:gap-20 items-center">
+
+        <div>
+
+          <div class="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">
+            <span class="w-6 h-[1px] bg-gold"></span>
+            Kingdom Partnership
+          </div>
+
+          <h2 class="serif mt-4 text-[38px] md:text-[52px] leading-[1] tracking-[-0.03em] font-bold text-navy">
+            Your Giving
+            <br />
+            Makes A
+            <br />
+            <span class="text-navy/40">Difference.</span>
+          </h2>
+
+          <div class="mt-6 space-y-4 text-[15px] leading-[1.8] text-black/65">
+
+            <p>
+              Giving is one of the ways we participate in the work God is
+              doing through His church. Every gift helps us continue reaching
+              people with the Gospel and serving our community.
+            </p>
+
+            <p>
+              Whether you are giving towards the ministry, missions,
+              church projects, or a specific need, we are grateful for your
+              partnership and generosity.
+            </p>
+
+            <p class="text-navy font-medium italic border-l-2 border-gold pl-4">
+              "God loves a cheerful giver."
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- GIVING CARD -->
+        <div>
+
+          <div class="bg-cream rounded-[24px] border border-black/5 p-7 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.07)]">
+
+            <div class="w-14 h-14 rounded-[16px] bg-gold flex items-center justify-center">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#0A1931"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+
+            </div>
+
+
+            <h3
+              id="givingCardTitle"
+              class="serif mt-6 text-[30px] font-bold text-navy"
+            >
+              Give Online
+            </h3>
+
+            <p
+              id="givingCardDescription"
+              class="mt-3 text-[14px] leading-[1.7] text-black/60"
+            >
+              Use the giving details provided by the church to make your
+              contribution securely.
+            </p>
+
+
+            <!-- BANK DETAILS -->
+            <div class="mt-7 space-y-3">
+
+              <div class="bg-white rounded-[14px] p-4 border border-black/5">
+
+                <div class="text-[10px] uppercase tracking-[0.15em] font-bold text-black/40">
+                  Account Name
+                </div>
+
+                <div
+                  id="accountName"
+                  class="mt-1 text-[15px] font-semibold text-navy"
+                >
+                  Contact the church office
+                </div>
+
+              </div>
+
+
+              <div class="bg-white rounded-[14px] p-4 border border-black/5">
+
+                <div class="text-[10px] uppercase tracking-[0.15em] font-bold text-black/40">
+                  Bank
+                </div>
+
+                <div
+                  id="bankName"
+                  class="mt-1 text-[15px] font-semibold text-navy"
+                >
+                  Contact the church office
+                </div>
+
+              </div>
+
+
+              <div class="bg-white rounded-[14px] p-4 border border-black/5">
+
+                <div class="text-[10px] uppercase tracking-[0.15em] font-bold text-black/40">
+                  Account Number
+                </div>
+
+                <div
+                  id="accountNumber"
+                  class="mt-1 text-[15px] font-semibold text-navy"
+                >
+                  Contact the church office
+                </div>
+
+              </div>
+
+
+              <!-- TRANSFER NOTE -->
+              <div
+                id="transferNoteBox"
+                class="hidden bg-white rounded-[14px] p-4 border border-black/5"
+              >
+
+                <div class="text-[10px] uppercase tracking-[0.15em] font-bold text-black/40">
+                  Transfer Note
+                </div>
+
+                <div
+                  id="transferNote"
+                  class="mt-1 text-[14px] leading-[1.6] text-navy"
+                ></div>
+
+              </div>
+
+            </div>
+
+
+            <!-- ONLINE GIVING -->
+            <div
+              id="onlineGivingContainer"
+              class="hidden mt-6"
+            >
+
+              <a
+                id="onlineGivingButton"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="h-12 px-6 rounded-full bg-gold text-navy font-bold text-[14px] flex items-center justify-center hover:opacity-90 transition"
+              >
+                Give Online
+              </a>
+
+            </div>
+
+
+            <!-- OTHER GIVING METHODS -->
+            <div
+              id="otherGivingContainer"
+              class="hidden mt-6 p-4 rounded-[14px] bg-white border border-black/5"
+            >
+
+              <div class="text-[10px] uppercase tracking-[0.15em] font-bold text-black/40">
+                Other Giving Methods
+              </div>
+
+              <div
+                id="otherGivingMethods"
+                class="mt-2 text-[13px] leading-[1.7] text-black/60 whitespace-pre-line"
+              ></div>
+
+            </div>
+
+
+            <div class="mt-6 p-4 rounded-[14px] bg-navy text-white">
+
+              <div class="text-[11px] uppercase tracking-[0.14em] text-gold font-bold">
+                Need Help?
+              </div>
+
+              <p class="mt-2 text-[13px] leading-[1.6] text-white/70">
+                If you need the current giving details or want to confirm
+                a transaction, please contact the church office.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WAYS TO GIVE -->
+  <section class="bg-cream">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-24">
+
+      <div class="text-center max-w-[650px] mx-auto">
+
+        <div class="inline-flex items-center gap-2 text-[12px] tracking-[0.2em] uppercase font-bold text-navy/40">
+          <span class="w-6 h-[1px] bg-gold"></span>
+          Ways To Give
+          <span class="w-6 h-[1px] bg-gold"></span>
+        </div>
+
+        <h2 class="serif mt-4 text-[38px] md:text-[50px] leading-[1] tracking-[-0.03em] font-bold text-navy">
+          Partner With
+          <span class="text-navy/40">The Work</span>
+        </h2>
+
+        <p class="mt-5 text-[15px] leading-[1.7] text-black/60">
+          There are different ways you can support the work of God through
+          Mustard Seed Gospel Church.
+        </p>
+
+      </div>
+
+
+      <div class="mt-12 grid md:grid-cols-3 gap-5">
+
+        <!-- Tithe -->
+        <div class="bg-white rounded-[20px] border border-black/5 p-7">
+
+          <div class="w-12 h-12 rounded-[14px] bg-navy flex items-center justify-center">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#D4AF37"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 2v20"></path>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H7"></path>
+            </svg>
+
+          </div>
+
+          <h3 class="serif mt-6 text-[25px] font-bold text-navy">
+            Tithe
+          </h3>
+
+          <p class="mt-3 text-[14px] leading-[1.7] text-black/60">
+            Honour God with your tithe and support the work of His house.
+          </p>
+
+        </div>
+
+
+        <!-- Offering -->
+        <div class="bg-white rounded-[20px] border border-black/5 p-7">
+
+          <div class="w-12 h-12 rounded-[14px] bg-navy flex items-center justify-center">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#D4AF37"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"></path>
+              <polyline points="8 6 12 2 16 6"></polyline>
+              <line x1="12" y1="2" x2="12" y2="15"></line>
+            </svg>
+
+          </div>
+
+          <h3 class="serif mt-6 text-[25px] font-bold text-navy">
+            Offering
+          </h3>
+
+          <p class="mt-3 text-[14px] leading-[1.7] text-black/60">
+            Give as God places it in your heart and help meet the needs of
+            the ministry.
+          </p>
+
+        </div>
+
+
+        <!-- Special Giving -->
+        <div class="bg-white rounded-[20px] border border-black/5 p-7">
+
+          <div class="w-12 h-12 rounded-[14px] bg-navy flex items-center justify-center">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#D4AF37"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+
+          </div>
+
+          <h3 class="serif mt-6 text-[25px] font-bold text-navy">
+            Special Giving
+          </h3>
+
+          <p class="mt-3 text-[14px] leading-[1.7] text-black/60">
+            Support special projects, missions, outreach, and other kingdom
+            assignments.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SCRIPTURE -->
+  <section class="bg-navy relative overflow-hidden">
+
+    <div class="absolute -right-24 -top-24 w-[360px] h-[360px] rounded-full border-[60px] border-gold/10"></div>
+
+    <div class="max-w-[1000px] mx-auto px-6 md:px-8 py-16 md:py-20 text-center relative">
+
+      <div class="text-gold text-[12px] uppercase tracking-[0.2em] font-bold">
+        A Heart Of Generosity
+      </div>
+
+      <h3 class="serif mt-5 text-[28px] md:text-[40px] leading-[1.15] tracking-[-0.02em] font-semibold text-white">
+        "It is more blessed to give
+        <span class="text-gold"> than to receive.</span>"
+      </h3>
+
+      <div class="mt-5 text-[12px] uppercase tracking-[0.16em] font-semibold text-white/50">
+        Acts 20:35
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT / CTA -->
+  <section class="bg-white">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-16 md:py-20">
+
+      <div class="rounded-[24px] bg-cream border border-black/5 p-7 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+
+        <div class="max-w-[650px]">
+
+          <div class="text-[11px] uppercase tracking-[0.18em] font-bold text-navy/40">
+            Need More Information?
+          </div>
+
+          <h2 class="serif mt-3 text-[30px] md:text-[38px] leading-tight font-bold text-navy">
+            We Are Here To Help.
+          </h2>
+
+          <p class="mt-3 text-[14px] leading-[1.7] text-black/60">
+            For questions about giving, church projects, or partnership,
+            please contact the church.
+          </p>
+
+        </div>
+
+        <a
+          href="index.html#contact"
+          class="h-12 px-7 rounded-full bg-navy text-white font-semibold text-[14px] flex items-center justify-center w-fit"
+        >
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-navy text-white">
+
+    <div class="max-w-[1280px] mx-auto px-6 md:px-8 py-14">
+
+      <div class="grid md:grid-cols-4 gap-10">
+
+        <!-- Church -->
+        <div class="md:col-span-2">
+
+          <div class="flex items-center gap-3">
+
+            <div class="w-11 h-11 shrink-0">
+              <img
+                src="images/church-logo.png"
+                alt="Mustard Seed Gospel Church Logo"
+                class="w-full h-full object-contain"
+              />
+            </div>
+
+            <div class="leading-tight">
+
+              <div class="font-bold text-[14px]">
+                Mustard Seed Gospel Church
+              </div>
+
+              <div class="text-[11px] tracking-[0.15em] uppercase text-white/45">
+                Home of Success
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="mt-5 text-[14px] leading-[1.7] text-white/60 max-w-[470px]">
+            Raising giants for God and establishing the Kingdom of God here
+            on earth.
+          </p>
+
+          <div class="mt-5 text-[13px] text-white/50">
+            Agbor, Delta State, Nigeria
+          </div>
+
+        </div>
+
+
+        <!-- Visit Us -->
+        <div>
+
+          <div class="text-[11px] uppercase tracking-[0.16em] font-bold text-gold">
+            Visit Us
+          </div>
+
+          <div class="mt-4 space-y-3 text-[13px] text-white/60">
+
+            <div>
+              Sunday Services
+              <br>
+              <span class="text-white/90">
+                8:00 AM & 10:00 AM WAT
+              </span>
+            </div>
+
+            <div>
+              Live Stream
+              <br>
+              <span class="text-white/90">
+                Sunday 7:00 AM
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Quick Links -->
+        <div>
+
+          <div class="text-[11px] uppercase tracking-[0.16em] font-bold text-gold">
+            Quick Links
+          </div>
+
+          <div class="mt-4 flex flex-col gap-3 text-[13px]">
+
+            <a
+              href="sermons.html"
+              class="text-white/60 hover:text-white transition"
+            >
+              Sermons
+            </a>
+
+            <a
+              href="about.html"
+              class="text-white/60 hover:text-white transition"
+            >
+              About Us
+            </a>
+
+            <a
+              href="give.html"
+              class="text-white hover:text-gold transition"
+            >
+              Give
+            </a>
+
+            <a
+              href="join-online.html"
+              class="text-white/60 hover:text-white transition"
+            >
+              Join Online
+            </a>
+
+            <a
+              href="prayer-request.html"
+              class="text-white/60 hover:text-white transition"
+            >
+              Prayer Request
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer Bottom -->
+      <div class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+        <div class="text-[11px] text-white/40">
+          © 2026 Mustard Seed Gospel Church. All rights reserved.
+        </div>
+
+        <div class="flex gap-5 text-[11px]">
+
+          <a
+            href="privacy.html"
+            class="text-white/40 hover:text-white transition"
+          >
+            Privacy
+          </a>
+
+          <a
+            href="terms.html"
+            class="text-white/40 hover:text-white transition"
+          >
+            Terms
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- MOBILE MENU -->
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuIcon = document.getElementById("menuIcon");
+
+    let menuOpen = false;
+
+    menuButton.addEventListener("click", () => {
+
+      menuOpen = !menuOpen;
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        String(menuOpen)
+      );
+
+      if (menuOpen) {
+
+        mobileMenu.classList.remove("hidden");
+
+        menuIcon.innerHTML = `
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        `;
+
+      } else {
+
+        mobileMenu.classList.add("hidden");
+
+        menuIcon.innerHTML = `
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        `;
+
+      }
+
+    });
+
+
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        mobileMenu.classList.add("hidden");
+
+        menuOpen = false;
+
+        menuButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        menuIcon.innerHTML = `
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        `;
+
+      });
+
+    });
+  </script>
+
+
+  <!-- FIREBASE GIVING DATA -->
+  <script type="module">
+
+    import {
+      db
+    } from "./firebase.js";
+
+    import {
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    /*
+      Safely put Firestore text into the page.
+
+      We deliberately use textContent instead of innerHTML
+      for administrator-entered content. This prevents stored
+      HTML/JavaScript from being interpreted by the browser.
+    */
+    function setSafeText(id, value, fallback = "") {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) {
+        return;
+      }
+
+      const cleanValue =
+        typeof value === "string"
+          ? value.trim()
+          : "";
+
+      element.textContent =
+        cleanValue || fallback;
+    }
+
+
+    /*
+      Only allow HTTP/HTTPS links from Firestore.
+
+      javascript:, data:, file:, etc. are rejected.
+    */
+    function getSafeUrl(value) {
+
+      if (
+        typeof value !== "string" ||
+        !value.trim()
+      ) {
+        return null;
+      }
+
+      try {
+
+        const url =
+          new URL(value.trim());
+
+        if (
+          url.protocol !== "https:" &&
+          url.protocol !== "http:"
+        ) {
+          return null;
+        }
+
+        return url.href;
+
+      } catch {
+
+        return null;
+      }
+    }
+
+
+    async function loadGivingInformation() {
+
+      try {
+
+        const givingRef =
+          doc(
+            db,
+            "settings",
+            "giving"
+          );
+
+        const snapshot =
+          await getDoc(givingRef);
+
+
+        if (!snapshot.exists()) {
+          return;
+        }
+
+
+        const data =
+          snapshot.data();
+
+
+        /*
+          HERO
+        */
+
+        if (
+          typeof data.givingTitle === "string" &&
+          data.givingTitle.trim()
+        ) {
+
+          setSafeText(
+            "heroTitle",
+            data.givingTitle
+          );
+
+        }
+
+
+        if (
+          typeof data.givingDescription === "string" &&
+          data.givingDescription.trim()
+        ) {
+
+          setSafeText(
+            "heroDescription",
+            data.givingDescription
+          );
+
+        }
+
+
+        /*
+          GIVING CARD
+        */
+
+        setSafeText(
+          "accountName",
+          data.accountName,
+          "Contact the church office"
+        );
+
+
+        setSafeText(
+          "bankName",
+          data.bankName,
+          "Contact the church office"
+        );
+
+
+        setSafeText(
+          "accountNumber",
+          data.accountNumber,
+          "Contact the church office"
+        );
+
+
+        /*
+          CARD TITLE
+
+          The admin panel's givingTitle is the main public
+          title, but the card remains "Give Online" unless
+          an online giving label is supplied.
+        */
+
+        if (
+          typeof data.onlineGivingLabel === "string" &&
+          data.onlineGivingLabel.trim()
+        ) {
+
+          setSafeText(
+            "givingCardTitle",
+            data.onlineGivingLabel
+          );
+
+        }
+
+
+        /*
+          CARD DESCRIPTION
+        */
+
+        if (
+          typeof data.givingDescription === "string" &&
+          data.givingDescription.trim()
+        ) {
+
+          setSafeText(
+            "givingCardDescription",
+            data.givingDescription
+          );
+
+        }
+
+
+        /*
+          TRANSFER NOTE
+        */
+
+        const transferNote =
+          typeof data.bankTransferNote === "string"
+            ? data.bankTransferNote.trim()
+            : "";
+
+
+        if (transferNote) {
+
+          setSafeText(
+            "transferNote",
+            transferNote
+          );
+
+          document
+            .getElementById("transferNoteBox")
+            .classList.remove("hidden");
+
+        }
+
+
+        /*
+          ONLINE GIVING BUTTON
+        */
+
+        const safeUrl =
+          getSafeUrl(
+            data.onlineGivingUrl
+          );
+
+
+        const onlineContainer =
+          document.getElementById(
+            "onlineGivingContainer"
+          );
+
+        const onlineButton =
+          document.getElementById(
+            "onlineGivingButton"
+          );
+
+
+        if (safeUrl) {
+
+          onlineButton.href =
+            safeUrl;
+
+          setSafeText(
+            "onlineGivingButton",
+            data.onlineGivingLabel || "Give Online"
+          );
+
+          onlineContainer.classList.remove(
+            "hidden"
+          );
+
+        } else {
+
+          onlineButton.removeAttribute(
+            "href"
+          );
+
+          onlineContainer.classList.add(
+            "hidden"
+          );
+
+        }
+
+
+        /*
+          OTHER GIVING METHODS
+        */
+
+        const otherMethods =
+          typeof data.otherGivingMethods === "string"
+            ? data.otherGivingMethods.trim()
+            : "";
+
+
+        if (otherMethods) {
+
+          setSafeText(
+            "otherGivingMethods",
+            otherMethods
+          );
+
+          document
+            .getElementById(
+              "otherGivingContainer"
+            )
+            .classList.remove("hidden");
+
+        }
+
+      } catch (error) {
+
+        /*
+          Do not expose Firebase/internal error details
+          to public visitors.
+        */
+
+        console.error(
+          "Unable to load giving information:",
+          error
+        );
+
+      }
+
+    }
+
+
+    loadGivingInformation();
+
+  </script>
+
+</body>
+  </html>
