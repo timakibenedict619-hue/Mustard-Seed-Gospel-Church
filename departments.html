@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Departments | Mustard Seed Gospel Church</title>
+  <meta
+    name="description"
+    content="Explore the departments and ministries of Mustard Seed Gospel Church — Home of Success."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    .font-display {
+      font-family: "Fraunces", serif;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-navy">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-10 h-10 shrink-0">
+            <img
+              src="images/church-logo.png"
+              alt="Mustard Seed Gospel Church Logo"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div>
+            <div class="font-display font-semibold text-navy">
+              Mustard Seed Gospel Church
+            </div>
+            <div class="text-xs text-gray-500">
+              Home of Success
+            </div>
+          </div>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+          <a href="index.html" class="hover:text-gold transition">Home</a>
+          <a href="sermons.html" class="hover:text-gold transition">Sermons</a>
+          <a href="index.html#about" class="hover:text-gold transition">About</a>
+          <a href="watch-live.html" class="hover:text-gold transition">Live</a>
+          <a href="index.html#events" class="hover:text-gold transition">Events</a>
+          <a href="give.html" class="hover:text-gold transition">Give</a>
+          <a href="contact.html" class="hover:text-gold transition">Contact</a>
+
+          <a
+            href="join-online.html"
+            class="bg-navy text-white px-5 py-3 rounded-full hover:bg-gold hover:text-navy transition"
+          >
+            Join Online
+          </a>
+        </nav>
+
+        <!-- MOBILE BUTTON -->
+        <button
+          id="menuBtn"
+          class="lg:hidden text-navy text-2xl"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+      </div>
+
+      <!-- MOBILE NAV -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-5">
+        <nav class="flex flex-col gap-4 text-sm font-medium">
+          <a href="index.html" class="hover:text-gold">Home</a>
+          <a href="sermons.html" class="hover:text-gold">Sermons</a>
+          <a href="index.html#about" class="hover:text-gold">About</a>
+          <a href="watch-live.html" class="hover:text-gold">Live</a>
+          <a href="index.html#events" class="hover:text-gold">Events</a>
+          <a href="give.html" class="hover:text-gold">Give</a>
+          <a href="contact.html" class="hover:text-gold">Contact</a>
+          <a
+            href="join-online.html"
+            class="inline-block w-fit bg-navy text-white px-5 py-3 rounded-full"
+          >
+            Join Online
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="bg-navy text-white">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-28">
+
+      <div class="max-w-3xl">
+        <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-5">
+          Serve • Grow • Impact
+        </p>
+
+        <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight mb-6">
+          Our Departments
+        </h1>
+
+        <p class="text-white/75 text-base sm:text-lg leading-8 max-w-2xl">
+          There is a place for everyone to serve, grow, connect, and make an
+          impact. Explore the departments of Mustard Seed Gospel Church and
+          discover where you can use your gifts for God's kingdom.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- INTRO -->
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+
+      <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+        Find Your Place
+      </p>
+
+      <h2 class="font-display text-3xl md:text-4xl font-semibold text-navy mb-5">
+        Serving Together as One Family
+      </h2>
+
+      <p class="text-gray-600 leading-8 max-w-3xl mx-auto">
+        Our departments provide opportunities for members to serve the church,
+        develop their gifts, build meaningful relationships, and contribute to
+        the work of the Gospel.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- DEPARTMENTS -->
+  <section class="py-16 md:py-24 bg-cream">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- CHOIR -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ♪
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Choir & Music
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Using music and worship to glorify God, lead the congregation,
+            and create an atmosphere where people can encounter His presence.
+          </p>
+        </div>
+
+
+        <!-- MEDIA -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ▶
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Media Department
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Helping take the Gospel beyond the church building through
+            photography, video, livestreaming, graphics, and digital media.
+          </p>
+        </div>
+
+
+        <!-- USHERS -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ✦
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Ushers
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Serving with excellence by welcoming worshippers, helping people
+            feel comfortable, and maintaining order during church services.
+          </p>
+        </div>
+
+
+        <!-- CHILDREN -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ♥
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Children's Ministry
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Helping children learn God's Word, grow in faith, and develop a
+            strong foundation in Christ in a safe and loving environment.
+          </p>
+        </div>
+
+
+        <!-- YOUTH -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ★
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Youth Ministry
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Equipping young people to discover their identity in Christ,
+            develop their gifts, and become godly leaders who influence their
+            generation.
+          </p>
+        </div>
+
+
+        <!-- MEN -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ◆
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Men's Ministry
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Building men who are spiritually strong, responsible, purposeful,
+            and committed to leading their families and serving God's kingdom.
+          </p>
+        </div>
+
+
+        <!-- WOMEN -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ♡
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Women's Ministry
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Creating a community where women can grow spiritually, encourage
+            one another, discover their purpose, and serve God effectively.
+          </p>
+        </div>
+
+
+        <!-- PRAYER -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            ✝
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Prayer Ministry
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Standing together in prayer for the church, families, communities,
+            and the advancement of God's kingdom.
+          </p>
+        </div>
+
+
+        <!-- EVANGELISM -->
+        <div class="bg-white rounded-2xl p-7 border border-gray-100 hover:shadow-lg transition">
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            +
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-3">
+            Evangelism & Outreach
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Taking the message of Jesus Christ beyond the church and reaching
+            people with the Gospel through outreach and community engagement.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SERVE CTA -->
+  <section class="py-20 bg-navy text-white">
+    <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+
+      <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+        Get Involved
+      </p>
+
+      <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6">
+        Ready to Serve?
+      </h2>
+
+      <p class="text-white/75 leading-8 max-w-2xl mx-auto mb-8">
+        We would love to help you find a place where you can serve and grow.
+        Contact the church and let us know the department you are interested in.
+      </p>
+
+      <a
+        href="contact.html"
+        class="inline-block bg-gold text-navy font-semibold px-7 py-3.5 rounded-full hover:bg-white transition"
+      >
+        Contact the Church
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- CHURCH -->
+        <div>
+          <a href="index.html" class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 shrink-0">
+              <img
+                src="images/church-logo.png"
+                alt="Mustard Seed Gospel Church Logo"
+                class="w-full h-full object-contain"
+              />
+            </div>
+
+            <div>
+              <div class="font-display font-semibold text-navy">
+                Mustard Seed Gospel Church
+              </div>
+              <div class="text-xs text-gray-500">
+                Home of Success
+              </div>
+            </div>
+          </a>
+
+          <p class="text-gray-600 text-sm leading-7">
+            Raising giants for God and establishing His kingdom here on earth.
+          </p>
+        </div>
+
+
+        <!-- VISIT -->
+        <div>
+          <h3 class="font-semibold mb-4">Visit Us</h3>
+
+          <p class="text-gray-600 text-sm leading-7">
+            Agbor, Delta State, Nigeria
+          </p>
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div>
+          <h3 class="font-semibold mb-4">Quick Links</h3>
+
+          <div class="flex flex-col gap-3 text-sm">
+            <a href="sermons.html" class="text-gray-600 hover:text-gold">
+              Sermons
+            </a>
+
+            <a href="watch-live.html" class="text-gray-600 hover:text-gold">
+              Watch Live
+            </a>
+
+            <a href="prayer-request.html" class="text-gray-600 hover:text-gold">
+              Prayer Request
+            </a>
+
+            <a href="departments.html" class="text-gray-600 hover:text-gold">
+              Departments
+            </a>
+          </div>
+        </div>
+
+
+        <!-- JOIN -->
+        <div>
+          <h3 class="font-semibold mb-4">Connect</h3>
+
+          <div class="flex flex-col gap-3 text-sm">
+            <a href="join-online.html" class="text-gray-600 hover:text-gold">
+              Join Online
+            </a>
+
+            <a href="contacts.html" class="text-gray-600 hover:text-gold">
+              Contact Us
+            </a>
+
+            <a href="give.html" class="text-gray-600 hover:text-gold">
+              Give Online
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-gray-100 mt-10 pt-6 flex flex-col sm:flex-row justify-between gap-4 text-xs text-gray-500">
+        <p>
+          © 2026 Mustard Seed Gospel Church. All rights reserved.
+        </p>
+
+        <div class="flex gap-5">
+          <a href="privacy.html" class="hover:text-gold">
+            Privacy Policy
+          </a>
+
+          <a href="terms.html" class="hover:text-gold">
+            Terms & Conditions
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- MOBILE MENU SCRIPT -->
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
+</body>
+</html>
