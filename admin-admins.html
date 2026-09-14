@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Management | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            inter: ["Inter", "sans-serif"],
+            fraunces: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f7f7f5;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Fraunces", serif;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.45);
+      border-radius: 10px;
+    }
+
+    .sidebar-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .active-link {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+    }
+  </style>
+</head>
+
+<body class="text-[#0A1931]">
+
+  <!-- =========================
+       MOBILE OVERLAY
+  ========================== -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"
+  ></div>
+
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+  <aside
+    id="sidebar"
+    class="fixed top-0 left-0 z-50 h-screen w-72 bg-[#0A1931] text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 flex flex-col"
+  >
+
+    <!-- Logo -->
+    <div class="px-6 py-6 border-b border-white/10">
+
+      <a href="admin-dashboard.html" class="flex items-center gap-3">
+
+        <div
+          class="w-11 h-11 rounded-full bg-[#D4AF37] flex items-center justify-center overflow-hidden shrink-0"
+        >
+          <img
+            src="IMG_20260914_150455_726.jpg"
+            alt="Mustard Seed Gospel Church Logo"
+            class="w-full h-full object-contain"
+          />
+        </div>
+
+        <div>
+          <div class="font-bold text-sm">
+            Mustard Seed Gospel Church
+          </div>
+
+          <div class="text-xs text-white/60 mt-1">
+            Admin Panel
+          </div>
+        </div>
+
+      </a>
+
+    </div>
+
+
+    <!-- Navigation -->
+    <nav class="flex-1 overflow-y-auto sidebar-scroll px-4 py-5">
+
+      <p class="text-[10px] uppercase tracking-widest text-white/40 px-3 mb-3">
+        Main
+      </p>
+
+      <div class="space-y-1">
+
+        <a
+          href="admin-dashboard.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>📊</span>
+          <span>Dashboard</span>
+        </a>
+
+        <a
+          href="admin-events.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>📅</span>
+          <span>Events</span>
+        </a>
+
+        <a
+          href="admin-sermons.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>🎙️</span>
+          <span>Sermons</span>
+        </a>
+
+        <a
+          href="admin-live.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>🔴</span>
+          <span>Live Stream</span>
+        </a>
+
+      </div>
+
+
+      <p class="text-[10px] uppercase tracking-widest text-white/40 px-3 mb-3 mt-7">
+        Church
+      </p>
+
+      <div class="space-y-1">
+
+        <a
+          href="admin-prayer-requests.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>🙏</span>
+          <span>Prayer Requests</span>
+        </a>
+
+        <a
+          href="admin-contacts-messages.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>✉️</span>
+          <span>Messages</span>
+        </a>
+
+        <a
+          href="admin-departments.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>👥</span>
+          <span>Departments</span>
+        </a>
+
+        <a
+          href="admin-wofbi.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>📚</span>
+          <span>WOFBI</span>
+        </a>
+
+        <a
+          href="admin-media.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>🖼️</span>
+          <span>Media</span>
+        </a>
+
+      </div>
+
+
+      <p class="text-[10px] uppercase tracking-widest text-white/40 px-3 mb-3 mt-7">
+        Settings
+      </p>
+
+      <div class="space-y-1">
+
+        <a
+          href="admin-settings.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>⚙️</span>
+          <span>Church Settings</span>
+        </a>
+
+        <a
+          href="admin.giving.html"
+          class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/80 hover:bg-white/5 transition"
+        >
+          <span>💰</span>
+          <span>Giving</span>
+        </a>
+
+        <a
+          href="admin-admins.html"
+          class="active-link flex items-center gap-3 px-3 py-3 rounded-lg text-sm transition"
+        >
+          <span>🛡️</span>
+          <span>Administrators</span>
+        </a>
+
+      </div>
+
+    </nav>
+
+
+    <!-- Sidebar bottom -->
+    <div class="p-4 border-t border-white/10">
+
+      <a
+        href="index.html"
+        target="_blank"
+        class="flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-white/70 hover:bg-white/5 transition"
+      >
+        <span>🌐</span>
+        <span>View Website</span>
+      </a>
+
+      <button
+        id="logoutBtn"
+        class="w-full mt-2 flex items-center gap-3 px-3 py-3 rounded-lg text-sm text-red-300 hover:bg-red-500/10 transition"
+      >
+        <span>🚪</span>
+        <span>Logout</span>
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+  <main class="lg:ml-72 min-h-screen">
+
+    <!-- Top bar -->
+    <header
+      class="sticky top-0 z-30 bg-white border-b border-gray-200"
+    >
+
+      <div class="px-5 sm:px-8 py-4 flex items-center justify-between">
+
+        <div class="flex items-center gap-4">
+
+          <button
+            id="menuBtn"
+            class="lg:hidden w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center text-xl"
+          >
+            ☰
+          </button>
+
+          <div>
+            <p class="text-xs text-gray-500">
+              Administration
+            </p>
+
+            <h1 class="text-xl sm:text-2xl font-bold">
+              Administrators
+            </h1>
+          </div>
+
+        </div>
+
+
+        <div class="flex items-center gap-3">
+
+          <div class="hidden sm:block text-right">
+
+            <p
+              id="headerEmail"
+              class="text-sm font-semibold text-[#0A1931]"
+            >
+              Loading...
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Administrator
+            </p>
+
+          </div>
+
+          <div
+            id="headerAvatar"
+            class="w-10 h-10 rounded-full bg-[#D4AF37] text-[#0A1931] flex items-center justify-center font-bold"
+          >
+            A
+          </div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- Page -->
+    <section class="p-5 sm:p-8 max-w-7xl mx-auto">
+
+
+      <!-- Page intro -->
+      <div class="mb-8">
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+
+          <div>
+
+            <p class="text-sm font-semibold text-[#D4AF37] uppercase tracking-wider">
+              Access Control
+            </p>
+
+            <h2 class="text-3xl sm:text-4xl font-bold mt-1">
+              Administrator Management
+            </h2>
+
+            <p class="text-gray-600 mt-3 max-w-2xl">
+              View your administrator account and access status for the
+              Mustard Seed Gospel Church website.
+            </p>
+
+          </div>
+
+          <div
+            class="inline-flex items-center gap-2 bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-semibold self-start md:self-auto"
+          >
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+            Admin system active
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           ACCOUNT CARDS
+      ========================== -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+
+
+        <!-- Admin count -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+
+          <div class="flex items-start justify-between">
+
+            <div>
+
+              <p class="text-sm text-gray-500">
+                Current Admin
+              </p>
+
+              <p
+                id="adminCount"
+                class="text-3xl font-bold mt-2"
+              >
+                —
+              </p>
+
+            </div>
+
+            <div
+              class="w-12 h-12 rounded-xl bg-[#0A1931] text-[#D4AF37] flex items-center justify-center text-xl"
+            >
+              🛡️
+            </div>
+
+          </div>
+
+          <p class="text-xs text-gray-500 mt-4">
+            Your authenticated administrator account
+          </p>
+
+        </div>
+
+
+        <!-- Account status -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+
+          <div class="flex items-start justify-between">
+
+            <div>
+
+              <p class="text-sm text-gray-500">
+                Account Status
+              </p>
+
+              <p
+                id="accountStatus"
+                class="text-2xl font-bold mt-2"
+              >
+                Checking...
+              </p>
+
+            </div>
+
+            <div
+              class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center text-xl"
+            >
+              ✓
+            </div>
+
+          </div>
+
+          <p
+            id="statusDescription"
+            class="text-xs text-gray-500 mt-4"
+          >
+            Checking administrator access...
+          </p>
+
+        </div>
+
+
+        <!-- Role -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+
+          <div class="flex items-start justify-between">
+
+            <div>
+
+              <p class="text-sm text-gray-500">
+                Access Role
+              </p>
+
+              <p
+                id="accountRole"
+                class="text-2xl font-bold mt-2"
+              >
+                —
+              </p>
+
+            </div>
+
+            <div
+              class="w-12 h-12 rounded-xl bg-[#D4AF37]/15 text-[#0A1931] flex items-center justify-center text-xl"
+            >
+              🔑
+            </div>
+
+          </div>
+
+          <p class="text-xs text-gray-500 mt-4">
+            Permissions assigned to this account
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           CURRENT ACCOUNT
+      ========================== -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-8">
+
+        <div class="px-6 py-5 border-b border-gray-200">
+
+          <div class="flex items-center justify-between gap-4">
+
+            <div>
+
+              <h3 class="text-xl font-bold">
+                Your Administrator Account
+              </h3>
+
+              <p class="text-sm text-gray-500 mt-1">
+                Information associated with your current login.
+              </p>
+
+            </div>
+
+            <div
+              id="accountBadge"
+              class="px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 text-xs font-semibold"
+            >
+              Loading
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="p-6">
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+            <!-- Email -->
+            <div>
+
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                Email Address
+              </label>
+
+              <div
+                id="adminEmail"
+                class="mt-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium break-all"
+              >
+                Loading...
+              </div>
+
+            </div>
+
+
+            <!-- UID -->
+            <div>
+
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                Firebase User ID
+              </label>
+
+              <div
+                id="adminUid"
+                class="mt-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-mono break-all"
+              >
+                Loading...
+              </div>
+
+            </div>
+
+
+            <!-- Role -->
+            <div>
+
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                Role
+              </label>
+
+              <div
+                id="adminRole"
+                class="mt-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium"
+              >
+                Loading...
+              </div>
+
+            </div>
+
+
+            <!-- Active -->
+            <div>
+
+              <label class="text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                Account Access
+              </label>
+
+              <div
+                id="adminActive"
+                class="mt-2 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm font-medium"
+              >
+                Loading...
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           PERMISSIONS
+      ========================== -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden mb-8">
+
+        <div class="px-6 py-5 border-b border-gray-200">
+
+          <h3 class="text-xl font-bold">
+            Administrator Permissions
+          </h3>
+
+          <p class="text-sm text-gray-500 mt-1">
+            Your current administrator account can manage the following
+            areas of the church website.
+          </p>
+
+        </div>
+
+
+        <div class="p-6">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center">
+                📅
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Events</p>
+                <p class="text-xs text-gray-500">Create and manage events</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-purple-50 flex items-center justify-center">
+                🎙️
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Sermons</p>
+                <p class="text-xs text-gray-500">Manage sermon content</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center">
+                🔴
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Live Stream</p>
+                <p class="text-xs text-gray-500">Manage live broadcasts</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center">
+                🙏
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Prayer Requests</p>
+                <p class="text-xs text-gray-500">View and manage requests</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-yellow-50 flex items-center justify-center">
+                ✉️
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Messages</p>
+                <p class="text-xs text-gray-500">View contact messages</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-pink-50 flex items-center justify-center">
+                👥
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Departments</p>
+                <p class="text-xs text-gray-500">Manage departments</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
+                📚
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">WOFBI</p>
+                <p class="text-xs text-gray-500">Manage WOFBI information</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-orange-50 flex items-center justify-center">
+                🖼️
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Media</p>
+                <p class="text-xs text-gray-500">Manage church media</p>
+              </div>
+
+            </div>
+
+
+            <div class="border border-gray-200 rounded-xl p-4 flex items-center gap-3">
+
+              <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
+                ⚙️
+              </div>
+
+              <div>
+                <p class="font-semibold text-sm">Settings</p>
+                <p class="text-xs text-gray-500">Manage church settings</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           IMPORTANT NOTICE
+      ========================== -->
+      <div class="bg-[#0A1931] text-white rounded-2xl p-6 sm:p-7">
+
+        <div class="flex flex-col sm:flex-row gap-5">
+
+          <div
+            class="w-12 h-12 rounded-xl bg-[#D4AF37] text-[#0A1931] flex items-center justify-center text-xl shrink-0"
+          >
+            🔐
+          </div>
+
+          <div>
+
+            <h3 class="text-xl font-bold">
+              Administrator Security
+            </h3>
+
+            <p class="text-white/70 text-sm leading-6 mt-2">
+              Administrator accounts are controlled through Firebase
+              Authentication and the Firestore administrator records.
+              For security, new administrator accounts should not be
+              created directly from this public website.
+            </p>
+
+            <p class="text-white/60 text-xs leading-5 mt-3">
+              If another person needs administrator access, create their
+              Firebase Authentication account through the Firebase
+              Console and then add their administrator record securely.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       TOAST
+  ========================== -->
+  <div
+    id="toast"
+    class="fixed bottom-5 right-5 z-[100] hidden"
+  >
+    <div
+      id="toastBox"
+      class="bg-[#0A1931] text-white px-5 py-4 rounded-xl shadow-xl max-w-sm"
+    >
+      <p
+        id="toastMessage"
+        class="text-sm"
+      ></p>
+    </div>
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+  <script type="module">
+
+    import { auth, db } from "./firebase.js";
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // =========================
+    // ELEMENTS
+    // =========================
+
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    const headerEmail = document.getElementById("headerEmail");
+    const headerAvatar = document.getElementById("headerAvatar");
+
+    const adminEmail = document.getElementById("adminEmail");
+    const adminUid = document.getElementById("adminUid");
+    const adminRole = document.getElementById("adminRole");
+    const adminActive = document.getElementById("adminActive");
+
+    const adminCount = document.getElementById("adminCount");
+    const accountStatus = document.getElementById("accountStatus");
+    const statusDescription = document.getElementById("statusDescription");
+
+    const accountRole = document.getElementById("accountRole");
+    const accountBadge = document.getElementById("accountBadge");
+
+
+    // =========================
+    // MOBILE SIDEBAR
+    // =========================
+
+    function openSidebar() {
+      sidebar.classList.remove("-translate-x-full");
+      sidebarOverlay.classList.remove("hidden");
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add("-translate-x-full");
+      sidebarOverlay.classList.add("hidden");
+    }
+
+    menuBtn.addEventListener("click", openSidebar);
+    sidebarOverlay.addEventListener("click", closeSidebar);
+
+
+    // =========================
+    // TOAST
+    // =========================
+
+    function showToast(message) {
+
+      const toast = document.getElementById("toast");
+      const toastMessage = document.getElementById("toastMessage");
+
+      toastMessage.textContent = message;
+
+      toast.classList.remove("hidden");
+
+      setTimeout(() => {
+        toast.classList.add("hidden");
+      }, 3500);
+    }
+
+
+    // =========================
+    // GET ADMIN DATA
+    // =========================
+
+    async function loadAdminData(user) {
+
+      try {
+
+        if (!user) {
+          return;
+        }
+
+        // Basic Firebase Auth information
+        const email = user.email || "No email";
+
+        headerEmail.textContent = email;
+
+        adminEmail.textContent = email;
+
+        adminUid.textContent = user.uid;
+
+
+        // Avatar
+        const firstLetter =
+          email.charAt(0).toUpperCase() || "A";
+
+        headerAvatar.textContent = firstLetter;
+
+
+        // Firestore admin document
+        const adminRef = doc(db, "admins", user.uid);
+
+        const adminSnapshot = await getDoc(adminRef);
+
+
+        if (!adminSnapshot.exists()) {
+
+          adminCount.textContent = "0";
+
+          accountStatus.textContent = "Not Found";
+          accountStatus.className =
+            "text-2xl font-bold mt-2 text-red-600";
+
+          statusDescription.textContent =
+            "No administrator record was found for this account.";
+
+          accountBadge.textContent = "Not registered";
+          accountBadge.className =
+            "px-3 py-1.5 rounded-full bg-red-50 text-red-600 text-xs font-semibold";
+
+          adminRole.textContent = "No role assigned";
+          adminActive.textContent = "No administrator record";
+
+          accountRole.textContent = "None";
+
+          showToast(
+            "Your Firebase account does not have an administrator record."
+          );
+
+          return;
+        }
+
+
+        const data = adminSnapshot.data();
+
+
+        // Role
+        const role = data.role || "admin";
+
+        adminRole.textContent = role;
+        accountRole.textContent = role;
+
+
+        // Active status
+        const active = data.active === true;
+
+        if (active) {
+
+          adminCount.textContent = "1";
+
+          accountStatus.textContent = "Active";
+          accountStatus.className =
+            "text-2xl font-bold mt-2 text-green-600";
+
+          statusDescription.textContent =
+            "Your administrator account is currently active.";
+
+          adminActive.textContent =
+            "Active — access allowed";
+
+          adminActive.className =
+            "mt-2 bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-sm font-medium text-green-700";
+
+          accountBadge.textContent = "Active";
+          accountBadge.className =
+            "px-3 py-1.5 rounded-full bg-green-50 text-green-700 text-xs font-semibold";
+
+        } else {
+
+          adminCount.textContent = "1";
+
+          accountStatus.textContent = "Inactive";
+          accountStatus.className =
+            "text-2xl font-bold mt-2 text-red-600";
+
+          statusDescription.textContent =
+            "This administrator account has been disabled.";
+
+          adminActive.textContent =
+            "Inactive — access restricted";
+
+          adminActive.className =
+            "mt-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm font-medium text-red-700";
+
+          accountBadge.textContent = "Inactive";
+          accountBadge.className =
+            "px-3 py-1.5 rounded-full bg-red-50 text-red-700 text-xs font-semibold";
+
+        }
+
+      } catch (error) {
+
+        console.error("Error loading admin:", error);
+
+        showToast(
+          "Unable to load administrator information."
+        );
+
+      }
+
+    }
+
+
+    // =========================
+    // AUTHENTICATION
+    // =========================
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+
+        window.location.href = "admin.login.html";
+
+        return;
+      }
+
+      await loadAdminData(user);
+
+    });
+
+
+    // =========================
+    // LOGOUT
+    // =========================
+
+    logoutBtn.addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
+
+        window.location.href = "admin.login.html";
+
+      } catch (error) {
+
+        console.error("Logout error:", error);
+
+        showToast(
+          "Unable to log out. Please try again."
+        );
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
