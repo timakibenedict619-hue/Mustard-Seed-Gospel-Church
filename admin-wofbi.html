@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WOFBI Management | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            serif: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      background: #f7f7f5;
+    }
+
+    .serif {
+      font-family: Fraunces, serif;
+    }
+
+    .sidebar-link {
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-link:hover {
+      background: rgba(212, 175, 55, 0.12);
+      color: #d4af37;
+    }
+
+    .sidebar-link.active {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      border-right: 3px solid #d4af37;
+    }
+
+    .input-field {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 11px 13px;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-field:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+    }
+
+    textarea.input-field {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .section-title {
+      font-family: Fraunces, serif;
+      color: #0a1931;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800">
+
+  <!-- Mobile overlay -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"
+  ></div>
+
+  <!-- Sidebar -->
+  <aside
+    id="sidebar"
+    class="fixed top-0 left-0 z-50 w-72 h-screen bg-navy text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto"
+  >
+
+    <div class="p-5 border-b border-white/10">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 shrink-0">
+          <img
+            src="images/church-logo.png"
+            alt="Mustard Seed Gospel Church Logo"
+            class="w-full h-full object-contain"
+          />
+        </div>
+
+        <div>
+          <h1 class="font-bold text-sm">Mustard Seed Gospel Church</h1>
+          <p class="text-xs text-white/60">Admin Panel</p>
+        </div>
+      </div>
+    </div>
+
+    <nav class="p-4 space-y-1">
+
+      <a
+        href="admin-dashboard.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="admin-events.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Events
+      </a>
+
+      <a
+        href="admin-sermons.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Sermons
+      </a>
+
+      <a
+        href="admin-live.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Live
+      </a>
+
+      <a
+        href="admin-prayer-requests.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Prayer Requests
+      </a>
+
+      <a
+        href="admin-contacts-messages.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Contact Messages
+      </a>
+
+      <a
+        href="admin.giving.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Giving
+      </a>
+
+      <a
+        href="admin-departments.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Departments
+      </a>
+
+      <a
+        href="admin-wofbi.html"
+        class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        WOFBI
+      </a>
+
+      <a
+        href="admin-settings.html"
+        class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+      >
+        Church Settings
+      </a>
+
+      <div class="pt-4 mt-4 border-t border-white/10">
+
+        <a
+          href="index.html"
+          target="_blank"
+          class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+        >
+          View Website
+        </a>
+
+        <button
+          id="logoutBtn"
+          class="sidebar-link w-full text-left flex items-center gap-3 px-4 py-3 rounded-lg text-sm"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="lg:ml-72 min-h-screen">
+
+    <!-- Top bar -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-30">
+
+      <div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+
+        <div class="flex items-center gap-3">
+
+          <button
+            id="menuBtn"
+            class="lg:hidden w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center"
+          >
+            ☰
+          </button>
+
+          <div>
+            <h2 class="serif text-xl sm:text-2xl font-bold text-navy">
+              WOFBI Management
+            </h2>
+
+            <p class="text-xs sm:text-sm text-gray-500">
+              Manage WOFBI information displayed on the website.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2">
+          <span
+            id="saveStatus"
+            class="text-sm text-gray-500"
+          >
+            Loading...
+          </span>
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- Content -->
+    <section class="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
+
+      <!-- Status card -->
+      <div
+        id="messageBox"
+        class="hidden mb-6 rounded-xl px-4 py-3 text-sm"
+      ></div>
+
+      <form id="wofbiForm" class="space-y-6">
+
+        <!-- Basic Information -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 sm:p-7">
+
+          <h3 class="section-title mb-1">
+            Basic Information
+          </h3>
+
+          <p class="text-sm text-gray-500 mb-6">
+            Main information about the Word of Faith Bible Institute.
+          </p>
+
+          <div class="grid grid-cols-1 gap-5">
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                WOFBI Title
+              </label>
+
+              <input
+                id="title"
+                type="text"
+                maxlength="150"
+                class="input-field"
+                placeholder="Word of Faith Bible Institute"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Short Description
+              </label>
+
+              <textarea
+                id="description"
+                maxlength="1000"
+                class="input-field"
+                placeholder="Enter a short description of WOFBI..."
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                About WOFBI
+              </label>
+
+              <textarea
+                id="about"
+                maxlength="5000"
+                class="input-field"
+                placeholder="Enter detailed information about WOFBI..."
+              ></textarea>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Program Information -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 sm:p-7">
+
+          <h3 class="section-title mb-1">
+            Program Information
+          </h3>
+
+          <p class="text-sm text-gray-500 mb-6">
+            Details about the current WOFBI class or session.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Class / Session Name
+              </label>
+
+              <input
+                id="className"
+                type="text"
+                maxlength="150"
+                class="input-field"
+                placeholder="e.g. WOFBI Basic Certificate Course"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Session / Term
+              </label>
+
+              <input
+                id="session"
+                type="text"
+                maxlength="100"
+                class="input-field"
+                placeholder="e.g. September 2026 Session"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Start Date
+              </label>
+
+              <input
+                id="startDate"
+                type="date"
+                class="input-field"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                End Date
+              </label>
+
+              <input
+                id="endDate"
+                type="date"
+                class="input-field"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Meeting Day(s)
+              </label>
+
+              <input
+                id="meetingDays"
+                type="text"
+                maxlength="200"
+                class="input-field"
+                placeholder="e.g. Saturdays"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Meeting Time
+              </label>
+
+              <input
+                id="meetingTime"
+                type="text"
+                maxlength="100"
+                class="input-field"
+                placeholder="e.g. 9:00 AM - 1:00 PM"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Location
+              </label>
+
+              <input
+                id="location"
+                type="text"
+                maxlength="250"
+                class="input-field"
+                placeholder="Enter WOFBI meeting location"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Registration -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 sm:p-7">
+
+          <h3 class="section-title mb-1">
+            Registration
+          </h3>
+
+          <p class="text-sm text-gray-500 mb-6">
+            Information visitors can use to register or make enquiries.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            <div class="md:col-span-2">
+
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Registration Information
+              </label>
+
+              <textarea
+                id="registrationInfo"
+                maxlength="3000"
+                class="input-field"
+                placeholder="Enter registration instructions..."
+              ></textarea>
+
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Contact Name
+              </label>
+
+              <input
+                id="contactName"
+                type="text"
+                maxlength="150"
+                class="input-field"
+                placeholder="WOFBI contact person"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Contact Phone
+              </label>
+
+              <input
+                id="contactPhone"
+                type="text"
+                maxlength="50"
+                class="input-field"
+                placeholder="Phone number"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Contact Email
+              </label>
+
+              <input
+                id="contactEmail"
+                type="email"
+                maxlength="150"
+                class="input-field"
+                placeholder="Email address"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Registration Link
+              </label>
+
+              <input
+                id="registrationUrl"
+                type="url"
+                maxlength="500"
+                class="input-field"
+                placeholder="https://example.com/register"
+              />
+
+              <p class="text-xs text-gray-500 mt-2">
+                Leave empty if registration is handled directly by the church.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Additional Information -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 sm:p-7">
+
+          <h3 class="section-title mb-1">
+            Additional Information
+          </h3>
+
+          <p class="text-sm text-gray-500 mb-6">
+            Add any extra information visitors should know.
+          </p>
+
+          <div>
+
+            <label class="block text-sm font-semibold text-gray-700 mb-2">
+              Additional Notes
+            </label>
+
+            <textarea
+              id="additionalInfo"
+              maxlength="3000"
+              class="input-field"
+              placeholder="Enter additional WOFBI information..."
+            ></textarea>
+
+          </div>
+
+        </div>
+
+        <!-- Visibility -->
+        <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-5 sm:p-7">
+
+          <h3 class="section-title mb-1">
+            Website Visibility
+          </h3>
+
+          <p class="text-sm text-gray-500 mb-6">
+            Choose whether the WOFBI information should appear on the public website.
+          </p>
+
+          <label class="flex items-start gap-3 cursor-pointer">
+
+            <input
+              id="published"
+              type="checkbox"
+              class="mt-1 w-5 h-5 accent-[#D4AF37]"
+            />
+
+            <span>
+              <span class="block font-semibold text-gray-800">
+                Publish WOFBI Information
+              </span>
+
+              <span class="block text-sm text-gray-500 mt-1">
+                When enabled, the information can be displayed on the public WOFBI page.
+              </span>
+            </span>
+
+          </label>
+
+        </div>
+
+        <!-- Save -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+          <p class="text-sm text-gray-500">
+            Changes are saved to Firestore.
+          </p>
+
+          <button
+            id="saveBtn"
+            type="submit"
+            class="bg-gold text-navy font-bold px-7 py-3 rounded-xl hover:opacity-90 transition disabled:opacity-50"
+          >
+            Save WOFBI Information
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <script type="module">
+
+    import { auth, db } from "./firebase.js";
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // -----------------------------
+    // Elements
+    // -----------------------------
+
+    const form = document.getElementById("wofbiForm");
+    const saveBtn = document.getElementById("saveBtn");
+    const saveStatus = document.getElementById("saveStatus");
+    const messageBox = document.getElementById("messageBox");
+
+    const sidebar = document.getElementById("sidebar");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+    const menuBtn = document.getElementById("menuBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+
+    // -----------------------------
+    // Form fields
+    // -----------------------------
+
+    const fields = {
+      title: document.getElementById("title"),
+      description: document.getElementById("description"),
+      about: document.getElementById("about"),
+
+      className: document.getElementById("className"),
+      session: document.getElementById("session"),
+      startDate: document.getElementById("startDate"),
+      endDate: document.getElementById("endDate"),
+      meetingDays: document.getElementById("meetingDays"),
+      meetingTime: document.getElementById("meetingTime"),
+      location: document.getElementById("location"),
+
+      registrationInfo: document.getElementById("registrationInfo"),
+      contactName: document.getElementById("contactName"),
+      contactPhone: document.getElementById("contactPhone"),
+      contactEmail: document.getElementById("contactEmail"),
+      registrationUrl: document.getElementById("registrationUrl"),
+
+      additionalInfo: document.getElementById("additionalInfo"),
+      published: document.getElementById("published")
+    };
+
+
+    // -----------------------------
+    // Helpers
+    // -----------------------------
+
+    function cleanText(value, maxLength = 5000) {
+      return String(value || "")
+        .trim()
+        .slice(0, maxLength);
+    }
+
+
+    function cleanUrl(value) {
+
+      const url = cleanText(value, 500);
+
+      if (!url) {
+        return "";
+      }
+
+      try {
+
+        const parsed = new URL(url);
+
+        if (
+          parsed.protocol !== "http:" &&
+          parsed.protocol !== "https:"
+        ) {
+          return "";
+        }
+
+        return parsed.href;
+
+      } catch {
+        return "";
+      }
+    }
+
+
+    function showMessage(message, type = "success") {
+
+      messageBox.textContent = message;
+
+      messageBox.className =
+        "mb-6 rounded-xl px-4 py-3 text-sm";
+
+      if (type === "success") {
+
+        messageBox.classList.add(
+          "bg-green-50",
+          "text-green-700",
+          "border",
+          "border-green-200"
+        );
+
+      } else {
+
+        messageBox.classList.add(
+          "bg-red-50",
+          "text-red-700",
+          "border",
+          "border-red-200"
+        );
+
+      }
+
+      messageBox.classList.remove("hidden");
+
+      setTimeout(() => {
+        messageBox.classList.add("hidden");
+      }, 5000);
+    }
+
+
+    function setSaving(isSaving) {
+
+      saveBtn.disabled = isSaving;
+
+      if (isSaving) {
+
+        saveBtn.textContent = "Saving...";
+        saveStatus.textContent = "Saving...";
+
+      } else {
+
+        saveBtn.textContent = "Save WOFBI Information";
+        saveStatus.textContent = "Saved";
+
+      }
+    }
+
+
+    // -----------------------------
+    // Mobile sidebar
+    // -----------------------------
+
+    function openSidebar() {
+
+      sidebar.classList.remove("-translate-x-full");
+      sidebarOverlay.classList.remove("hidden");
+
+    }
+
+
+    function closeSidebar() {
+
+      sidebar.classList.add("-translate-x-full");
+      sidebarOverlay.classList.add("hidden");
+
+    }
+
+
+    menuBtn.addEventListener("click", openSidebar);
+    sidebarOverlay.addEventListener("click", closeSidebar);
+
+
+    // -----------------------------
+    // Load WOFBI settings
+    // -----------------------------
+
+    async function loadWofbi() {
+
+      saveStatus.textContent = "Loading...";
+
+      try {
+
+        const snapshot = await getDoc(
+          doc(db, "settings", "wofbi")
+        );
+
+        if (snapshot.exists()) {
+
+          const data = snapshot.data();
+
+          fields.title.value = data.title || "";
+          fields.description.value = data.description || "";
+          fields.about.value = data.about || "";
+
+          fields.className.value = data.className || "";
+          fields.session.value = data.session || "";
+          fields.startDate.value = data.startDate || "";
+          fields.endDate.value = data.endDate || "";
+          fields.meetingDays.value = data.meetingDays || "";
+          fields.meetingTime.value = data.meetingTime || "";
+          fields.location.value = data.location || "";
+
+          fields.registrationInfo.value =
+            data.registrationInfo || "";
+
+          fields.contactName.value =
+            data.contactName || "";
+
+          fields.contactPhone.value =
+            data.contactPhone || "";
+
+          fields.contactEmail.value =
+            data.contactEmail || "";
+
+          fields.registrationUrl.value =
+            data.registrationUrl || "";
+
+          fields.additionalInfo.value =
+            data.additionalInfo || "";
+
+          fields.published.checked =
+            data.published === true;
+
+        }
+
+        saveStatus.textContent = "Ready";
+
+      } catch (error) {
+
+        console.error("Error loading WOFBI:", error);
+
+        saveStatus.textContent = "Error";
+
+        showMessage(
+          "Unable to load WOFBI information. Please refresh the page.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    // -----------------------------
+    // Save WOFBI settings
+    // -----------------------------
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const registrationUrl = cleanUrl(
+        fields.registrationUrl.value
+      );
+
+      if (
+        fields.registrationUrl.value.trim() &&
+        !registrationUrl
+      ) {
+
+        showMessage(
+          "Please enter a valid HTTP or HTTPS registration link.",
+          "error"
+        );
+
+        fields.registrationUrl.focus();
+
+        return;
+      }
+
+
+      if (
+        fields.startDate.value &&
+        fields.endDate.value &&
+        fields.endDate.value < fields.startDate.value
+      ) {
+
+        showMessage(
+          "The end date cannot be earlier than the start date.",
+          "error"
+        );
+
+        fields.endDate.focus();
+
+        return;
+      }
+
+
+      const data = {
+
+        title: cleanText(fields.title.value, 150),
+
+        description: cleanText(
+          fields.description.value,
+          1000
+        ),
+
+        about: cleanText(
+          fields.about.value,
+          5000
+        ),
+
+        className: cleanText(
+          fields.className.value,
+          150
+        ),
+
+        session: cleanText(
+          fields.session.value,
+          100
+        ),
+
+        startDate: cleanText(
+          fields.startDate.value,
+          30
+        ),
+
+        endDate: cleanText(
+          fields.endDate.value,
+          30
+        ),
+
+        meetingDays: cleanText(
+          fields.meetingDays.value,
+          200
+        ),
+
+        meetingTime: cleanText(
+          fields.meetingTime.value,
+          100
+        ),
+
+        location: cleanText(
+          fields.location.value,
+          250
+        ),
+
+        registrationInfo: cleanText(
+          fields.registrationInfo.value,
+          3000
+        ),
+
+        contactName: cleanText(
+          fields.contactName.value,
+          150
+        ),
+
+        contactPhone: cleanText(
+          fields.contactPhone.value,
+          50
+        ),
+
+        contactEmail: cleanText(
+          fields.contactEmail.value,
+          150
+        ),
+
+        registrationUrl,
+
+        additionalInfo: cleanText(
+          fields.additionalInfo.value,
+          3000
+        ),
+
+        published: fields.published.checked,
+
+        updatedAt: serverTimestamp()
+
+      };
+
+
+      setSaving(true);
+
+
+      try {
+
+        await setDoc(
+          doc(db, "settings", "wofbi"),
+          data,
+          { merge: true }
+        );
+
+        showMessage(
+          "WOFBI information saved successfully.",
+          "success"
+        );
+
+        saveStatus.textContent = "Saved";
+
+      } catch (error) {
+
+        console.error("Error saving WOFBI:", error);
+
+        showMessage(
+          "Unable to save WOFBI information. Please try again.",
+          "error"
+        );
+
+        saveStatus.textContent = "Save failed";
+
+      } finally {
+
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Save WOFBI Information";
+
+      }
+
+    });
+
+
+    // -----------------------------
+    // Logout
+    // -----------------------------
+
+    logoutBtn.addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
+
+        window.location.href = "admin.login.html";
+
+      } catch (error) {
+
+        console.error("Logout error:", error);
+
+        showMessage(
+          "Unable to log out. Please try again.",
+          "error"
+        );
+
+      }
+
+    });
+
+
+    // -----------------------------
+    // Admin authentication
+    // -----------------------------
+
+    onAuthStateChanged(auth, async (user) => {
+
+      if (!user) {
+
+        window.location.href = "admin.login.html";
+
+        return;
+
+      }
+
+
+      try {
+
+        const adminRef = doc(
+          db,
+          "admins",
+          user.uid
+        );
+
+        const adminSnapshot = await getDoc(adminRef);
+
+
+        if (
+          !adminSnapshot.exists() ||
+          adminSnapshot.data().active !== true
+        ) {
+
+          await signOut(auth);
+
+          window.location.href = "admin.login.html";
+
+          return;
+
+        }
+
+
+        await loadWofbi();
+
+      } catch (error) {
+
+        console.error(
+          "Admin verification error:",
+          error
+        );
+
+        await signOut(auth);
+
+        window.location.href = "admin.login.html";
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
