@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact Messages | Mustard Seed Gospel Church Admin</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: "#0A1931",
+        gold: "#D4AF37"
+      }
+    }
+  }
+};
+</script>
+
+<style>
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:#f5f7fb;
+}
+
+.nav{
+  display:block;
+  padding:12px 14px;
+  border-radius:10px;
+  color:#dbe4f0;
+  text-decoration:none;
+  margin-bottom:6px;
+}
+
+.nav:hover,
+.nav.active{
+  background:#172b4d;
+  color:#fff;
+}
+
+.sidebar{
+  min-height:100vh;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:4px 9px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:700;
+}
+
+@media(max-width:900px){
+  .sidebar{
+    min-height:auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div
+  id="loading"
+  class="fixed inset-0 z-50 bg-white flex items-center justify-center">
+
+  <div class="text-center">
+
+    <div class="animate-spin rounded-full h-10 w-10 border-4 border-slate-200 border-t-slate-900 mx-auto"></div>
+
+    <p class="mt-4 text-slate-600">
+      Checking admin access...
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- APP -->
+<div id="app" class="hidden min-h-screen">
+
+<div class="lg:flex">
+
+<!-- SIDEBAR -->
+<aside
+  class="sidebar w-full lg:w-64 bg-[#0A1931] text-white p-4 lg:fixed lg:left-0 lg:top-0 lg:bottom-0 overflow-y-auto">
+
+  <div class="px-2 py-4 mb-4">
+
+    <div class="text-xl font-bold">
+      Mustard Seed
+    </div>
+
+    <div class="text-sm text-slate-300">
+      Admin Panel
+    </div>
+
+  </div>
+
+
+  <nav>
+
+    <a
+      class="nav"
+      href="admin-dashboard.html">
+      Dashboard
+    </a>
+
+    <a
+      class="nav"
+      href="admin-events.html">
+      Events
+    </a>
+
+    <a
+      class="nav"
+      href="admin-sermons.html">
+      Sermons
+    </a>
+
+    <a
+      class="nav"
+      href="admin-live.html">
+      Live
+    </a>
+
+    <a
+      class="nav"
+      href="admin-prayer-requests.html">
+      Prayer Requests
+    </a>
+
+    <a
+      class="nav active"
+      href="admin-contact-messages.html">
+      Contact Messages
+    </a>
+
+    <a
+      class="nav"
+      href="admin-giving.html">
+      Giving
+    </a>
+
+    <a
+      class="nav"
+      href="admin-departments.html">
+      Departments
+    </a>
+
+    <a
+      class="nav"
+      href="admin-wofbi.html">
+      WOFBI
+    </a>
+
+    <a
+      class="nav"
+      href="admin-media.html">
+      Media / Gallery
+    </a>
+
+    <a
+      class="nav"
+      href="admin-settings.html">
+      Settings
+    </a>
+
+    <a
+      class="nav"
+      href="admin-admins.html">
+      Admin Management
+    </a>
+
+  </nav>
+
+
+  <div class="border-t border-slate-700 mt-5 pt-5">
+
+    <a
+      class="nav"
+      href="index.html"
+      target="_blank">
+      View Website ↗
+    </a>
+
+    <button
+      id="logoutBtn"
+      class="w-full text-left nav">
+      Logout
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="w-full lg:ml-64">
+
+<!-- HEADER -->
+<header class="bg-white border-b border-slate-200 px-5 md:px-8 py-5">
+
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+
+    <div>
+
+      <h1 class="text-2xl md:text-3xl font-bold text-[#0A1931]">
+        Contact Messages
+      </h1>
+
+      <p class="text-slate-500 mt-1">
+        View and manage messages submitted through the church website.
+      </p>
+
+    </div>
+
+    <div class="text-sm text-slate-500">
+
+      Admin:
+
+      <span
+        id="adminEmail"
+        class="font-medium text-slate-700">
+      </span>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- CONTENT -->
+<section class="p-5 md:p-8 max-w-7xl mx-auto">
+
+<!-- MESSAGE -->
+<div
+  id="message"
+  class="hidden mb-5 rounded-xl px-4 py-3 text-sm">
+</div>
+
+
+<!-- STATISTICS -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+
+  <!-- TOTAL -->
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+
+    <p class="text-sm text-slate-500">
+      Total Messages
+    </p>
+
+    <p
+      id="totalCount"
+      class="text-3xl font-bold text-[#0A1931] mt-2">
+      0
+    </p>
+
+  </div>
+
+
+  <!-- NEW -->
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+
+    <p class="text-sm text-slate-500">
+      New
+    </p>
+
+    <p
+      id="newCount"
+      class="text-3xl font-bold text-red-600 mt-2">
+      0
+    </p>
+
+  </div>
+
+
+  <!-- REPLIED -->
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+
+    <p class="text-sm text-slate-500">
+      Replied
+    </p>
+
+    <p
+      id="repliedCount"
+      class="text-3xl font-bold text-green-600 mt-2">
+      0
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- SEARCH / FILTER -->
+<div class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 md:p-6 mb-6">
+
+  <div class="flex flex-col md:flex-row gap-3 md:items-center md:justify-between">
+
+    <input
+      id="searchInput"
+      type="search"
+      class="flex-1 border border-slate-300 rounded-xl px-4 py-3 outline-none focus:border-[#0A1931]"
+      placeholder="Search by name, email, subject, or message...">
+
+
+    <select
+      id="statusFilter"
+      class="border border-slate-300 rounded-xl px-4 py-3 outline-none focus:border-[#0A1931]">
+
+      <option value="all">
+        All Statuses
+      </option>
+
+      <option value="New">
+        New
+      </option>
+
+      <option value="Read">
+        Read
+      </option>
+
+      <option value="Replied">
+        Replied
+      </option>
+
+    </select>
+
+
+    <button
+      id="refreshBtn"
+      class="bg-[#0A1931] hover:bg-slate-800 text-white font-semibold px-5 py-3 rounded-xl">
+
+      Refresh
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- MESSAGES -->
+<div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+  <div class="px-5 md:px-6 py-5 border-b border-slate-200">
+
+    <h2 class="text-xl font-bold text-slate-900">
+      Received Messages
+    </h2>
+
+  </div>
+
+
+  <!-- EMPTY -->
+  <div
+    id="emptyState"
+    class="hidden p-10 text-center">
+
+    <div class="text-4xl mb-3">
+      ✉️
+    </div>
+
+    <h3 class="font-bold text-slate-800">
+      No contact messages found
+    </h3>
+
+    <p class="text-sm text-slate-500 mt-1">
+      Messages submitted through the website will appear here.
+    </p>
+
+  </div>
+
+
+  <!-- LIST -->
+  <div
+    id="messagesList"
+    class="divide-y divide-slate-200">
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+</div>
+
+
+<!-- VIEW MESSAGE MODAL -->
+<div
+  id="modal"
+  class="hidden fixed inset-0 z-40 bg-black/50 p-4 items-center justify-center">
+
+  <div
+    class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+
+    <!-- MODAL HEADER -->
+    <div class="p-5 md:p-6 border-b border-slate-200 flex items-center justify-between">
+
+      <h2 class="text-xl font-bold text-[#0A1931]">
+        Contact Message
+      </h2>
+
+      <button
+        id="closeModal"
+        class="text-2xl text-slate-500 hover:text-slate-900">
+
+        &times;
+
+      </button>
+
+    </div>
+
+
+    <!-- MODAL CONTENT -->
+    <div class="p-5 md:p-6 space-y-5">
+
+
+      <!-- NAME -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Name
+        </p>
+
+        <p
+          id="modalName"
+          class="font-semibold text-slate-900 mt-1">
+        </p>
+
+      </div>
+
+
+      <!-- EMAIL -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Email
+        </p>
+
+        <p
+          id="modalEmail"
+          class="text-slate-700 mt-1">
+        </p>
+
+      </div>
+
+
+      <!-- PHONE -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Phone
+        </p>
+
+        <p
+          id="modalPhone"
+          class="text-slate-700 mt-1">
+        </p>
+
+      </div>
+
+
+      <!-- SUBJECT -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Subject
+        </p>
+
+        <p
+          id="modalSubject"
+          class="font-semibold text-slate-900 mt-1">
+        </p>
+
+      </div>
+
+
+      <!-- DATE -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Date Submitted
+        </p>
+
+        <p
+          id="modalDate"
+          class="text-slate-700 mt-1">
+        </p>
+
+      </div>
+
+
+      <!-- MESSAGE -->
+      <div>
+
+        <p class="text-xs uppercase tracking-wide text-slate-400">
+          Message
+        </p>
+
+        <p
+          id="modalMessage"
+          class="text-slate-700 mt-1 whitespace-pre-wrap leading-7">
+        </p>
+
+      </div>
+
+
+      <!-- STATUS -->
+      <div>
+
+        <label class="text-xs uppercase tracking-wide text-slate-400">
+          Status
+        </label>
+
+        <select
+          id="modalStatus"
+          class="mt-1 w-full border border-slate-300 rounded-xl px-3 py-3">
+
+          <option value="New">
+            New
+          </option>
+
+          <option value="Read">
+            Read
+          </option>
+
+          <option value="Replied">
+            Replied
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+
+        <button
+          id="saveStatusBtn"
+          class="bg-[#0A1931] text-white font-semibold px-5 py-3 rounded-xl">
+
+          Save Status
+
+        </button>
+
+        <button
+          id="deleteModalBtn"
+          class="border border-red-300 text-red-600 font-semibold px-5 py-3 rounded-xl">
+
+          Delete Message
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- SCRIPT -->
+<script type="module">
+
+import {
+  auth,
+  db
+} from "./firebase.js";
+
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+  collection,
+  getDocs,
+  doc,
+  getDoc,
+  updateDoc,
+  deleteDoc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const $ = (id) =>
+  document.getElementById(id);
+
+
+const messagesRef =
+  collection(db, "contactMessages");
+
+
+let allMessages = [];
+
+let selectedMessage = null;
+
+
+/* --------------------------------------------------
+   MESSAGE ALERT
+-------------------------------------------------- */
+
+function showMessage(
+  text,
+  type = "success"
+){
+
+  const message =
+    $("message");
+
+  message.textContent =
+    text;
+
+  message.className =
+    "mb-5 rounded-xl px-4 py-3 text-sm " +
+    (
+      type === "success"
+        ? "bg-green-50 text-green-700 border border-green-200"
+        : "bg-red-50 text-red-700 border border-red-200"
+    );
+
+  message.classList.remove(
+    "hidden"
+  );
+
+
+  setTimeout(() => {
+
+    message.classList.add(
+      "hidden"
+    );
+
+  }, 5000);
+
+}
+
+
+/* --------------------------------------------------
+   DATE
+-------------------------------------------------- */
+
+function formatDate(value){
+
+  if(!value){
+    return "No date";
+  }
+
+  try{
+
+    const date =
+      value.toDate
+        ? value.toDate()
+        : new Date(value);
+
+    return date.toLocaleString(
+      "en-NG",
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
+    );
+
+  }catch{
+
+    return "No date";
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   STATUS BADGE
+-------------------------------------------------- */
+
+function badge(status){
+
+  if(status === "Replied"){
+
+    return `
+      <span class="badge bg-green-100 text-green-700">
+        Replied
+      </span>
+    `;
+
+  }
+
+
+  if(status === "Read"){
+
+    return `
+      <span class="badge bg-slate-100 text-slate-700">
+        Read
+      </span>
+    `;
+
+  }
+
+
+  return `
+    <span class="badge bg-red-100 text-red-700">
+      New
+    </span>
+  `;
+
+}
+
+
+/* --------------------------------------------------
+   ESCAPE HTML
+-------------------------------------------------- */
+
+function escapeHtml(text){
+
+  return String(
+    text ?? ""
+  ).replace(
+    /[&<>"']/g,
+    character => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[character])
+  );
+
+}
+
+
+/* --------------------------------------------------
+   RENDER MESSAGES
+-------------------------------------------------- */
+
+function render(){
+
+  const search =
+    $("searchInput")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const filter =
+    $("statusFilter")
+      .value;
+
+
+  const filtered =
+    allMessages.filter(
+      item => {
+
+        const data =
+          item.data;
+
+
+        const searchable = [
+
+          data.name,
+          data.email,
+          data.phone,
+          data.subject,
+          data.message
+
+        ]
+        .join(" ")
+        .toLowerCase();
+
+
+        const matchesSearch =
+          !search ||
+          searchable.includes(search);
+
+
+        const status =
+          data.status || "New";
+
+
+        const matchesFilter =
+          filter === "all" ||
+          status === filter;
+
+
+        return (
+          matchesSearch &&
+          matchesFilter
+        );
+
+      }
+    );
+
+
+  /* COUNTS */
+
+  $("totalCount").textContent =
+    allMessages.length;
+
+
+  $("newCount").textContent =
+    allMessages.filter(
+      item =>
+        !item.data.status ||
+        item.data.status === "New"
+    ).length;
+
+
+  $("repliedCount").textContent =
+    allMessages.filter(
+      item =>
+        item.data.status === "Replied"
+    ).length;
+
+
+  /* LIST */
+
+  const list =
+    $("messagesList");
+
+  list.innerHTML = "";
+
+
+  $("emptyState")
+    .classList
+    .toggle(
+      "hidden",
+      filtered.length !== 0
+    );
+
+
+  filtered.forEach(
+    item => {
+
+      const data =
+        item.data;
+
+
+      const messageText =
+        data.message ||
+        "No message provided.";
+
+
+      const div =
+        document.createElement(
+          "div"
+        );
+
+
+      div.className =
+        "p-5 md:p-6 hover:bg-slate-50 transition";
+
+
+      div.innerHTML = `
+
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+
+          <div class="min-w-0 flex-1">
+
+            <div class="flex flex-wrap items-center gap-2">
+
+              <h3 class="font-bold text-slate-900">
+
+                ${escapeHtml(
+                  data.name ||
+                  "Anonymous"
+                )}
+
+              </h3>
+
+              ${badge(
+                data.status ||
+                "New"
+              )}
+
+            </div>
+
+
+            <p class="text-sm text-slate-500 mt-1">
+
+              ${escapeHtml(
+                data.email ||
+                "No email"
+              )}
+
+            </p>
+
+
+            ${
+              data.phone
+                ? `
+                  <p class="text-sm text-slate-500 mt-1">
+                    ${escapeHtml(
+                      data.phone
+                    )}
+                  </p>
+                `
+                : ""
+            }
+
+
+            <p class="text-sm text-slate-400 mt-1">
+
+              ${formatDate(
+                data.createdAt
+              )}
+
+            </p>
+
+
+            <p class="font-semibold text-slate-800 mt-4">
+
+              ${escapeHtml(
+                data.subject ||
+                "No subject"
+              )}
+
+            </p>
+
+
+            <p class="text-slate-700 mt-2 whitespace-pre-line line-clamp-3">
+
+              ${escapeHtml(
+                messageText
+              )}
+
+            </p>
+
+          </div>
+
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-2">
+
+            <button
+              data-view="${item.id}"
+              class="viewBtn border border-slate-300 hover:bg-white px-4 py-2 rounded-lg text-sm font-semibold">
+
+              View
+
+            </button>
+
+
+            <button
+              data-delete="${item.id}"
+              class="deleteBtn border border-red-200 text-red-600 hover:bg-red-50 px-4 py-2 rounded-lg text-sm font-semibold">
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      list.appendChild(
+        div
+      );
+
+    }
+  );
+
+
+  /* BUTTON EVENTS */
+
+  document
+    .querySelectorAll(
+      ".viewBtn"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () =>
+            openMessage(
+              button.dataset.view
+            )
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      ".deleteBtn"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () =>
+            removeMessage(
+              button.dataset.delete
+            )
+        );
+
+      }
+    );
+
+}
+
+
+/* --------------------------------------------------
+   LOAD MESSAGES
+-------------------------------------------------- */
+
+async function loadMessages(){
+
+  const refresh =
+    $("refreshBtn");
+
+
+  refresh.disabled =
+    true;
+
+  refresh.textContent =
+    "Loading...";
+
+
+  try{
+
+    let snapshot;
+
+
+    try{
+
+      snapshot =
+        await getDocs(
+          query(
+            messagesRef,
+            orderBy(
+              "createdAt",
+              "desc"
+            )
+          )
+        );
+
+    }catch(error){
+
+      console.warn(
+        "Ordered query failed. Loading without order.",
+        error
+      );
+
+      snapshot =
+        await getDocs(
+          messagesRef
+        );
+
+    }
+
+
+    allMessages =
+      snapshot.docs.map(
+        document => ({
+          id:document.id,
+          data:document.data()
+        })
+      );
+
+
+    /*
+      Sort locally as a backup.
+    */
+
+    allMessages.sort(
+      (a,b) => {
+
+        const aSeconds =
+          a.data.createdAt?.seconds || 0;
+
+        const bSeconds =
+          b.data.createdAt?.seconds || 0;
+
+        return bSeconds - aSeconds;
+
+      }
+    );
+
+
+    render();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Could not load contact messages: " +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    refresh.disabled =
+      false;
+
+    refresh.textContent =
+      "Refresh";
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   OPEN MESSAGE
+-------------------------------------------------- */
+
+function openMessage(id){
+
+  const item =
+    allMessages.find(
+      message =>
+        message.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  selectedMessage =
+    item;
+
+
+  const data =
+    item.data;
+
+
+  $("modalName").textContent =
+    data.name ||
+    "Anonymous";
+
+
+  $("modalEmail").textContent =
+    data.email ||
+    "No email provided";
+
+
+  $("modalPhone").textContent =
+    data.phone ||
+    "No phone number provided";
+
+
+  $("modalSubject").textContent =
+    data.subject ||
+    "No subject";
+
+
+  $("modalDate").textContent =
+    formatDate(
+      data.createdAt
+    );
+
+
+  $("modalMessage").textContent =
+    data.message ||
+    "No message provided.";
+
+
+  $("modalStatus").value =
+    data.status ||
+    "New";
+
+
+  $("modal")
+    .classList
+    .remove("hidden");
+
+
+  $("modal")
+    .classList
+    .add("flex");
+
+}
+
+
+/* --------------------------------------------------
+   CLOSE MODAL
+-------------------------------------------------- */
+
+function closeModal(){
+
+  $("modal")
+    .classList
+    .add("hidden");
+
+
+  $("modal")
+    .classList
+    .remove("flex");
+
+
+  selectedMessage =
+    null;
+
+}
+
+
+/* --------------------------------------------------
+   SAVE STATUS
+-------------------------------------------------- */
+
+async function saveStatus(){
+
+  if(!selectedMessage){
+    return;
+  }
+
+
+  const button =
+    $("saveStatusBtn");
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "Saving...";
+
+
+  try{
+
+    await updateDoc(
+      doc(
+        db,
+        "contactMessages",
+        selectedMessage.id
+      ),
+      {
+        status:
+          $("modalStatus").value,
+
+        updatedAt:
+          serverTimestamp()
+      }
+    );
+
+
+    showMessage(
+      "Message status updated successfully."
+    );
+
+
+    closeModal();
+
+    await loadMessages();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Could not update message: " +
+      error.message,
+      "error"
+    );
+
+  }finally{
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "Save Status";
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   DELETE MESSAGE
+-------------------------------------------------- */
+
+async function removeMessage(id){
+
+  const item =
+    allMessages.find(
+      message =>
+        message.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  const confirmed =
+    confirm(
+      "Delete this contact message? This cannot be undone."
+    );
+
+
+  if(!confirmed){
+    return;
+  }
+
+
+  try{
+
+    await deleteDoc(
+      doc(
+        db,
+        "contactMessages",
+        id
+      )
+    );
+
+
+    showMessage(
+      "Contact message deleted."
+    );
+
+
+    await loadMessages();
+
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "Could not delete message: " +
+      error.message,
+      "error"
+    );
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   SEARCH
+-------------------------------------------------- */
+
+$("searchInput")
+  .addEventListener(
+    "input",
+    render
+  );
+
+
+/* --------------------------------------------------
+   FILTER
+-------------------------------------------------- */
+
+$("statusFilter")
+  .addEventListener(
+    "change",
+    render
+  );
+
+
+/* --------------------------------------------------
+   REFRESH
+-------------------------------------------------- */
+
+$("refreshBtn")
+  .addEventListener(
+    "click",
+    loadMessages
+  );
+
+
+/* --------------------------------------------------
+   MODAL CLOSE
+-------------------------------------------------- */
+
+$("closeModal")
+  .addEventListener(
+    "click",
+    closeModal
+  );
+
+
+$("modal")
+  .addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target ===
+        $("modal")
+      ){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   SAVE STATUS
+-------------------------------------------------- */
+
+$("saveStatusBtn")
+  .addEventListener(
+    "click",
+    saveStatus
+  );
+
+
+/* --------------------------------------------------
+   DELETE FROM MODAL
+-------------------------------------------------- */
+
+$("deleteModalBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      if(
+        selectedMessage
+      ){
+
+        const id =
+          selectedMessage.id;
+
+        closeModal();
+
+        await removeMessage(
+          id
+        );
+
+      }
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   LOGOUT
+-------------------------------------------------- */
+
+$("logoutBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      try{
+
+        await signOut(
+          auth
+        );
+
+        window.location.href =
+          "admin.login.html";
+
+      }catch(error){
+
+        showMessage(
+          "Logout failed: " +
+          error.message,
+          "error"
+        );
+
+      }
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   ADMIN AUTHENTICATION
+-------------------------------------------------- */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      window.location.href =
+        "admin.login.html";
+
+      return;
+
+    }
+
+
+    try{
+
+      /*
+        Check only the current
+        administrator's document.
+      */
+
+      const adminSnap =
+        await getDoc(
+          doc(
+            db,
+            "admins",
+            user.uid
+          )
+        );
+
+
+      if(
+        !adminSnap.exists() ||
+        adminSnap.data().active !== true
+      ){
+
+        await signOut(
+          auth
+        );
+
+        window.location.href =
+          "admin.login.html";
+
+        return;
+
+      }
+
+
+      $("adminEmail").textContent =
+        adminSnap.data().email ||
+        user.email ||
+        "Administrator";
+
+
+      $("loading")
+        .classList
+        .add("hidden");
+
+
+      $("app")
+        .classList
+        .remove("hidden");
+
+
+      await loadMessages();
+
+
+    }catch(error){
+
+      console.error(
+        "Admin verification error:",
+        error
+      );
+
+
+      $("loading")
+        .classList
+        .add("hidden");
+
+
+      $("app")
+        .classList
+        .remove("hidden");
+
+
+      showMessage(
+        "Unable to verify administrator access: " +
+        error.message,
+        "error"
+      );
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
