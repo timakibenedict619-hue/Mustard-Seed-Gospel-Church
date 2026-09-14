@@ -1,0 +1,2115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Media Management | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            serif: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      background: #f7f7f5;
+    }
+
+    .serif {
+      font-family: Fraunces, serif;
+    }
+
+    .sidebar-link {
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-link:hover {
+      background: rgba(212, 175, 55, 0.12);
+      color: #d4af37;
+    }
+
+    .sidebar-link.active {
+      background: rgba(212, 175, 55, 0.15);
+      color: #d4af37;
+      border-right: 3px solid #d4af37;
+    }
+
+    .input-field {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 11px 13px;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-field:focus {
+      border-color: #d4af37;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+    }
+
+    textarea.input-field {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .modal-scroll {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+
+<body class="text-gray-800">
+
+  <!-- MOBILE OVERLAY -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"
+  ></div>
+
+
+  <!-- SIDEBAR -->
+  <aside
+    id="sidebar"
+    class="fixed top-0 left-0 z-50 w-72 h-screen bg-navy text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 overflow-y-auto"
+  >
+
+    <div class="p-5 border-b border-white/10">
+
+      <div class="flex items-center gap-3">
+
+        <div class="w-12 h-12 shrink-0">
+          <img
+            src="images/church-logo.png"
+            alt="Mustard Seed Gospel Church Logo"
+            class="w-full h-full object-contain"
+          />
+        </div>
+
+        <div>
+          <h1 class="font-bold text-sm">
+            Mustard Seed Gospel Church
+          </h1>
+
+          <p class="text-xs text-white/60">
+            Admin Panel
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <nav class="p-4 space-y-1">
+
+      <a
+        href="admin-dashboard.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="admin-events.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Events
+      </a>
+
+      <a
+        href="admin-sermons.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Sermons
+      </a>
+
+      <a
+        href="admin-live.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Live
+      </a>
+
+      <a
+        href="admin-prayer-requests.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Prayer Requests
+      </a>
+
+      <a
+        href="admin-contacts-messages.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Contact Messages
+      </a>
+
+      <a
+        href="admin.giving.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Giving
+      </a>
+
+      <a
+        href="admin-departments.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Departments
+      </a>
+
+      <a
+        href="admin-wofbi.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        WOFBI
+      </a>
+
+      <a
+        href="admin-media.html"
+        class="sidebar-link active block px-4 py-3 rounded-lg text-sm"
+      >
+        Media / Gallery
+      </a>
+
+      <a
+        href="admin-settings.html"
+        class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+      >
+        Church Settings
+      </a>
+
+
+      <div class="pt-4 mt-4 border-t border-white/10">
+
+        <a
+          href="index.html"
+          target="_blank"
+          class="sidebar-link block px-4 py-3 rounded-lg text-sm"
+        >
+          View Website
+        </a>
+
+        <button
+          id="logoutBtn"
+          class="sidebar-link w-full text-left block px-4 py-3 rounded-lg text-sm"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- MAIN -->
+  <main class="lg:ml-72 min-h-screen">
+
+    <!-- TOP BAR -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-30">
+
+      <div class="px-4 sm:px-6 lg:px-8 py-4">
+
+        <div class="flex items-center justify-between gap-4">
+
+          <div class="flex items-center gap-3">
+
+            <button
+              id="menuBtn"
+              class="lg:hidden w-10 h-10 rounded-lg border border-gray-200"
+            >
+              ☰
+            </button>
+
+            <div>
+
+              <h2 class="serif text-xl sm:text-2xl font-bold text-navy">
+                Media / Gallery
+              </h2>
+
+              <p class="text-xs sm:text-sm text-gray-500">
+                Manage church images, videos, audio and other media.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <button
+            id="addMediaBtn"
+            class="bg-gold text-navy font-bold px-4 sm:px-5 py-2.5 rounded-xl hover:opacity-90 transition whitespace-nowrap"
+          >
+            + Add Media
+          </button>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="p-4 sm:p-6 lg:p-8">
+
+      <div class="max-w-7xl mx-auto">
+
+
+        <!-- MESSAGE -->
+        <div
+          id="messageBox"
+          class="hidden mb-6 rounded-xl px-4 py-3 text-sm"
+        ></div>
+
+
+        <!-- STATS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <p class="text-sm text-gray-500">
+              Total Media
+            </p>
+
+            <p
+              id="totalCount"
+              class="text-3xl font-bold text-navy mt-2"
+            >
+              0
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <p class="text-sm text-gray-500">
+              Published
+            </p>
+
+            <p
+              id="publishedCount"
+              class="text-3xl font-bold text-green-600 mt-2"
+            >
+              0
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <p class="text-sm text-gray-500">
+              Hidden
+            </p>
+
+            <p
+              id="hiddenCount"
+              class="text-3xl font-bold text-gray-500 mt-2"
+            >
+              0
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-2xl border border-gray-200 p-5">
+            <p class="text-sm text-gray-500">
+              Featured
+            </p>
+
+            <p
+              id="featuredCount"
+              class="text-3xl font-bold text-gold mt-2"
+            >
+              0
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- SEARCH / FILTER -->
+        <div class="bg-white rounded-2xl border border-gray-200 p-4 mb-6">
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <div class="md:col-span-2">
+
+              <label class="block text-xs font-semibold text-gray-500 mb-2">
+                Search
+              </label>
+
+              <input
+                id="searchInput"
+                type="search"
+                class="input-field"
+                placeholder="Search title, description or category..."
+              />
+
+            </div>
+
+
+            <div>
+
+              <label class="block text-xs font-semibold text-gray-500 mb-2">
+                Media Type
+              </label>
+
+              <select
+                id="typeFilter"
+                class="input-field"
+              >
+                <option value="all">
+                  All Types
+                </option>
+
+                <option value="image">
+                  Images
+                </option>
+
+                <option value="video">
+                  Videos
+                </option>
+
+                <option value="audio">
+                  Audio
+                </option>
+
+                <option value="external">
+                  External
+                </option>
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div class="flex justify-end mt-4">
+
+            <button
+              id="refreshBtn"
+              class="text-sm font-semibold text-navy hover:text-gold"
+            >
+              Refresh Media
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEDIA LIST -->
+        <div
+          id="mediaList"
+          class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5"
+        >
+
+          <div class="col-span-full bg-white rounded-2xl border border-gray-200 p-10 text-center text-gray-500">
+            Loading media...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- MODAL -->
+  <div
+    id="mediaModal"
+    class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/60 p-4"
+  >
+
+    <div class="bg-white rounded-2xl w-full max-w-2xl modal-scroll shadow-2xl">
+
+      <!-- MODAL HEADER -->
+      <div class="sticky top-0 bg-white border-b border-gray-200 px-5 sm:px-7 py-4 flex items-center justify-between z-10">
+
+        <div>
+
+          <h3
+            id="modalTitle"
+            class="serif text-xl font-bold text-navy"
+          >
+            Add Media
+          </h3>
+
+          <p class="text-xs text-gray-500 mt-1">
+            Add media that can later be displayed on the public website.
+          </p>
+
+        </div>
+
+        <button
+          id="closeModalBtn"
+          class="w-9 h-9 rounded-lg border border-gray-200 hover:bg-gray-50"
+        >
+          ✕
+        </button>
+
+      </div>
+
+
+      <!-- FORM -->
+      <form
+        id="mediaForm"
+        class="p-5 sm:p-7 space-y-5"
+      >
+
+        <input
+          id="mediaId"
+          type="hidden"
+        />
+
+
+        <!-- TITLE -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Media Title
+          </label>
+
+          <input
+            id="mediaTitle"
+            type="text"
+            maxlength="150"
+            class="input-field"
+            placeholder="e.g. Sunday Miracle Service"
+            required
+          />
+
+        </div>
+
+
+        <!-- TYPE -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Media Type
+          </label>
+
+          <select
+            id="mediaType"
+            class="input-field"
+            required
+          >
+
+            <option value="image">
+              Image
+            </option>
+
+            <option value="video">
+              Video
+            </option>
+
+            <option value="audio">
+              Audio
+            </option>
+
+            <option value="external">
+              External Link
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Description
+          </label>
+
+          <textarea
+            id="mediaDescription"
+            maxlength="1000"
+            class="input-field"
+            placeholder="Describe this media..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Category
+          </label>
+
+          <input
+            id="mediaCategory"
+            type="text"
+            maxlength="100"
+            class="input-field"
+            placeholder="e.g. Church Service, Events, Gallery"
+          />
+
+        </div>
+
+
+        <!-- MEDIA URL -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Media URL / File Path
+          </label>
+
+          <input
+            id="mediaUrl"
+            type="text"
+            maxlength="500"
+            class="input-field"
+            placeholder="images/church-event.jpg"
+            required
+          />
+
+          <p class="text-xs text-gray-500 mt-2">
+            Example: images/event-photo.jpg, videos/service.mp4, audio/sermon.mp3
+          </p>
+
+        </div>
+
+
+        <!-- THUMBNAIL -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Thumbnail URL / File Path
+          </label>
+
+          <input
+            id="thumbnailUrl"
+            type="text"
+            maxlength="500"
+            class="input-field"
+            placeholder="images/event-thumbnail.jpg"
+          />
+
+          <p class="text-xs text-gray-500 mt-2">
+            Optional. Mainly useful for videos and external media.
+          </p>
+
+        </div>
+
+
+        <!-- DATE -->
+        <div>
+
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Media Date
+          </label>
+
+          <input
+            id="mediaDate"
+            type="date"
+            class="input-field"
+          />
+
+        </div>
+
+
+        <!-- VISIBILITY -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <label class="flex items-start gap-3 border border-gray-200 rounded-xl p-4 cursor-pointer">
+
+            <input
+              id="published"
+              type="checkbox"
+              class="mt-1 w-5 h-5 accent-[#D4AF37]"
+              checked
+            />
+
+            <span>
+
+              <span class="block font-semibold text-gray-800">
+                Published
+              </span>
+
+              <span class="block text-xs text-gray-500 mt-1">
+                Make this media visible publicly.
+              </span>
+
+            </span>
+
+          </label>
+
+
+          <label class="flex items-start gap-3 border border-gray-200 rounded-xl p-4 cursor-pointer">
+
+            <input
+              id="featured"
+              type="checkbox"
+              class="mt-1 w-5 h-5 accent-[#D4AF37]"
+            />
+
+            <span>
+
+              <span class="block font-semibold text-gray-800">
+                Featured
+              </span>
+
+              <span class="block text-xs text-gray-500 mt-1">
+                Mark this media as featured.
+              </span>
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="flex flex-col sm:flex-row justify-end gap-3 pt-3">
+
+          <button
+            type="button"
+            id="cancelBtn"
+            class="px-5 py-3 rounded-xl border border-gray-200 font-semibold hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            id="saveBtn"
+            class="px-5 py-3 rounded-xl bg-gold text-navy font-bold hover:opacity-90 disabled:opacity-50"
+          >
+            Save Media
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- JAVASCRIPT -->
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+    import {
+      collection,
+      getDocs,
+      addDoc,
+      updateDoc,
+      deleteDoc,
+      doc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    // ---------------------------------------
+    // ELEMENTS
+    // ---------------------------------------
+
+    const mediaList =
+      document.getElementById("mediaList");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const typeFilter =
+      document.getElementById("typeFilter");
+
+    const refreshBtn =
+      document.getElementById("refreshBtn");
+
+    const addMediaBtn =
+      document.getElementById("addMediaBtn");
+
+    const mediaModal =
+      document.getElementById("mediaModal");
+
+    const closeModalBtn =
+      document.getElementById("closeModalBtn");
+
+    const cancelBtn =
+      document.getElementById("cancelBtn");
+
+    const mediaForm =
+      document.getElementById("mediaForm");
+
+    const modalTitle =
+      document.getElementById("modalTitle");
+
+    const mediaId =
+      document.getElementById("mediaId");
+
+    const mediaTitle =
+      document.getElementById("mediaTitle");
+
+    const mediaType =
+      document.getElementById("mediaType");
+
+    const mediaDescription =
+      document.getElementById("mediaDescription");
+
+    const mediaCategory =
+      document.getElementById("mediaCategory");
+
+    const mediaUrl =
+      document.getElementById("mediaUrl");
+
+    const thumbnailUrl =
+      document.getElementById("thumbnailUrl");
+
+    const mediaDate =
+      document.getElementById("mediaDate");
+
+    const published =
+      document.getElementById("published");
+
+    const featured =
+      document.getElementById("featured");
+
+    const saveBtn =
+      document.getElementById("saveBtn");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+    const messageBox =
+      document.getElementById("messageBox");
+
+    const totalCount =
+      document.getElementById("totalCount");
+
+    const publishedCount =
+      document.getElementById("publishedCount");
+
+    const hiddenCount =
+      document.getElementById("hiddenCount");
+
+    const featuredCount =
+      document.getElementById("featuredCount");
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const sidebarOverlay =
+      document.getElementById("sidebarOverlay");
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+
+    // ---------------------------------------
+    // STATE
+    // ---------------------------------------
+
+    let mediaItems = [];
+
+
+    // ---------------------------------------
+    // HELPERS
+    // ---------------------------------------
+
+    function cleanText(value, maxLength = 500) {
+
+      return String(value || "")
+        .trim()
+        .slice(0, maxLength);
+
+    }
+
+
+    function safeMediaPath(value) {
+
+      const path = cleanText(value, 500);
+
+      if (!path) {
+        return "";
+      }
+
+
+      /*
+        Block dangerous protocols.
+
+        Allowed examples:
+        images/photo.jpg
+        videos/service.mp4
+        audio/sermon.mp3
+        https://example.com/file.jpg
+      */
+
+      const lower = path.toLowerCase();
+
+      if (
+        lower.startsWith("javascript:") ||
+        lower.startsWith("data:") ||
+        lower.startsWith("vbscript:")
+      ) {
+
+        return "";
+
+      }
+
+      return path;
+
+    }
+
+
+    function isHttpUrl(value) {
+
+      try {
+
+        const url = new URL(value);
+
+        return (
+          url.protocol === "http:" ||
+          url.protocol === "https:"
+        );
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+
+    function getMediaSrc(value) {
+
+      const path = safeMediaPath(value);
+
+      if (!path) {
+        return "";
+      }
+
+      if (isHttpUrl(path)) {
+        return path;
+      }
+
+      return path;
+
+    }
+
+
+    function showMessage(message, type = "success") {
+
+      messageBox.textContent = message;
+
+      messageBox.className =
+        "mb-6 rounded-xl px-4 py-3 text-sm";
+
+      if (type === "success") {
+
+        messageBox.classList.add(
+          "bg-green-50",
+          "text-green-700",
+          "border",
+          "border-green-200"
+        );
+
+      } else {
+
+        messageBox.classList.add(
+          "bg-red-50",
+          "text-red-700",
+          "border",
+          "border-red-200"
+        );
+
+      }
+
+      messageBox.classList.remove("hidden");
+
+
+      setTimeout(() => {
+
+        messageBox.classList.add("hidden");
+
+      }, 5000);
+
+    }
+
+
+    function formatDate(value) {
+
+      if (!value) {
+        return "";
+      }
+
+      const date =
+        new Date(`${value}T00:00:00`);
+
+      if (Number.isNaN(date.getTime())) {
+        return value;
+      }
+
+      return date.toLocaleDateString("en-NG", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+      });
+
+    }
+
+
+    // ---------------------------------------
+    // MOBILE SIDEBAR
+    // ---------------------------------------
+
+    function openSidebar() {
+
+      sidebar.classList.remove("-translate-x-full");
+
+      sidebarOverlay.classList.remove("hidden");
+
+    }
+
+
+    function closeSidebar() {
+
+      sidebar.classList.add("-translate-x-full");
+
+      sidebarOverlay.classList.add("hidden");
+
+    }
+
+
+    menuBtn.addEventListener(
+      "click",
+      openSidebar
+    );
+
+
+    sidebarOverlay.addEventListener(
+      "click",
+      closeSidebar
+    );
+
+
+    // ---------------------------------------
+    // MODAL
+    // ---------------------------------------
+
+    function openModal(item = null) {
+
+      mediaForm.reset();
+
+      published.checked = true;
+
+      featured.checked = false;
+
+      mediaId.value = "";
+
+
+      if (item) {
+
+        modalTitle.textContent =
+          "Edit Media";
+
+        saveBtn.textContent =
+          "Update Media";
+
+
+        mediaId.value =
+          item.id || "";
+
+        mediaTitle.value =
+          item.title || "";
+
+        mediaType.value =
+          item.type || "image";
+
+        mediaDescription.value =
+          item.description || "";
+
+        mediaCategory.value =
+          item.category || "";
+
+        mediaUrl.value =
+          item.url || "";
+
+        thumbnailUrl.value =
+          item.thumbnail || "";
+
+        mediaDate.value =
+          item.mediaDate || "";
+
+        published.checked =
+          item.published === true;
+
+        featured.checked =
+          item.featured === true;
+
+      } else {
+
+        modalTitle.textContent =
+          "Add Media";
+
+        saveBtn.textContent =
+          "Save Media";
+
+      }
+
+
+      mediaModal.classList.remove("hidden");
+
+      mediaModal.classList.add("flex");
+
+      document.body.classList.add("overflow-hidden");
+
+    }
+
+
+    function closeModal() {
+
+      mediaModal.classList.add("hidden");
+
+      mediaModal.classList.remove("flex");
+
+      document.body.classList.remove("overflow-hidden");
+
+      mediaForm.reset();
+
+      mediaId.value = "";
+
+      published.checked = true;
+
+      featured.checked = false;
+
+    }
+
+
+    addMediaBtn.addEventListener(
+      "click",
+      () => openModal()
+    );
+
+
+    closeModalBtn.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    cancelBtn.addEventListener(
+      "click",
+      closeModal
+    );
+
+
+    mediaModal.addEventListener(
+      "click",
+      (event) => {
+
+        if (event.target === mediaModal) {
+          closeModal();
+        }
+
+      }
+    );
+
+
+    // ---------------------------------------
+    // LOAD MEDIA
+    // ---------------------------------------
+
+    async function loadMedia() {
+
+      mediaList.innerHTML = `
+        <div class="col-span-full bg-white rounded-2xl border border-gray-200 p-10 text-center text-gray-500">
+          Loading media...
+        </div>
+      `;
+
+
+      try {
+
+        const snapshot =
+          await getDocs(
+            collection(db, "media")
+          );
+
+
+        mediaItems = snapshot.docs.map(
+          item => ({
+            id: item.id,
+            ...item.data()
+          })
+        );
+
+
+        mediaItems.sort(
+          (a, b) => {
+
+            const dateA =
+              a.createdAt?.seconds || 0;
+
+            const dateB =
+              b.createdAt?.seconds || 0;
+
+            return dateB - dateA;
+
+          }
+        );
+
+
+        updateStats();
+
+        renderMedia();
+
+      } catch (error) {
+
+        console.error(
+          "Error loading media:",
+          error
+        );
+
+
+        mediaList.innerHTML = `
+          <div class="col-span-full bg-white rounded-2xl border border-red-200 p-10 text-center">
+            <p class="text-red-600 font-semibold mb-2">
+              Unable to load media.
+            </p>
+
+            <p class="text-sm text-gray-500">
+              Please check your Firestore rules and try again.
+            </p>
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    // ---------------------------------------
+    // STATS
+    // ---------------------------------------
+
+    function updateStats() {
+
+      const total =
+        mediaItems.length;
+
+      const publishedTotal =
+        mediaItems.filter(
+          item => item.published === true
+        ).length;
+
+      const hiddenTotal =
+        total - publishedTotal;
+
+      const featuredTotal =
+        mediaItems.filter(
+          item => item.featured === true
+        ).length;
+
+
+      totalCount.textContent =
+        total;
+
+      publishedCount.textContent =
+        publishedTotal;
+
+      hiddenCount.textContent =
+        hiddenTotal;
+
+      featuredCount.textContent =
+        featuredTotal;
+
+    }
+
+
+    // ---------------------------------------
+    // FILTER
+    // ---------------------------------------
+
+    function getFilteredMedia() {
+
+      const search =
+        searchInput.value
+          .trim()
+          .toLowerCase();
+
+      const type =
+        typeFilter.value;
+
+
+      return mediaItems.filter(item => {
+
+        const matchesType =
+          type === "all" ||
+          item.type === type;
+
+
+        const searchable = [
+          item.title,
+          item.description,
+          item.category
+        ]
+          .join(" ")
+          .toLowerCase();
+
+
+        const matchesSearch =
+          !search ||
+          searchable.includes(search);
+
+
+        return matchesType &&
+          matchesSearch;
+
+      });
+
+    }
+
+
+    searchInput.addEventListener(
+      "input",
+      renderMedia
+    );
+
+
+    typeFilter.addEventListener(
+      "change",
+      renderMedia
+    );
+
+
+    refreshBtn.addEventListener(
+      "click",
+      loadMedia
+    );
+
+
+    // ---------------------------------------
+    // MEDIA PREVIEW
+    // ---------------------------------------
+
+    function createPreview(item) {
+
+      const src =
+        getMediaSrc(
+          item.thumbnail || item.url
+        );
+
+
+      if (
+        item.type === "image" &&
+        src
+      ) {
+
+        const img =
+          document.createElement("img");
+
+        img.src = src;
+
+        img.alt =
+          cleanText(
+            item.title,
+            150
+          );
+
+        img.className =
+          "w-full h-52 object-cover";
+
+        img.onerror = () => {
+
+          img.remove();
+
+        };
+
+        return img;
+
+      }
+
+
+      const wrapper =
+        document.createElement("div");
+
+      wrapper.className =
+        "w-full h-52 bg-navy flex items-center justify-center";
+
+
+      const icon =
+        document.createElement("div");
+
+      icon.className =
+        "text-center text-white";
+
+
+      const typeLabel =
+        document.createElement("div");
+
+      typeLabel.className =
+        "text-4xl mb-3";
+
+
+      if (item.type === "video") {
+        typeLabel.textContent = "▶";
+      } else if (item.type === "audio") {
+        typeLabel.textContent = "♫";
+      } else if (item.type === "external") {
+        typeLabel.textContent = "↗";
+      } else {
+        typeLabel.textContent = "▧";
+      }
+
+
+      const label =
+        document.createElement("p");
+
+      label.className =
+        "text-sm text-white/70 uppercase tracking-wider";
+
+      label.textContent =
+        item.type || "Media";
+
+
+      icon.appendChild(typeLabel);
+
+      icon.appendChild(label);
+
+      wrapper.appendChild(icon);
+
+
+      return wrapper;
+
+    }
+
+
+    // ---------------------------------------
+    // RENDER MEDIA
+    // ---------------------------------------
+
+    function renderMedia() {
+
+      const filtered =
+        getFilteredMedia();
+
+
+      mediaList.innerHTML = "";
+
+
+      if (!filtered.length) {
+
+        const empty =
+          document.createElement("div");
+
+        empty.className =
+          "col-span-full bg-white rounded-2xl border border-gray-200 p-10 text-center";
+
+
+        const title =
+          document.createElement("p");
+
+        title.className =
+          "font-semibold text-navy mb-2";
+
+        title.textContent =
+          "No media found";
+
+
+        const text =
+          document.createElement("p");
+
+        text.className =
+          "text-sm text-gray-500";
+
+        text.textContent =
+          mediaItems.length
+            ? "Try another search or filter."
+            : "Click “Add Media” to create your first media item.";
+
+
+        empty.appendChild(title);
+
+        empty.appendChild(text);
+
+        mediaList.appendChild(empty);
+
+        return;
+
+      }
+
+
+      filtered.forEach(item => {
+
+        const card =
+          document.createElement("div");
+
+        card.className =
+          "bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm";
+
+
+        // Preview
+        const preview =
+          createPreview(item);
+
+        card.appendChild(preview);
+
+
+        // Body
+        const body =
+          document.createElement("div");
+
+        body.className =
+          "p-5";
+
+
+        // Top row
+        const topRow =
+          document.createElement("div");
+
+        topRow.className =
+          "flex items-start justify-between gap-3";
+
+
+        const title =
+          document.createElement("h3");
+
+        title.className =
+          "font-semibold text-lg text-navy leading-tight";
+
+        title.textContent =
+          item.title || "Untitled Media";
+
+
+        const status =
+          document.createElement("span");
+
+        status.className =
+          "shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full";
+
+
+        if (item.published === true) {
+
+          status.classList.add(
+            "bg-green-50",
+            "text-green-700"
+          );
+
+          status.textContent =
+            "Published";
+
+        } else {
+
+          status.classList.add(
+            "bg-gray-100",
+            "text-gray-600"
+          );
+
+          status.textContent =
+            "Hidden";
+
+        }
+
+
+        topRow.appendChild(title);
+
+        topRow.appendChild(status);
+
+
+        body.appendChild(topRow);
+
+
+        // Type / category
+        const meta =
+          document.createElement("div");
+
+        meta.className =
+          "flex flex-wrap gap-2 mt-3";
+
+
+        const typeBadge =
+          document.createElement("span");
+
+        typeBadge.className =
+          "text-xs font-semibold bg-navy/5 text-navy px-2.5 py-1 rounded-full";
+
+        typeBadge.textContent =
+          item.type || "image";
+
+
+        meta.appendChild(typeBadge);
+
+
+        if (item.featured === true) {
+
+          const featuredBadge =
+            document.createElement("span");
+
+          featuredBadge.className =
+            "text-xs font-semibold bg-yellow-50 text-yellow-700 px-2.5 py-1 rounded-full";
+
+          featuredBadge.textContent =
+            "Featured";
+
+          meta.appendChild(
+            featuredBadge
+          );
+
+        }
+
+
+        if (item.category) {
+
+          const categoryBadge =
+            document.createElement("span");
+
+          categoryBadge.className =
+            "text-xs font-semibold bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full";
+
+          categoryBadge.textContent =
+            item.category;
+
+          meta.appendChild(
+            categoryBadge
+          );
+
+        }
+
+
+        body.appendChild(meta);
+
+
+        // Description
+        if (item.description) {
+
+          const description =
+            document.createElement("p");
+
+          description.className =
+            "text-sm text-gray-500 leading-6 mt-4";
+
+          description.textContent =
+            item.description;
+
+          body.appendChild(
+            description
+          );
+
+        }
+
+
+        // Date
+        if (item.mediaDate) {
+
+          const date =
+            document.createElement("p");
+
+          date.className =
+            "text-xs text-gray-400 mt-3";
+
+          date.textContent =
+            formatDate(
+              item.mediaDate
+            );
+
+          body.appendChild(date);
+
+        }
+
+
+        // Actions
+        const actions =
+          document.createElement("div");
+
+        actions.className =
+          "flex gap-2 mt-5 pt-4 border-t border-gray-100";
+
+
+        const editBtn =
+          document.createElement("button");
+
+        editBtn.type = "button";
+
+        editBtn.className =
+          "flex-1 px-3 py-2.5 rounded-lg bg-navy text-white text-sm font-semibold hover:opacity-90";
+
+        editBtn.textContent =
+          "Edit";
+
+
+        editBtn.addEventListener(
+          "click",
+          () => openModal(item)
+        );
+
+
+        const deleteBtn =
+          document.createElement("button");
+
+        deleteBtn.type = "button";
+
+        deleteBtn.className =
+          "px-4 py-2.5 rounded-lg bg-red-50 text-red-600 text-sm font-semibold hover:bg-red-100";
+
+        deleteBtn.textContent =
+          "Delete";
+
+
+        deleteBtn.addEventListener(
+          "click",
+          () => deleteMedia(item)
+        );
+
+
+        actions.appendChild(
+          editBtn
+        );
+
+        actions.appendChild(
+          deleteBtn
+        );
+
+
+        body.appendChild(actions);
+
+
+        card.appendChild(body);
+
+        mediaList.appendChild(card);
+
+      });
+
+    }
+
+
+    // ---------------------------------------
+    // SAVE MEDIA
+    // ---------------------------------------
+
+    mediaForm.addEventListener(
+      "submit",
+      async (event) => {
+
+        event.preventDefault();
+
+
+        const title =
+          cleanText(
+            mediaTitle.value,
+            150
+          );
+
+        const type =
+          cleanText(
+            mediaType.value,
+            30
+          );
+
+        const description =
+          cleanText(
+            mediaDescription.value,
+            1000
+          );
+
+        const category =
+          cleanText(
+            mediaCategory.value,
+            100
+          );
+
+        const url =
+          safeMediaPath(
+            mediaUrl.value
+          );
+
+        const thumbnail =
+          safeMediaPath(
+            thumbnailUrl.value
+          );
+
+        const date =
+          cleanText(
+            mediaDate.value,
+            30
+          );
+
+
+        if (!title) {
+
+          showMessage(
+            "Please enter a media title.",
+            "error"
+          );
+
+          mediaTitle.focus();
+
+          return;
+
+        }
+
+
+        if (!url) {
+
+          showMessage(
+            "Please enter a valid media URL or file path.",
+            "error"
+          );
+
+          mediaUrl.focus();
+
+          return;
+
+        }
+
+
+        if (
+          mediaUrl.value.trim() &&
+          !safeMediaPath(
+            mediaUrl.value
+          )
+        ) {
+
+          showMessage(
+            "The media URL or file path is not valid.",
+            "error"
+          );
+
+          mediaUrl.focus();
+
+          return;
+
+        }
+
+
+        if (
+          thumbnailUrl.value.trim() &&
+          !safeMediaPath(
+            thumbnailUrl.value
+          )
+        ) {
+
+          showMessage(
+            "The thumbnail URL or file path is not valid.",
+            "error"
+          );
+
+          thumbnailUrl.focus();
+
+          return;
+
+        }
+
+
+        const data = {
+
+          title,
+
+          type,
+
+          description,
+
+          category,
+
+          url,
+
+          thumbnail,
+
+          mediaDate: date,
+
+          published:
+            published.checked,
+
+          featured:
+            featured.checked,
+
+          updatedAt:
+            serverTimestamp()
+
+        };
+
+
+        saveBtn.disabled = true;
+
+        saveBtn.textContent =
+          mediaId.value
+            ? "Updating..."
+            : "Saving...";
+
+
+        try {
+
+          if (mediaId.value) {
+
+            await updateDoc(
+              doc(
+                db,
+                "media",
+                mediaId.value
+              ),
+              data
+            );
+
+
+            showMessage(
+              "Media updated successfully."
+            );
+
+          } else {
+
+            await addDoc(
+              collection(
+                db,
+                "media"
+              ),
+              {
+                ...data,
+                createdAt:
+                  serverTimestamp()
+              }
+            );
+
+
+            showMessage(
+              "Media added successfully."
+            );
+
+          }
+
+
+          closeModal();
+
+          await loadMedia();
+
+
+        } catch (error) {
+
+          console.error(
+            "Error saving media:",
+            error
+          );
+
+
+          showMessage(
+            "Unable to save media. Please try again.",
+            "error"
+          );
+
+        } finally {
+
+          saveBtn.disabled = false;
+
+          saveBtn.textContent =
+            "Save Media";
+
+        }
+
+      }
+    );
+
+
+    // ---------------------------------------
+    // DELETE MEDIA
+    // ---------------------------------------
+
+    async function deleteMedia(item) {
+
+      const name =
+        item.title ||
+        "this media";
+
+
+      const confirmed =
+        window.confirm(
+          `Are you sure you want to delete "${name}"?`
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      try {
+
+        await deleteDoc(
+          doc(
+            db,
+            "media",
+            item.id
+          )
+        );
+
+
+        showMessage(
+          "Media deleted successfully."
+        );
+
+
+        await loadMedia();
+
+
+      } catch (error) {
+
+        console.error(
+          "Error deleting media:",
+          error
+        );
+
+
+        showMessage(
+          "Unable to delete media. Please try again.",
+          "error"
+        );
+
+      }
+
+    }
+
+
+    // ---------------------------------------
+    // LOGOUT
+    // ---------------------------------------
+
+    logoutBtn.addEventListener(
+      "click",
+      async () => {
+
+        try {
+
+          await signOut(auth);
+
+          window.location.href =
+            "admin.login.html";
+
+        } catch (error) {
+
+          console.error(
+            "Logout error:",
+            error
+          );
+
+          showMessage(
+            "Unable to log out. Please try again.",
+            "error"
+          );
+
+        }
+
+      }
+    );
+
+
+    // ---------------------------------------
+    // ADMIN AUTH
+    // ---------------------------------------
+
+    onAuthStateChanged(
+      auth,
+      async (user) => {
+
+        if (!user) {
+
+          window.location.href =
+            "admin.login.html";
+
+          return;
+
+        }
+
+
+        try {
+
+          const adminSnapshot =
+            await getDocs(
+              collection(
+                db,
+                "admins"
+              )
+            );
+
+
+          const adminDoc =
+            adminSnapshot.docs.find(
+              item =>
+                item.id === user.uid
+            );
+
+
+          if (
+            !adminDoc ||
+            adminDoc.data().active !== true
+          ) {
+
+            await signOut(auth);
+
+            window.location.href =
+              "admin.login.html";
+
+            return;
+
+          }
+
+
+          await loadMedia();
+
+
+        } catch (error) {
+
+          console.error(
+            "Admin verification error:",
+            error
+          );
+
+
+          await signOut(auth);
+
+          window.location.href =
+            "admin.login.html";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+  </html>
