@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WOFBI | Mustard Seed Gospel Church</title>
+
+  <meta
+    name="description"
+    content="Word of Faith Bible Institute at Mustard Seed Gospel Church — Home of Success."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    .font-display {
+      font-family: "Fraunces", serif;
+    }
+
+    .hidden-section {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-navy">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <a href="index.html" class="flex items-center gap-3">
+
+          <div class="w-10 h-10 shrink-0">
+            <img
+              src="images/church-logo.png"
+              alt="Mustard Seed Gospel Church Logo"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div>
+            <div class="font-display font-semibold text-navy">
+              Mustard Seed Gospel Church
+            </div>
+
+            <div class="text-xs text-gray-500">
+              Home of Success
+            </div>
+          </div>
+
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+          <a href="index.html" class="hover:text-gold transition">
+            Home
+          </a>
+
+          <a href="sermons.html" class="hover:text-gold transition">
+            Sermons
+          </a>
+
+          <a href="index.html#about" class="hover:text-gold transition">
+            About
+          </a>
+
+          <a href="watch-live.html" class="hover:text-gold transition">
+            Live
+          </a>
+
+          <a href="index.html#events" class="hover:text-gold transition">
+            Events
+          </a>
+
+          <a href="give.html" class="hover:text-gold transition">
+            Give
+          </a>
+
+          <a href="contact.html" class="hover:text-gold transition">
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="bg-navy text-white px-5 py-3 rounded-full hover:bg-gold hover:text-navy transition"
+          >
+            Join Online
+          </a>
+
+        </nav>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+          id="menuBtn"
+          class="lg:hidden text-navy text-2xl"
+          aria-label="Open menu"
+        >
+          ☰
+        </button>
+
+      </div>
+
+      <!-- MOBILE NAV -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-5">
+
+        <nav class="flex flex-col gap-4 text-sm font-medium">
+
+          <a href="index.html" class="hover:text-gold">
+            Home
+          </a>
+
+          <a href="sermons.html" class="hover:text-gold">
+            Sermons
+          </a>
+
+          <a href="index.html#about" class="hover:text-gold">
+            About
+          </a>
+
+          <a href="watch-live.html" class="hover:text-gold">
+            Live
+          </a>
+
+          <a href="index.html#events" class="hover:text-gold">
+            Events
+          </a>
+
+          <a href="give.html" class="hover:text-gold">
+            Give
+          </a>
+
+          <a href="contact.html" class="hover:text-gold">
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="inline-block w-fit bg-navy text-white px-5 py-3 rounded-full"
+          >
+            Join Online
+          </a>
+
+        </nav>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="bg-navy text-white">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-28">
+
+      <div class="max-w-4xl">
+
+        <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-5">
+          Word of Faith Bible Institute
+        </p>
+
+        <h1
+          id="heroTitle"
+          class="font-display text-4xl sm:text-5xl md:text-6xl font-semibold leading-tight mb-6"
+        >
+          WOFBI
+        </h1>
+
+        <p
+          id="heroDescription"
+          class="text-white/75 text-base sm:text-lg leading-8 max-w-3xl"
+        >
+          A place to grow in the knowledge of God's Word, strengthen your
+          faith, and develop a deeper understanding of the Christian life.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTRODUCTION -->
+  <section class="py-16 md:py-24 bg-white">
+
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- TEXT -->
+        <div>
+
+          <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+            About WOFBI
+          </p>
+
+          <h2
+            id="aboutHeading"
+            class="font-display text-3xl md:text-4xl font-semibold text-navy mb-6"
+          >
+            Growing Through the Word
+          </h2>
+
+          <div id="aboutText">
+
+            <p class="text-gray-600 leading-8 mb-5">
+              The Word of Faith Bible Institute provides an opportunity for
+              believers to receive biblical teaching and develop a stronger
+              foundation in God's Word.
+            </p>
+
+            <p class="text-gray-600 leading-8 mb-5">
+              Through focused teaching, study, fellowship, and practical
+              Christian growth, students are encouraged to deepen their faith
+              and become better equipped to live out God's purpose for their
+              lives.
+            </p>
+
+            <p class="text-gray-600 leading-8">
+              WOFBI is for anyone who desires to learn, grow, and become more
+              grounded in the Word of God.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- FEATURE CARD -->
+        <div class="bg-cream rounded-3xl p-8 md:p-10">
+
+          <div class="w-16 h-16 rounded-2xl bg-navy text-gold flex items-center justify-center text-2xl mb-7">
+            ✝
+          </div>
+
+          <h3 class="font-display text-2xl md:text-3xl font-semibold mb-4">
+            Learn. Grow. Become.
+          </h3>
+
+          <p class="text-gray-600 leading-8">
+            God's Word gives us the foundation we need to grow spiritually,
+            understand His purpose, and walk confidently in our faith.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CURRENT PROGRAM -->
+  <section
+    id="programSection"
+    class="py-16 md:py-24 bg-cream"
+  >
+
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-14">
+
+        <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+          Current Programme
+        </p>
+
+        <h2
+          id="classNameDisplay"
+          class="font-display text-3xl md:text-4xl font-semibold mb-5"
+        >
+          WOFBI
+        </h2>
+
+        <p
+          id="sessionDisplay"
+          class="text-gray-600 leading-8"
+        >
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <!-- DATE -->
+        <div
+          id="dateCard"
+          class="bg-white rounded-2xl p-6 border border-gray-100"
+        >
+
+          <p class="text-xs uppercase tracking-wider text-gold font-semibold mb-3">
+            Dates
+          </p>
+
+          <p
+            id="dateDisplay"
+            class="font-semibold text-lg"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- DAYS -->
+        <div
+          id="daysCard"
+          class="bg-white rounded-2xl p-6 border border-gray-100"
+        >
+
+          <p class="text-xs uppercase tracking-wider text-gold font-semibold mb-3">
+            Meeting Days
+          </p>
+
+          <p
+            id="daysDisplay"
+            class="font-semibold text-lg"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- TIME -->
+        <div
+          id="timeCard"
+          class="bg-white rounded-2xl p-6 border border-gray-100"
+        >
+
+          <p class="text-xs uppercase tracking-wider text-gold font-semibold mb-3">
+            Meeting Time
+          </p>
+
+          <p
+            id="timeDisplay"
+            class="font-semibold text-lg"
+          >
+            —
+          </p>
+
+        </div>
+
+
+        <!-- LOCATION -->
+        <div
+          id="locationCard"
+          class="bg-white rounded-2xl p-6 border border-gray-100"
+        >
+
+          <p class="text-xs uppercase tracking-wider text-gold font-semibold mb-3">
+            Location
+          </p>
+
+          <p
+            id="locationDisplay"
+            class="font-semibold text-lg"
+          >
+            —
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WHY WOFBI -->
+  <section class="py-16 md:py-24 bg-white">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-14">
+
+        <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+          Why WOFBI?
+        </p>
+
+        <h2 class="font-display text-3xl md:text-4xl font-semibold mb-5">
+          Build a Stronger Foundation
+        </h2>
+
+        <p class="text-gray-600 leading-8">
+          WOFBI creates an environment where believers can learn God's Word,
+          develop spiritually, and prepare themselves for greater service.
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- CARD 1 -->
+        <div class="bg-cream rounded-2xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            01
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-4">
+            Biblical Knowledge
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Gain a deeper understanding of God's Word and develop a stronger
+            biblical foundation for everyday Christian living.
+          </p>
+
+        </div>
+
+
+        <!-- CARD 2 -->
+        <div class="bg-cream rounded-2xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            02
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-4">
+            Spiritual Growth
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Grow in your relationship with God and develop a life that is
+            rooted in faith, prayer, and the Word.
+          </p>
+
+        </div>
+
+
+        <!-- CARD 3 -->
+        <div class="bg-cream rounded-2xl p-8 border border-gray-100">
+
+          <div class="w-14 h-14 rounded-full bg-navy text-gold flex items-center justify-center text-xl mb-6">
+            03
+          </div>
+
+          <h3 class="font-display text-2xl font-semibold mb-4">
+            Kingdom Service
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Become better equipped to serve God, serve people, and contribute
+            meaningfully to the work of the Kingdom.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WHAT TO EXPECT -->
+  <section class="py-16 md:py-24 bg-cream">
+
+    <div class="max-w-6xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="max-w-3xl mb-12">
+
+        <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+          Your Journey
+        </p>
+
+        <h2 class="font-display text-3xl md:text-4xl font-semibold mb-5">
+          What You Can Expect
+        </h2>
+
+        <p class="text-gray-600 leading-8">
+          WOFBI is designed to help you take intentional steps in your
+          spiritual development.
+        </p>
+
+      </div>
+
+
+      <div class="space-y-5">
+
+        <div class="flex gap-5 p-6 rounded-2xl bg-white">
+
+          <div class="shrink-0 w-12 h-12 rounded-full bg-navy text-gold flex items-center justify-center font-semibold">
+            1
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-2">
+              Biblical Teaching
+            </h3>
+
+            <p class="text-gray-600 leading-7">
+              Receive focused teaching that helps you understand and apply
+              biblical principles.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="flex gap-5 p-6 rounded-2xl bg-white">
+
+          <div class="shrink-0 w-12 h-12 rounded-full bg-navy text-gold flex items-center justify-center font-semibold">
+            2
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-2">
+              Personal Development
+            </h3>
+
+            <p class="text-gray-600 leading-7">
+              Develop habits and understanding that help you grow in your
+              Christian walk.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="flex gap-5 p-6 rounded-2xl bg-white">
+
+          <div class="shrink-0 w-12 h-12 rounded-full bg-navy text-gold flex items-center justify-center font-semibold">
+            3
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-2">
+              Fellowship
+            </h3>
+
+            <p class="text-gray-600 leading-7">
+              Learn alongside other believers and grow through fellowship,
+              encouragement, and shared experiences.
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="flex gap-5 p-6 rounded-2xl bg-white">
+
+          <div class="shrink-0 w-12 h-12 rounded-full bg-navy text-gold flex items-center justify-center font-semibold">
+            4
+          </div>
+
+          <div>
+            <h3 class="font-semibold text-lg mb-2">
+              Preparation for Service
+            </h3>
+
+            <p class="text-gray-600 leading-7">
+              Be encouraged to discover how you can use your gifts and
+              abilities to serve God and others.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- REGISTRATION / CONTACT -->
+  <section
+    id="registrationSection"
+    class="py-16 md:py-24 bg-navy text-white"
+  >
+
+    <div class="max-w-5xl mx-auto px-5 sm:px-6 lg:px-8 text-center">
+
+      <p class="text-gold uppercase tracking-[0.2em] text-sm font-semibold mb-4">
+        Everyone Is Welcome
+      </p>
+
+      <h2 class="font-display text-3xl md:text-4xl font-semibold mb-6">
+        Take Your Next Step
+      </h2>
+
+      <p
+        id="registrationInfoDisplay"
+        class="text-white/75 leading-8 max-w-3xl mx-auto mb-8"
+      >
+        Whether you are new to the faith, a growing believer, or someone who
+        wants to deepen your understanding of God's Word, WOFBI provides an
+        opportunity to learn and grow.
+      </p>
+
+
+      <!-- CONTACT DETAILS -->
+      <div
+        id="contactDetails"
+        class="hidden mb-8 text-white/80"
+      >
+
+        <div
+          id="contactNameDisplay"
+          class="mb-2"
+        ></div>
+
+        <div
+          id="contactPhoneDisplay"
+          class="mb-2"
+        ></div>
+
+        <div
+          id="contactEmailDisplay"
+        ></div>
+
+      </div>
+
+
+      <!-- BUTTONS -->
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+        <a
+          id="registrationButton"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden inline-block bg-gold text-navy font-semibold px-7 py-3.5 rounded-full hover:bg-white transition"
+        >
+          Register for WOFBI
+        </a>
+
+        <a
+          href="contact.html"
+          class="inline-block bg-white text-navy font-semibold px-7 py-3.5 rounded-full hover:bg-gold transition"
+        >
+          Contact the Church
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-gray-100">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- CHURCH -->
+        <div>
+
+          <a href="index.html" class="flex items-center gap-3 mb-5">
+
+            <div class="w-10 h-10 shrink-0">
+              <img
+                src="images/church-logo.png"
+                alt="Mustard Seed Gospel Church Logo"
+                class="w-full h-full object-contain"
+              />
+            </div>
+
+            <div>
+              <div class="font-display font-semibold text-navy">
+                Mustard Seed Gospel Church
+              </div>
+
+              <div class="text-xs text-gray-500">
+                Home of Success
+              </div>
+            </div>
+
+          </a>
+
+          <p class="text-gray-600 text-sm leading-7">
+            Raising giants for God and establishing His kingdom here on earth.
+          </p>
+
+        </div>
+
+
+        <!-- VISIT -->
+        <div>
+
+          <h3 class="font-semibold mb-4">
+            Visit Us
+          </h3>
+
+          <p class="text-gray-600 text-sm leading-7">
+            Agbor, Delta State, Nigeria
+          </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+        <div>
+
+          <h3 class="font-semibold mb-4">
+            Quick Links
+          </h3>
+
+          <div class="flex flex-col gap-3 text-sm">
+
+            <a
+              href="sermons.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Sermons
+            </a>
+
+            <a
+              href="watch-live.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Watch Live
+            </a>
+
+            <a
+              href="prayer-request.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Prayer Request
+            </a>
+
+            <a
+              href="departments.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Departments
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONNECT -->
+        <div>
+
+          <h3 class="font-semibold mb-4">
+            Connect
+          </h3>
+
+          <div class="flex flex-col gap-3 text-sm">
+
+            <a
+              href="join-online.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Join Online
+            </a>
+
+            <a
+              href="contact.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Contact Us
+            </a>
+
+            <a
+              href="give.html"
+              class="text-gray-600 hover:text-gold"
+            >
+              Give Online
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- COPYRIGHT -->
+      <div class="border-t border-gray-100 mt-10 pt-6 flex flex-col sm:flex-row justify-between gap-4 text-xs text-gray-500">
+
+        <p>
+          © 2026 Mustard Seed Gospel Church. All rights reserved.
+        </p>
+
+        <div class="flex gap-5">
+
+          <a
+            href="privacy.html"
+            class="hover:text-gold"
+          >
+            Privacy Policy
+          </a>
+
+          <a
+            href="terms.html"
+            class="hover:text-gold"
+          >
+            Terms & Conditions
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- MOBILE MENU -->
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
+
+  <!-- FIREBASE / WOFBI -->
+  <script type="module">
+
+    import { db } from "./firebase.js";
+
+    import {
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const fallbackData = {
+
+      title: "WOFBI",
+
+      description:
+        "A place to grow in the knowledge of God's Word, strengthen your faith, and develop a deeper understanding of the Christian life.",
+
+      about:
+        "The Word of Faith Bible Institute provides an opportunity for believers to receive biblical teaching and develop a stronger foundation in God's Word.",
+
+      className: "",
+
+      session: "",
+
+      startDate: "",
+
+      endDate: "",
+
+      meetingDays: "",
+
+      meetingTime: "",
+
+      location: "",
+
+      registrationInfo:
+        "Whether you are new to the faith, a growing believer, or someone who wants to deepen your understanding of God's Word, WOFBI provides an opportunity to learn and grow.",
+
+      contactName: "",
+
+      contactPhone: "",
+
+      contactEmail: "",
+
+      registrationUrl: "",
+
+      published: true
+
+    };
+
+
+    function cleanValue(value) {
+      return String(value || "").trim();
+    }
+
+
+    function isValidUrl(value) {
+
+      try {
+
+        const url = new URL(value);
+
+        return (
+          url.protocol === "http:" ||
+          url.protocol === "https:"
+        );
+
+      } catch {
+
+        return false;
+
+      }
+
+    }
+
+
+    function formatDate(dateString) {
+
+      if (!dateString) {
+        return "";
+      }
+
+      const date = new Date(`${dateString}T00:00:00`);
+
+      if (Number.isNaN(date.getTime())) {
+        return dateString;
+      }
+
+      return date.toLocaleDateString("en-NG", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+    }
+
+
+    function setText(id, value) {
+
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.textContent = cleanValue(value);
+      }
+
+    }
+
+
+    function createAboutParagraphs(text) {
+
+      const container = document.getElementById("aboutText");
+
+      if (!container) {
+        return;
+      }
+
+      const clean = cleanValue(text);
+
+      if (!clean) {
+        return;
+      }
+
+      container.innerHTML = "";
+
+      const paragraphs = clean
+        .split(/\n\s*\n|\n/)
+        .map(item => item.trim())
+        .filter(Boolean);
+
+      paragraphs.forEach(paragraph => {
+
+        const p = document.createElement("p");
+
+        p.className =
+          "text-gray-600 leading-8 mb-5 last:mb-0";
+
+        p.textContent = paragraph;
+
+        container.appendChild(p);
+
+      });
+
+    }
+
+
+    function hideElement(id) {
+
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.classList.add("hidden-section");
+      }
+
+    }
+
+
+    function showElement(id) {
+
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.classList.remove("hidden-section");
+      }
+
+    }
+
+
+    async function loadWofbi() {
+
+      let data = { ...fallbackData };
+
+      try {
+
+        const snapshot = await getDoc(
+          doc(db, "settings", "wofbi")
+        );
+
+        if (snapshot.exists()) {
+
+          const firestoreData = snapshot.data();
+
+          /*
+            Only show the public WOFBI content if it is published.
+            If the document does not have published set yet,
+            the fallback content remains available.
+          */
+
+          if (
+            firestoreData.published === false
+          ) {
+
+            return;
+
+          }
+
+          data = {
+            ...fallbackData,
+            ...firestoreData
+          };
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Unable to load WOFBI information:",
+          error
+        );
+
+        data = fallbackData;
+
+      }
+
+
+      // -----------------------------
+      // Hero
+      // -----------------------------
+
+      setText(
+        "heroTitle",
+        data.title || "WOFBI"
+      );
+
+      setText(
+        "heroDescription",
+        data.description ||
+        fallbackData.description
+      );
+
+
+      // -----------------------------
+      // About
+      // -----------------------------
+
+      createAboutParagraphs(
+        data.about || fallbackData.about
+      );
+
+
+      // -----------------------------
+      // Current programme
+      // -----------------------------
+
+      const hasProgramData =
+        data.className ||
+        data.session ||
+        data.startDate ||
+        data.endDate ||
+        data.meetingDays ||
+        data.meetingTime ||
+        data.location;
+
+
+      if (!hasProgramData) {
+
+        hideElement("programSection");
+
+      } else {
+
+        showElement("programSection");
+
+        setText(
+          "classNameDisplay",
+          data.className || "WOFBI"
+        );
+
+        setText(
+          "sessionDisplay",
+          data.session || ""
+        );
+
+
+        // Dates
+
+        if (data.startDate || data.endDate) {
+
+          let dateText = "";
+
+          if (data.startDate && data.endDate) {
+
+            dateText =
+              `${formatDate(data.startDate)} – ${formatDate(data.endDate)}`;
+
+          } else if (data.startDate) {
+
+            dateText =
+              `Starts ${formatDate(data.startDate)}`;
+
+          } else {
+
+            dateText =
+              `Ends ${formatDate(data.endDate)}`;
+
+          }
+
+          setText("dateDisplay", dateText);
+
+        } else {
+
+          hideElement("dateCard");
+
+        }
+
+
+        // Meeting days
+
+        if (data.meetingDays) {
+
+          setText(
+            "daysDisplay",
+            data.meetingDays
+          );
+
+        } else {
+
+          hideElement("daysCard");
+
+        }
+
+
+        // Meeting time
+
+        if (data.meetingTime) {
+
+          setText(
+            "timeDisplay",
+            data.meetingTime
+          );
+
+        } else {
+
+          hideElement("timeCard");
+
+        }
+
+
+        // Location
+
+        if (data.location) {
+
+          setText(
+            "locationDisplay",
+            data.location
+          );
+
+        } else {
+
+          hideElement("locationCard");
+
+        }
+
+      }
+
+
+      // -----------------------------
+      // Registration information
+      // -----------------------------
+
+      setText(
+        "registrationInfoDisplay",
+        data.registrationInfo ||
+        fallbackData.registrationInfo
+      );
+
+
+      // -----------------------------
+      // Contact details
+      // -----------------------------
+
+      const hasContact =
+        data.contactName ||
+        data.contactPhone ||
+        data.contactEmail;
+
+
+      if (hasContact) {
+
+        const contactDetails =
+          document.getElementById("contactDetails");
+
+        contactDetails.classList.remove("hidden");
+
+
+        if (data.contactName) {
+
+          setText(
+            "contactNameDisplay",
+            data.contactName
+          );
+
+        } else {
+
+          hideElement("contactNameDisplay");
+
+        }
+
+
+        if (data.contactPhone) {
+
+          setText(
+            "contactPhoneDisplay",
+            data.contactPhone
+          );
+
+        } else {
+
+          hideElement("contactPhoneDisplay");
+
+        }
+
+
+        if (data.contactEmail) {
+
+          setText(
+            "contactEmailDisplay",
+            data.contactEmail
+          );
+
+        } else {
+
+          hideElement("contactEmailDisplay");
+
+        }
+
+      }
+
+
+      // -----------------------------
+      // Registration button
+      // -----------------------------
+
+      const registrationButton =
+        document.getElementById("registrationButton");
+
+
+      if (
+        data.registrationUrl &&
+        isValidUrl(data.registrationUrl)
+      ) {
+
+        registrationButton.href =
+          data.registrationUrl;
+
+        registrationButton.classList.remove(
+          "hidden"
+        );
+
+      } else {
+
+        registrationButton.classList.add(
+          "hidden"
+        );
+
+      }
+
+    }
+
+
+    loadWofbi();
+
+  </script>
+
+</body>
+          </html>
