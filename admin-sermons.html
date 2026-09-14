@@ -45,7 +45,11 @@ body{font-family:Inter,sans-serif}.sidebar{transition:transform .25s ease}
 <div><label class="label">Category</label><input id="category" class="input" placeholder="Sunday Service"></div>
 <div class="md:col-span-2"><label class="label">Image Path</label><input id="image" class="input" placeholder="images/sermon-1.jpg"><p class="hint">Use an image path from your website folder. Firebase Storage is not required.</p></div>
 <div class="md:col-span-2"><label class="label">Video URL</label><input id="video" type="url" class="input" placeholder="https://www.youtube.com/watch?v=..."><p class="hint">Optional public sermon video link.</p></div>
-<div class="md:col-span-2"><label class="label">Audio URL</label><input id="audio" type="url" class="input" placeholder="https://..."></div>
+<div class="md:col-span-2">
+  <label class="label">Audio File Path</label>
+  <input id="audio" type="text" class="input" placeholder="audio/AUD-20260808-WA0037.mp3">
+  <p class="hint">Enter the MP3 file path from your website folder. Example: audio/AUD-20260808-WA0037.mp3</p>
+</div>
 <div class="md:col-span-2"><label class="label">Description</label><textarea id="description" rows="4" class="input" placeholder="Short description of the sermon..."></textarea></div>
 <div class="md:col-span-2 flex items-center gap-3"><input id="published" type="checkbox" checked class="w-5 h-5"><label class="text-sm font-semibold">Published on website</label></div>
 </div>
