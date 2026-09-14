@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Events | Mustard Seed Gospel Church</title>
+
+  <meta
+    name="description"
+    content="Upcoming events, services, conferences, programs and special gatherings at Mustard Seed Gospel Church — Home of Success."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            serif: ["Fraunces", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #f7f7f5;
+      color: #0a1931;
+    }
+
+    .serif {
+      font-family: "Fraunces", serif;
+    }
+
+    .gold-text {
+      color: #d4af37;
+    }
+
+    .gold-bg {
+      background: #d4af37;
+    }
+
+    .navy-bg {
+      background: #0a1931;
+    }
+
+    .event-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(10, 25, 49, 0.12);
+    }
+
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .loader {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(212, 175, 55, 0.25);
+      border-top-color: #d4af37;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .mobile-menu {
+      transition: all 0.25s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+  <header class="bg-white border-b border-navy/10 sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3">
+
+          <div
+            class="w-11 h-11 rounded-full bg-gold flex items-center justify-center overflow-hidden"
+          >
+            <img
+              src="IMG_20260914_150455_726.jpg"
+              alt="Mustard Seed Gospel Church Logo"
+              class="w-10 h-10 object-contain"
+            />
+          </div>
+
+          <div>
+            <div class="serif text-navy text-lg font-bold leading-tight">
+              Mustard Seed Gospel Church
+            </div>
+
+            <div class="text-xs text-navy/55">
+              Home of Success
+            </div>
+          </div>
+
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+          <a href="index.html"
+             class="text-navy/70 hover:text-navy transition">
+            Home
+          </a>
+
+          <a href="sermons.html"
+             class="text-navy/70 hover:text-navy transition">
+            Sermons
+          </a>
+
+          <a href="about.html"
+             class="text-navy/70 hover:text-navy transition">
+            About
+          </a>
+
+          <a href="watch-live.html"
+             class="text-navy/70 hover:text-navy transition">
+            Live
+          </a>
+
+          <a href="events.html"
+             class="text-navy font-semibold">
+            Events
+          </a>
+
+          <a href="give.html"
+             class="text-navy/70 hover:text-navy transition">
+            Give
+          </a>
+
+          <a href="contact.html"
+             class="text-navy/70 hover:text-navy transition">
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="gold-bg text-white px-5 py-2.5 rounded-full font-semibold hover:opacity-90 transition"
+          >
+            Join Online
+          </a>
+
+        </nav>
+
+        <!-- Mobile Button -->
+        <button
+          id="mobileMenuButton"
+          class="lg:hidden w-11 h-11 rounded-full bg-navy text-white flex items-center justify-center"
+          aria-label="Open menu"
+        >
+          <svg
+            id="menuIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+
+          <svg
+            id="closeIcon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 hidden"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div
+        id="mobileMenu"
+        class="mobile-menu hidden lg:hidden pb-5"
+      >
+
+        <nav class="flex flex-col gap-1">
+
+          <a
+            href="index.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            Home
+          </a>
+
+          <a
+            href="sermons.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            Sermons
+          </a>
+
+          <a
+            href="about.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            About
+          </a>
+
+          <a
+            href="watch-live.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            Live
+          </a>
+
+          <a
+            href="events.html"
+            class="px-4 py-3 rounded-xl bg-cream font-semibold"
+          >
+            Events
+          </a>
+
+          <a
+            href="give.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            Give
+          </a>
+
+          <a
+            href="contact.html"
+            class="px-4 py-3 rounded-xl hover:bg-cream transition"
+          >
+            Contact
+          </a>
+
+          <a
+            href="join-online.html"
+            class="gold-bg text-white px-4 py-3 rounded-xl font-semibold mt-2 text-center"
+          >
+            Join Online
+          </a>
+
+        </nav>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+  <section class="navy-bg text-white">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 lg:py-28">
+
+      <div class="max-w-3xl">
+
+        <p class="gold-text uppercase tracking-[0.25em] text-xs sm:text-sm font-bold mb-5">
+          What's Happening
+        </p>
+
+        <h1 class="serif text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+          Church Events
+        </h1>
+
+        <p class="mt-6 text-white/70 text-base sm:text-lg leading-relaxed max-w-2xl">
+          Discover upcoming services, conferences, programs and special
+          gatherings happening at Mustard Seed Gospel Church.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EVENTS
+  ========================== -->
+  <main class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-16 lg:py-20">
+
+    <!-- Search / Filter -->
+    <div class="flex flex-col md:flex-row gap-4 md:items-center md:justify-between mb-10">
+
+      <div>
+        <p class="text-sm text-navy/50">
+          Upcoming and published events
+        </p>
+
+        <h2 class="serif text-3xl font-bold mt-1">
+          Join Us
+        </h2>
+      </div>
+
+      <div class="w-full md:w-80">
+
+        <label for="searchInput" class="sr-only">
+          Search events
+        </label>
+
+        <div class="relative">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-navy/40"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-4.35-4.35m1.35-5.65a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+            />
+          </svg>
+
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search events..."
+            class="w-full bg-white border border-navy/10 rounded-full py-3.5 pl-12 pr-5 outline-none focus:border-gold transition"
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Loading -->
+    <div
+      id="loadingState"
+      class="py-20 flex flex-col items-center justify-center"
+    >
+
+      <div class="loader"></div>
+
+      <p class="text-navy/50 mt-5 text-sm">
+        Loading events...
+      </p>
+
+    </div>
+
+
+    <!-- Error -->
+    <div
+      id="errorState"
+      class="hidden py-16 text-center"
+    >
+
+      <div class="w-16 h-16 mx-auto rounded-full bg-red-50 flex items-center justify-center">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-7 h-7 text-red-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9v3.5m0 4h.01M10.3 3.5 2.7 18a2 2 0 0 0 1.75 3h15.1a2 2 0 0 0 1.75-3L13.7 3.5a2 2 0 0 0-3.4 0Z"
+          />
+        </svg>
+
+      </div>
+
+      <h3 class="serif text-2xl font-bold mt-5">
+        Unable to load events
+      </h3>
+
+      <p
+        id="errorMessage"
+        class="text-navy/55 mt-2 max-w-md mx-auto"
+      >
+        Please try again later.
+      </p>
+
+      <button
+        id="retryButton"
+        class="mt-6 gold-bg text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition"
+      >
+        Try Again
+      </button>
+
+    </div>
+
+
+    <!-- Empty -->
+    <div
+      id="emptyState"
+      class="hidden py-20 text-center"
+    >
+
+      <div class="w-20 h-20 mx-auto rounded-full bg-white flex items-center justify-center border border-navy/10">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-9 h-9 text-gold"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6.5 3.75h11A2.75 2.75 0 0 1 20.25 6.5v11A2.75 2.75 0 0 1 17.5 20.25h-11A2.75 2.75 0 0 1 3.75 17.5v-11A2.75 2.75 0 0 1 6.5 3.75Z"
+          />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7.5 8h9M7.5 12h9M7.5 16h5"
+          />
+
+        </svg>
+
+      </div>
+
+      <h3 class="serif text-2xl font-bold mt-5">
+        No Events Found
+      </h3>
+
+      <p class="text-navy/55 mt-2">
+        There are currently no published events matching your search.
+      </p>
+
+    </div>
+
+
+    <!-- Events Grid -->
+    <div
+      id="eventsGrid"
+      class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
+    ></div>
+
+  </main>
+
+
+  <!-- =========================
+       CTA
+  ========================== -->
+  <section class="px-5 sm:px-6 lg:px-8 pb-20">
+
+    <div
+      class="max-w-7xl mx-auto navy-bg rounded-[2rem] px-7 sm:px-10 lg:px-16 py-12 lg:py-16 text-white"
+    >
+
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+
+        <div class="max-w-2xl">
+
+          <p class="gold-text uppercase tracking-[0.2em] text-xs font-bold mb-4">
+            Stay Connected
+          </p>
+
+          <h2 class="serif text-3xl sm:text-4xl font-bold">
+            There is a place for you here.
+          </h2>
+
+          <p class="text-white/65 mt-4 leading-relaxed">
+            Join us in worship, fellowship and the work God has entrusted
+            to Mustard Seed Gospel Church.
+          </p>
+
+        </div>
+
+        <a
+          href="join-online.html"
+          class="inline-flex items-center justify-center gold-bg text-white px-7 py-3.5 rounded-full font-semibold hover:opacity-90 transition whitespace-nowrap"
+        >
+          Join Online
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+  <footer class="navy-bg text-white">
+
+    <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-14">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <!-- Brand -->
+        <div>
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="w-11 h-11 rounded-full bg-gold flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src="IMG_20260914_150455_726.jpg"
+                alt="Mustard Seed Gospel Church Logo"
+                class="w-10 h-10 object-contain"
+              />
+            </div>
+
+            <div>
+
+              <div class="serif font-bold">
+                Mustard Seed Gospel Church
+              </div>
+
+              <div class="text-xs text-white/50">
+                Home of Success
+              </div>
+
+            </div>
+
+          </div>
+
+          <p class="text-white/55 text-sm leading-relaxed mt-5 max-w-sm">
+            A global commission raising successful people through the
+            Gospel of Jesus Christ.
+          </p>
+
+        </div>
+
+
+        <!-- Quick Links -->
+        <div>
+
+          <h3 class="font-semibold mb-5">
+            Quick Links
+          </h3>
+
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+
+            <a href="index.html" class="hover:text-white transition">
+              Home
+            </a>
+
+            <a href="sermons.html" class="hover:text-white transition">
+              Sermons
+            </a>
+
+            <a href="events.html" class="hover:text-white transition">
+              Events
+            </a>
+
+            <a href="gallery.html" class="hover:text-white transition">
+              Gallery
+            </a>
+
+            <a href="watch-live.html" class="hover:text-white transition">
+              Watch Live
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Connect -->
+        <div>
+
+          <h3 class="font-semibold mb-5">
+            Connect
+          </h3>
+
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+
+            <a href="prayer-request.html" class="hover:text-white transition">
+              Prayer Request
+            </a>
+
+            <a href="departments.html" class="hover:text-white transition">
+              Join a Department
+            </a>
+
+            <a href="give.html" class="hover:text-white transition">
+              Give Online
+            </a>
+
+            <a href="contact.html" class="hover:text-white transition">
+              Contact Us
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Location -->
+        <div>
+
+          <h3 class="font-semibold mb-5">
+            Location
+          </h3>
+
+          <p class="text-sm text-white/60 leading-relaxed">
+            Agbor, Delta State,<br />
+            Nigeria
+          </p>
+
+          <a
+            href="join-online.html"
+            class="inline-block mt-5 gold-text text-sm font-semibold hover:underline"
+          >
+            Join Us Online →
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="border-t border-white/10 mt-12 pt-6 flex flex-col sm:flex-row gap-4 justify-between text-xs text-white/40">
+
+        <p>
+          © 2026 Mustard Seed Gospel Church. All rights reserved.
+        </p>
+
+        <div class="flex gap-5">
+
+          <a href="privacy.html" class="hover:text-white transition">
+            Privacy
+          </a>
+
+          <a href="terms.html" class="hover:text-white transition">
+            Terms
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       FIREBASE + EVENTS LOGIC
+  ========================== -->
+  <script type="module">
+
+    import { db } from "./firebase.js";
+
+    import {
+      collection,
+      query,
+      where,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    const eventsGrid = document.getElementById("eventsGrid");
+    const loadingState = document.getElementById("loadingState");
+    const emptyState = document.getElementById("emptyState");
+    const errorState = document.getElementById("errorState");
+    const errorMessage = document.getElementById("errorMessage");
+    const retryButton = document.getElementById("retryButton");
+    const searchInput = document.getElementById("searchInput");
+
+
+    let allEvents = [];
+
+
+    // =========================
+    // Helpers
+    // =========================
+
+    function escapeHTML(value) {
+
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    function getEventDate(event) {
+
+      if (event.date) {
+        return event.date;
+      }
+
+      if (event.eventDate) {
+        return event.eventDate;
+      }
+
+      return "";
+    }
+
+
+    function formatDate(dateValue) {
+
+      if (!dateValue) {
+        return "Date TBA";
+      }
+
+      let date;
+
+      try {
+
+        if (typeof dateValue?.toDate === "function") {
+          date = dateValue.toDate();
+        } else {
+          date = new Date(dateValue);
+        }
+
+        if (isNaN(date.getTime())) {
+          return String(dateValue);
+        }
+
+        return date.toLocaleDateString("en-NG", {
+          weekday: "short",
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        });
+
+      } catch {
+        return String(dateValue);
+      }
+    }
+
+
+    function sortEvents(events) {
+
+      return [...events].sort((a, b) => {
+
+        const dateA = getEventDate(a);
+        const dateB = getEventDate(b);
+
+        const timeA = dateA?.toDate
+          ? dateA.toDate().getTime()
+          : new Date(dateA).getTime();
+
+        const timeB = dateB?.toDate
+          ? dateB.toDate().getTime()
+          : new Date(dateB).getTime();
+
+        if (isNaN(timeA)) return 1;
+        if (isNaN(timeB)) return -1;
+
+        return timeA - timeB;
+
+      });
+
+    }
+
+
+    // =========================
+    // Load Events
+    // =========================
+
+    async function loadEvents() {
+
+      loadingState.classList.remove("hidden");
+      eventsGrid.classList.add("hidden");
+      emptyState.classList.add("hidden");
+      errorState.classList.add("hidden");
+
+      try {
+
+        const eventsQuery = query(
+          collection(db, "events"),
+          where("published", "==", true)
+        );
+
+        const snapshot = await getDocs(eventsQuery);
+
+        allEvents = [];
+
+        snapshot.forEach((doc) => {
+
+          allEvents.push({
+            id: doc.id,
+            ...doc.data()
+          });
+
+        });
+
+        allEvents = sortEvents(allEvents);
+
+        loadingState.classList.add("hidden");
+
+        renderEvents();
+
+      } catch (error) {
+
+        console.error("Events loading error:", error);
+
+        loadingState.classList.add("hidden");
+        eventsGrid.classList.add("hidden");
+        emptyState.classList.add("hidden");
+        errorState.classList.remove("hidden");
+
+        errorMessage.textContent =
+          error?.message ||
+          "We could not load the events right now. Please try again.";
+
+      }
+
+    }
+
+
+    // =========================
+    // Render Events
+    // =========================
+
+    function renderEvents() {
+
+      const searchTerm =
+        searchInput.value.trim().toLowerCase();
+
+
+      const filteredEvents = allEvents.filter((event) => {
+
+        const title =
+          event.title ||
+          "";
+
+        const description =
+          event.description ||
+          event.desc ||
+          "";
+
+        const tag =
+          event.tag ||
+          "";
+
+        const location =
+          event.location ||
+          "";
+
+        const searchableText = `
+          ${title}
+          ${description}
+          ${tag}
+          ${location}
+        `.toLowerCase();
+
+        return searchableText.includes(searchTerm);
+
+      });
+
+
+      eventsGrid.innerHTML = "";
+
+
+      if (!filteredEvents.length) {
+
+        eventsGrid.classList.add("hidden");
+        emptyState.classList.remove("hidden");
+
+        return;
+
+      }
+
+
+      emptyState.classList.add("hidden");
+      eventsGrid.classList.remove("hidden");
+
+
+      filteredEvents.forEach((event) => {
+
+        const title =
+          event.title ||
+          "Church Event";
+
+        const description =
+          event.description ||
+          event.desc ||
+          "Join us for this special gathering.";
+
+        const image =
+          event.img ||
+          event.image ||
+          "";
+
+        const tag =
+          event.tag ||
+          "Church Event";
+
+        const time =
+          event.time ||
+          "";
+
+        const location =
+          event.location ||
+          "Mustard Seed Gospel Church";
+
+
+        const card = document.createElement("article");
+
+        card.className =
+          "event-card bg-white rounded-3xl overflow-hidden border border-navy/10";
+
+
+        // Image
+        const imageWrapper = document.createElement("div");
+
+        imageWrapper.className =
+          "relative h-56 bg-navy/5 overflow-hidden";
+
+
+        if (image) {
+
+          const img = document.createElement("img");
+
+          img.src = image;
+
+          img.alt = title;
+
+          img.loading = "lazy";
+
+          img.className =
+            "w-full h-full object-cover";
+
+          img.onerror = () => {
+
+            imageWrapper.innerHTML = `
+              <div class="w-full h-full flex items-center justify-center bg-navy">
+                <div class="text-center px-6">
+                  <div class="text-gold text-xs uppercase tracking-widest font-bold">
+                    Mustard Seed Gospel Church
+                  </div>
+                  <div class="text-white serif text-2xl font-bold mt-2">
+                    ${escapeHTML(title)}
+                  </div>
+                </div>
+              </div>
+            `;
+
+          };
+
+          imageWrapper.appendChild(img);
+
+        } else {
+
+          imageWrapper.innerHTML = `
+            <div class="w-full h-full flex items-center justify-center bg-navy">
+              <div class="text-center px-6">
+                <div class="text-gold text-xs uppercase tracking-widest font-bold">
+                  Mustard Seed Gospel Church
+                </div>
+                <div class="text-white serif text-2xl font-bold mt-2">
+                  ${escapeHTML(title)}
+                </div>
+              </div>
+            </div>
+          `;
+
+        }
+
+
+        // Tag
+        const tagElement = document.createElement("div");
+
+        tagElement.className =
+          "absolute top-4 left-4 gold-bg text-white text-xs font-bold px-3 py-1.5 rounded-full";
+
+        tagElement.textContent = tag;
+
+
+        imageWrapper.appendChild(tagElement);
+
+
+        // Content
+        const content = document.createElement("div");
+
+        content.className =
+          "p-6";
+
+
+        const dateElement = document.createElement("div");
+
+        dateElement.className =
+          "flex items-center gap-2 text-gold text-sm font-semibold";
+
+        dateElement.innerHTML = `
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 2v4M16 2v4M3.5 9.5h17M5.5 4h13A2.5 2.5 0 0 1 21 6.5v12A2.5 2.5 0 0 1 18.5 21h-13A2.5 2.5 0 0 1 3 18.5v-12A2.5 2.5 0 0 1 5.5 4Z"
+            />
+          </svg>
+
+          <span>
+            ${escapeHTML(formatDate(getEventDate(event)))}
+          </span>
+        `;
+
+
+        const titleElement = document.createElement("h3");
+
+        titleElement.className =
+          "serif text-2xl font-bold text-navy mt-4 leading-tight";
+
+        titleElement.textContent = title;
+
+
+        const descriptionElement = document.createElement("p");
+
+        descriptionElement.className =
+          "text-navy/55 text-sm leading-relaxed mt-3 line-clamp-3";
+
+        descriptionElement.textContent =
+          description;
+
+
+        content.appendChild(dateElement);
+        content.appendChild(titleElement);
+        content.appendChild(descriptionElement);
+
+
+        // Details
+        const details = document.createElement("div");
+
+        details.className =
+          "mt-5 pt-5 border-t border-navy/10 space-y-3";
+
+
+        if (time) {
+
+          const timeRow = document.createElement("div");
+
+          timeRow.className =
+            "flex items-start gap-3 text-sm text-navy/60";
+
+          timeRow.innerHTML = `
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5 text-gold shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="9"></circle>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 7v5l3 2"
+              ></path>
+            </svg>
+
+            <span>${escapeHTML(time)}</span>
+          `;
+
+          details.appendChild(timeRow);
+
+        }
+
+
+        const locationRow = document.createElement("div");
+
+        locationRow.className =
+          "flex items-start gap-3 text-sm text-navy/60";
+
+        locationRow.innerHTML = `
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 text-gold shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M20 10.5c0 5.5-8 10-8 10s-8-4.5-8-10a8 8 0 1 1 16 0Z"
+            />
+
+            <circle cx="12" cy="10.5" r="2.5"></circle>
+          </svg>
+
+          <span>${escapeHTML(location)}</span>
+        `;
+
+        details.appendChild(locationRow);
+
+
+        content.appendChild(details);
+
+        card.appendChild(imageWrapper);
+        card.appendChild(content);
+
+        eventsGrid.appendChild(card);
+
+      });
+
+    }
+
+
+    // =========================
+    // Search
+    // =========================
+
+    searchInput.addEventListener("input", () => {
+      renderEvents();
+    });
+
+
+    // =========================
+    // Retry
+    // =========================
+
+    retryButton.addEventListener("click", () => {
+      loadEvents();
+    });
+
+
+    // =========================
+    // Mobile Menu
+    // =========================
+
+    const mobileMenuButton =
+      document.getElementById("mobileMenuButton");
+
+    const mobileMenu =
+      document.getElementById("mobileMenu");
+
+    const menuIcon =
+      document.getElementById("menuIcon");
+
+    const closeIcon =
+      document.getElementById("closeIcon");
+
+
+    mobileMenuButton.addEventListener("click", () => {
+
+      const isHidden =
+        mobileMenu.classList.contains("hidden");
+
+      if (isHidden) {
+
+        mobileMenu.classList.remove("hidden");
+
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+
+      } else {
+
+        mobileMenu.classList.add("hidden");
+
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+
+      }
+
+    });
+
+
+    // Close mobile menu after navigation
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        mobileMenu.classList.add("hidden");
+
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+
+      });
+
+    });
+
+
+    // =========================
+    // Start
+    // =========================
+
+    loadEvents();
+
+  </script>
+
+</body>
+</html>
