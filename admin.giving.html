@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow, noarchive"
+  >
+
+  <title>Giving Management | Mustard Seed Gospel Church</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: "#0A1931",
+            gold: "#D4AF37",
+            cream: "#F7F7F5"
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- SECURITY LOADING SCREEN -->
+  <div
+    id="securityScreen"
+    class="fixed inset-0 z-[9999] flex items-center justify-center bg-navy"
+  >
+    <div class="text-center text-white px-6">
+      <div
+        class="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-4 border-white/20 border-t-gold"
+      ></div>
+
+      <p class="text-sm">
+        Verifying administrator access...
+      </p>
+    </div>
+  </div>
+
+
+  <!-- SIDEBAR -->
+  <aside
+    id="sidebar"
+    class="fixed inset-y-0 left-0 z-50 w-64 -translate-x-full bg-navy text-white transition-transform duration-300 lg:translate-x-0"
+  >
+
+    <div class="flex h-20 items-center border-b border-white/10 px-6">
+      <div class="h-12 w-12 shrink-0">
+        <img
+          src="images/church-logo.png"
+          alt="Mustard Seed Gospel Church Logo"
+          class="h-full w-full object-contain"
+        >
+      </div>
+
+      <div class="ml-3">
+        <h1 class="text-sm font-bold">
+          Mustard Seed
+        </h1>
+
+        <p class="text-xs text-gray-300">
+          Admin Panel
+        </p>
+      </div>
+    </div>
+
+
+    <nav class="space-y-1 p-4">
+
+      <a
+        href="admin-dashboard.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Dashboard
+      </a>
+
+      <a
+        href="admin-events.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Events
+      </a>
+
+      <a
+        href="admin-sermons.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Sermons
+      </a>
+
+      <a
+        href="admin-live.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Live Service
+      </a>
+
+      <a
+        href="admin-prayer-requests.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Prayer Requests
+      </a>
+
+      <a
+        href="admin-contacts-messges.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Contact Messages
+      </a>
+
+      <a
+        href="admin.giving.html"
+        class="block rounded-lg bg-gold px-4 py-3 text-sm font-semibold text-navy"
+      >
+        Giving
+      </a>
+
+      <a
+        href="admin-settings.html"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        Settings
+      </a>
+
+      <div class="my-4 border-t border-white/10"></div>
+
+      <a
+        href="index.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="block rounded-lg px-4 py-3 text-sm text-gray-300 hover:bg-white/10 hover:text-white"
+      >
+        View Website
+      </a>
+
+      <button
+        id="logoutBtn"
+        type="button"
+        class="mt-2 w-full rounded-lg px-4 py-3 text-left text-sm text-red-300 hover:bg-red-500/10"
+      >
+        Logout
+      </button>
+
+    </nav>
+  </aside>
+
+
+  <!-- MOBILE OVERLAY -->
+  <div
+    id="sidebarOverlay"
+    class="fixed inset-0 z-40 hidden bg-black/50 lg:hidden"
+  ></div>
+
+
+  <!-- MAIN -->
+  <main class="min-h-screen lg:ml-64">
+
+    <!-- TOP BAR -->
+    <header
+      class="sticky top-0 z-30 flex h-20 items-center justify-between border-b border-gray-200 bg-white px-4 shadow-sm sm:px-6"
+    >
+
+      <div class="flex items-center gap-3">
+
+        <button
+          id="menuBtn"
+          type="button"
+          aria-label="Open menu"
+          class="rounded-lg p-2 text-gray-600 hover:bg-gray-100 lg:hidden"
+        >
+          ☰
+        </button>
+
+        <div>
+          <h2 class="text-xl font-bold text-navy">
+            Giving Management
+          </h2>
+
+          <p class="text-xs text-gray-500">
+            Manage the church's public giving information
+          </p>
+        </div>
+
+      </div>
+
+      <div
+        id="adminEmail"
+        class="hidden text-sm text-gray-500 sm:block"
+      ></div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="p-4 sm:p-6">
+
+      <!-- SECURITY NOTICE -->
+      <div
+        class="mb-6 rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-800"
+      >
+        <div class="font-semibold">
+          🔒 Administrator Only
+        </div>
+
+        <p class="mt-1">
+          Only authorized church administrators can access and update this page.
+          Giving information saved here may be displayed publicly on the church website.
+        </p>
+      </div>
+
+
+      <!-- FORM -->
+      <div class="mx-auto max-w-5xl">
+
+        <form
+          id="givingForm"
+          class="space-y-6"
+          autocomplete="off"
+        >
+
+          <!-- GENERAL GIVING -->
+          <div class="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+
+            <div class="mb-5">
+              <h3 class="text-lg font-bold text-navy">
+                General Giving Information
+              </h3>
+
+              <p class="mt-1 text-sm text-gray-500">
+                Information visitors will see on the Giving page.
+              </p>
+            </div>
+
+
+            <div class="grid gap-5 md:grid-cols-2">
+
+              <div class="md:col-span-2">
+
+                <label
+                  for="givingTitle"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Giving Title
+                </label>
+
+                <input
+                  id="givingTitle"
+                  type="text"
+                  maxlength="150"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Support the Work of God"
+                >
+
+              </div>
+
+
+              <div class="md:col-span-2">
+
+                <label
+                  for="givingDescription"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Giving Description
+                </label>
+
+                <textarea
+                  id="givingDescription"
+                  rows="5"
+                  maxlength="1500"
+                  class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Your giving helps us advance the work of the Gospel..."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- BANK TRANSFER -->
+          <div class="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+
+            <div class="mb-5">
+
+              <h3 class="text-lg font-bold text-navy">
+                Bank Transfer Details
+              </h3>
+
+              <p class="mt-1 text-sm text-gray-500">
+                These details can be displayed publicly to people who want to give.
+              </p>
+
+            </div>
+
+
+            <div class="grid gap-5 md:grid-cols-2">
+
+              <div>
+
+                <label
+                  for="bankName"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Bank Name
+                </label>
+
+                <input
+                  id="bankName"
+                  type="text"
+                  maxlength="100"
+                  autocomplete="off"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Bank Name"
+                >
+
+              </div>
+
+
+              <div>
+
+                <label
+                  for="accountName"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Account Name
+                </label>
+
+                <input
+                  id="accountName"
+                  type="text"
+                  maxlength="150"
+                  autocomplete="off"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Account Name"
+                >
+
+              </div>
+
+
+              <div>
+
+                <label
+                  for="accountNumber"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Account Number
+                </label>
+
+                <input
+                  id="accountNumber"
+                  type="text"
+                  inputmode="numeric"
+                  maxlength="30"
+                  autocomplete="off"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Account Number"
+                >
+
+              </div>
+
+
+              <div>
+
+                <label
+                  for="bankTransferNote"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Transfer Note
+                </label>
+
+                <input
+                  id="bankTransferNote"
+                  type="text"
+                  maxlength="250"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Use your name as transfer reference"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- OTHER GIVING METHODS -->
+          <div class="rounded-2xl bg-white p-5 shadow-sm sm:p-6">
+
+            <div class="mb-5">
+
+              <h3 class="text-lg font-bold text-navy">
+                Other Giving Methods
+              </h3>
+
+              <p class="mt-1 text-sm text-gray-500">
+                Add information for other approved ways members can give.
+              </p>
+
+            </div>
+
+
+            <div class="space-y-5">
+
+              <div>
+
+                <label
+                  for="onlineGivingUrl"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Online Giving Link
+                </label>
+
+                <input
+                  id="onlineGivingUrl"
+                  type="url"
+                  maxlength="500"
+                  inputmode="url"
+                  autocomplete="off"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="https://example.com/give"
+                >
+
+                <p class="mt-1 text-xs text-gray-500">
+                  Leave empty if the church does not currently have an online giving link.
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <label
+                  for="onlineGivingLabel"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Online Giving Button Text
+                </label>
+
+                <input
+                  id="onlineGivingLabel"
+                  type="text"
+                  maxlength="80"
+                  class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Give Online"
+                >
+
+              </div>
+
+
+              <div>
+
+                <label
+                  for="otherGivingMethods"
+                  class="mb-2 block text-sm font-semibold text-gray-700"
+                >
+                  Other Giving Information
+                </label>
+
+                <textarea
+                  id="otherGivingMethods"
+                  rows="5"
+                  maxlength="1500"
+                  class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
+                  placeholder="Mobile money, POS, cheque, or other approved giving methods..."
+                ></textarea>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- IMPORTANT NOTICE -->
+          <div class="rounded-2xl border border-yellow-200 bg-yellow-50 p-5">
+
+            <h3 class="font-bold text-yellow-900">
+              Important
+            </h3>
+
+            <p class="mt-2 text-sm leading-6 text-yellow-800">
+              Only enter official church giving information here.
+              Do not enter Firebase passwords, API keys, private administrator
+              information, or other confidential credentials.
+            </p>
+
+          </div>
+
+
+          <!-- STATUS -->
+          <div
+            id="statusMessage"
+            class="hidden rounded-lg p-4 text-sm"
+            role="alert"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- BUTTONS -->
+          <div
+            class="flex flex-col gap-3 sm:flex-row sm:justify-end"
+          >
+
+            <button
+              id="resetBtn"
+              type="button"
+              class="rounded-lg border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+            >
+              Reset
+            </button>
+
+            <button
+              id="saveBtn"
+              type="submit"
+              class="rounded-lg bg-navy px-6 py-3 text-sm font-semibold text-white hover:bg-navy/90 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Save Giving Information
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FIREBASE -->
+  <script type="module">
+
+    import {
+      auth,
+      db
+    } from "./firebase.js";
+
+    import {
+      onAuthStateChanged,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    import {
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+    /*
+      ==========================================================
+      SECURITY
+      ==========================================================
+
+      The page is NOT considered protected just because this
+      JavaScript hides the page.
+
+      Firestore Security Rules MUST also verify isAdmin().
+
+      This frontend check prevents unauthorized users from using
+      the admin interface, while Firestore rules provide the
+      actual database protection.
+    */
+
+
+    const securityScreen =
+      document.getElementById("securityScreen");
+
+    const adminEmail =
+      document.getElementById("adminEmail");
+
+    const givingForm =
+      document.getElementById("givingForm");
+
+    const saveBtn =
+      document.getElementById("saveBtn");
+
+    const resetBtn =
+      document.getElementById("resetBtn");
+
+    const statusMessage =
+      document.getElementById("statusMessage");
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const sidebarOverlay =
+      document.getElementById("sidebarOverlay");
+
+    const menuBtn =
+      document.getElementById("menuBtn");
+
+    const logoutBtn =
+      document.getElementById("logoutBtn");
+
+
+    let originalData = null;
+    let isAuthorized = false;
+
+
+    /*
+      ----------------------------------------------------------
+      DOM HELPERS
+      ----------------------------------------------------------
+    */
+
+    function getValue(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+
+    function setValue(id, value) {
+      document.getElementById(id).value =
+        typeof value === "string" ? value : "";
+    }
+
+
+    function showStatus(message, type = "success") {
+
+      statusMessage.textContent = message;
+
+      statusMessage.className =
+        "rounded-lg p-4 text-sm";
+
+      if (type === "success") {
+
+        statusMessage.classList.add(
+          "bg-green-50",
+          "text-green-800",
+          "border",
+          "border-green-200"
+        );
+
+      } else {
+
+        statusMessage.classList.add(
+          "bg-red-50",
+          "text-red-800",
+          "border",
+          "border-red-200"
+        );
+      }
+
+      statusMessage.classList.remove("hidden");
+
+      window.setTimeout(() => {
+        statusMessage.classList.add("hidden");
+      }, 5000);
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      URL VALIDATION
+      ----------------------------------------------------------
+    */
+
+    function isSafeHttpUrl(value) {
+
+      if (!value) {
+        return true;
+      }
+
+      try {
+
+        const url = new URL(value);
+
+        return (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        );
+
+      } catch {
+
+        return false;
+      }
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      VALIDATE FORM
+      ----------------------------------------------------------
+    */
+
+    function validateForm(data) {
+
+      if (data.givingTitle.length > 150) {
+        return "Giving title is too long.";
+      }
+
+      if (data.givingDescription.length > 1500) {
+        return "Giving description is too long.";
+      }
+
+      if (data.bankName.length > 100) {
+        return "Bank name is too long.";
+      }
+
+      if (data.accountName.length > 150) {
+        return "Account name is too long.";
+      }
+
+      if (data.accountNumber.length > 30) {
+        return "Account number is too long.";
+      }
+
+      if (
+        data.accountNumber &&
+        !/^[0-9\s-]+$/.test(data.accountNumber)
+      ) {
+        return "Account number can only contain numbers, spaces and hyphens.";
+      }
+
+      if (data.onlineGivingUrl) {
+
+        if (!isSafeHttpUrl(data.onlineGivingUrl)) {
+          return "Online giving link must be a valid HTTP or HTTPS URL.";
+        }
+      }
+
+      return null;
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      LOAD FORM
+      ----------------------------------------------------------
+    */
+
+    function populateForm(data) {
+
+      setValue(
+        "givingTitle",
+        data.givingTitle || ""
+      );
+
+      setValue(
+        "givingDescription",
+        data.givingDescription || ""
+      );
+
+      setValue(
+        "bankName",
+        data.bankName || ""
+      );
+
+      setValue(
+        "accountName",
+        data.accountName || ""
+      );
+
+      setValue(
+        "accountNumber",
+        data.accountNumber || ""
+      );
+
+      setValue(
+        "bankTransferNote",
+        data.bankTransferNote || ""
+      );
+
+      setValue(
+        "onlineGivingUrl",
+        data.onlineGivingUrl || ""
+      );
+
+      setValue(
+        "onlineGivingLabel",
+        data.onlineGivingLabel || ""
+      );
+
+      setValue(
+        "otherGivingMethods",
+        data.otherGivingMethods || ""
+      );
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      GET FORM DATA
+      ----------------------------------------------------------
+    */
+
+    function getFormData() {
+
+      return {
+
+        givingTitle:
+          getValue("givingTitle"),
+
+        givingDescription:
+          getValue("givingDescription"),
+
+        bankName:
+          getValue("bankName"),
+
+        accountName:
+          getValue("accountName"),
+
+        accountNumber:
+          getValue("accountNumber"),
+
+        bankTransferNote:
+          getValue("bankTransferNote"),
+
+        onlineGivingUrl:
+          getValue("onlineGivingUrl"),
+
+        onlineGivingLabel:
+          getValue("onlineGivingLabel"),
+
+        otherGivingMethods:
+          getValue("otherGivingMethods")
+      };
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      LOAD GIVING SETTINGS
+      ----------------------------------------------------------
+    */
+
+    async function loadGivingSettings() {
+
+      try {
+
+        const givingRef =
+          doc(db, "settings", "giving");
+
+        const snapshot =
+          await getDoc(givingRef);
+
+
+        if (snapshot.exists()) {
+
+          originalData =
+            snapshot.data();
+
+          populateForm(originalData);
+
+        } else {
+
+          originalData = {};
+
+          populateForm({});
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Failed to load giving settings:",
+          error
+        );
+
+        showStatus(
+          "Unable to load giving information.",
+          "error"
+        );
+      }
+    }
+
+
+    /*
+      ----------------------------------------------------------
+      SAVE GIVING SETTINGS
+      ----------------------------------------------------------
+    */
+
+    givingForm.addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        if (!isAuthorized) {
+
+          showStatus(
+            "Your administrator session is no longer valid.",
+            "error"
+          );
+
+          return;
+        }
+
+
+        const data =
+          getFormData();
+
+
+        const validationError =
+          validateForm(data);
+
+
+        if (validationError) {
+
+          showStatus(
+            validationError,
+            "error"
+          );
+
+          return;
+        }
+
+
+        saveBtn.disabled = true;
+
+        saveBtn.textContent =
+          "Saving...";
+
+
+        try {
+
+          /*
+            Only approved fields are sent to Firestore.
+            This prevents accidental storage of unexpected
+            form fields.
+          */
+
+          const safeData = {
+
+            givingTitle:
+              data.givingTitle,
+
+            givingDescription:
+              data.givingDescription,
+
+            bankName:
+              data.bankName,
+
+            accountName:
+              data.accountName,
+
+            accountNumber:
+              data.accountNumber,
+
+            bankTransferNote:
+              data.bankTransferNote,
+
+            onlineGivingUrl:
+              data.onlineGivingUrl,
+
+            onlineGivingLabel:
+              data.onlineGivingLabel,
+
+            otherGivingMethods:
+              data.otherGivingMethods,
+
+            updatedAt:
+              serverTimestamp()
+          };
+
+
+          await setDoc(
+            doc(db, "settings", "giving"),
+            safeData,
+            {
+              merge: true
+            }
+          );
+
+
+          originalData =
+            safeData;
+
+          showStatus(
+            "Giving information saved successfully.",
+            "success"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Failed to save giving settings:",
+            error
+          );
+
+          showStatus(
+            "Unable to save giving information. Please try again.",
+            "error"
+          );
+
+        } finally {
+
+          saveBtn.disabled = false;
+
+          saveBtn.textContent =
+            "Save Giving Information";
+        }
+
+      }
+    );
+
+
+    /*
+      ----------------------------------------------------------
+      RESET
+      ----------------------------------------------------------
+    */
+
+    resetBtn.addEventListener(
+      "click",
+      function() {
+
+        populateForm(
+          originalData || {}
+        );
+
+        showStatus(
+          "Changes have been reset.",
+          "success"
+        );
+      }
+    );
+
+
+    /*
+      ----------------------------------------------------------
+      LOGOUT
+      ----------------------------------------------------------
+    */
+
+    logoutBtn.addEventListener(
+      "click",
+      async function() {
+
+        try {
+
+          await signOut(auth);
+
+          window.location.replace(
+            "admin.login.html"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Logout failed:",
+            error
+          );
+
+          showStatus(
+            "Unable to logout. Please try again.",
+            "error"
+          );
+        }
+      }
+    );
+
+
+    /*
+      ----------------------------------------------------------
+      MOBILE SIDEBAR
+      ----------------------------------------------------------
+    */
+
+    function openSidebar() {
+
+      sidebar.classList.remove(
+        "-translate-x-full"
+      );
+
+      sidebarOverlay.classList.remove(
+        "hidden"
+      );
+    }
+
+
+    function closeSidebar() {
+
+      sidebar.classList.add(
+        "-translate-x-full"
+      );
+
+      sidebarOverlay.classList.add(
+        "hidden"
+      );
+    }
+
+
+    menuBtn.addEventListener(
+      "click",
+      openSidebar
+    );
+
+
+    sidebarOverlay.addEventListener(
+      "click",
+      closeSidebar
+    );
+
+
+    /*
+      ----------------------------------------------------------
+      ADMIN AUTHORIZATION
+      ----------------------------------------------------------
+    */
+
+    onAuthStateChanged(
+      auth,
+      async function(user) {
+
+        if (!user) {
+
+          window.location.replace(
+            "admin.login.html"
+          );
+
+          return;
+        }
+
+
+        try {
+
+          /*
+            Direct document lookup is safer and more efficient
+            than downloading the entire admins collection.
+          */
+
+          const adminRef =
+            doc(db, "admins", user.uid);
+
+          const adminSnapshot =
+            await getDoc(adminRef);
+
+
+          if (
+            !adminSnapshot.exists()
+          ) {
+
+            await signOut(auth);
+
+            window.location.replace(
+              "admin.login.html"
+            );
+
+            return;
+          }
+
+
+          const adminData =
+            adminSnapshot.data();
+
+
+          if (
+            adminData.active !== true
+          ) {
+
+            await signOut(auth);
+
+            window.location.replace(
+              "admin.login.html"
+            );
+
+            return;
+          }
+
+
+          /*
+            Authorization succeeded.
+          */
+
+          isAuthorized = true;
+
+
+          adminEmail.textContent =
+            user.email || "Administrator";
+
+
+          await loadGivingSettings();
+
+
+          /*
+            Only reveal the page after authorization.
+          */
+
+          securityScreen.classList.add(
+            "hidden"
+          );
+
+        } catch (error) {
+
+          console.error(
+            "Authorization error:",
+            error
+          );
+
+          isAuthorized = false;
+
+          window.location.replace(
+            "admin.login.html"
+          );
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+  </html>
