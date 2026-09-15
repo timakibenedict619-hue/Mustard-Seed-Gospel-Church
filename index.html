@@ -33,7 +33,11 @@
 <body class="bg-white text-navy antialiased">
   <div id="root"></div>
 
-  <script type="text/babel" data-type="module">
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel" data-type="module">
+
+  
     import React, { useState, useEffect } from 'https://esm.sh/react@18.3.1';
     import { createRoot } from 'https://esm.sh/react-dom@18.3.1/client';
 
@@ -786,6 +790,5 @@
     );
   </script>
 
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</body>
+  </body>
 </html>
