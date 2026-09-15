@@ -28,7 +28,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -1310,19 +1313,47 @@
 
                   <div className="mt-6 flex gap-2">
 
-                    {["FB", "YT", "IG", "X"].map((s) => (
+  <a
+    href="YOUR_FACEBOOK_LINK"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Facebook"
+    className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-navy transition"
+  >
+    <i className="fa-brands fa-facebook-f text-[15px]"></i>
+  </a>
 
-                      <div
-                        key={s}
-                        className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-[11px] font-bold hover:bg-white hover:text-navy transition cursor-pointer"
-                      >
-                        {s}
-                      </div>
+  <a
+    href="YOUR_YOUTUBE_LINK"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="YouTube"
+    className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-navy transition"
+  >
+    <i className="fa-brands fa-youtube text-[15px]"></i>
+  </a>
 
-                    ))}
+  <a
+    href="YOUR_INSTAGRAM_LINK"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-navy transition"
+  >
+    <i className="fa-brands fa-instagram text-[15px]"></i>
+  </a>
 
-                  </div>
+  <a
+    href="YOUR_X_LINK"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="X"
+    className="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-navy transition"
+  >
+    <i className="fa-brands fa-x-twitter text-[15px]"></i>
+  </a>
 
+</div>
                 </div>
 
 
