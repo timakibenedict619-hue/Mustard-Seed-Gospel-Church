@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Manage Testimonies — Mustard Seed Gospel Church</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet">
+
+<style>
+body{
+  font-family:"Inter",sans-serif;
+}
+
+.sidebar{
+  transition:transform .25s ease;
+}
+
+@media(max-width:767px){
+  .sidebar.closed{
+    transform:translateX(-100%);
+  }
+}
+</style>
+</head>
+
+<body class="bg-slate-100 text-slate-900">
+
+<div class="min-h-screen flex">
+
+<!-- MOBILE OVERLAY -->
+<div
+  id="overlay"
+  class="fixed inset-0 bg-black/40 z-30 hidden md:hidden">
+</div>
+
+
+<!-- SIDEBAR -->
+<aside
+  id="sidebar"
+  class="sidebar closed md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 w-72 bg-slate-950 text-white flex flex-col">
+
+  <!-- LOGO -->
+  <div class="px-6 py-6 border-b border-white/10">
+
+    <div class="flex items-center gap-3">
+
+      <div class="w-11 h-11 rounded-xl bg-white text-slate-950 flex items-center justify-center font-extrabold text-xs text-center">
+        MSGC
+      </div>
+
+      <div>
+
+        <h1 class="font-bold text-sm leading-tight">
+          Mustard Seed
+        </h1>
+
+        <p class="text-xs text-slate-400">
+          Gospel Church
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- NAVIGATION -->
+  <nav class="flex-1 px-4 py-5 space-y-1 overflow-y-auto">
+
+    <p class="px-3 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">
+      Main
+    </p>
+
+
+    <!-- Dashboard -->
+    <a
+      href="/admin-dashboard"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▣</span>
+      <span>Dashboard</span>
+
+    </a>
+
+
+    <!-- Events -->
+    <a
+      href="/admin-events"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>◫</span>
+      <span>Events</span>
+
+    </a>
+
+
+    <!-- Sermons -->
+    <a
+      href="/admin-sermons"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▶</span>
+      <span>Sermons</span>
+
+    </a>
+
+
+    <!-- Live -->
+    <a
+      href="/admin-live"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>●</span>
+      <span>Live</span>
+
+    </a>
+
+
+    <p class="px-3 mt-7 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">
+      Management
+    </p>
+
+
+    <!-- Prayer Requests -->
+    <a
+      href="/admin-prayer-requests"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♡</span>
+      <span>Prayer Requests</span>
+
+    </a>
+
+
+    <!-- Messages -->
+    <a
+      href="/admin-contacts-messages"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>✉</span>
+      <span>Messages</span>
+
+    </a>
+
+
+    <!-- Giving -->
+    <a
+      href="/admin-giving"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>₦</span>
+      <span>Giving</span>
+
+    </a>
+
+
+    <!-- Departments -->
+    <a
+      href="/admin-departments"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♟</span>
+      <span>Departments</span>
+
+    </a>
+
+
+    <!-- WOFBI -->
+    <a
+      href="/admin-wofbi"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▤</span>
+      <span>WOFBI</span>
+
+    </a>
+
+
+    <!-- TESTIMONIES -->
+    <a
+      href="/admin-testimonies"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl bg-white/10 text-white font-semibold">
+
+      <span>✦</span>
+      <span>Testimonies</span>
+
+    </a>
+
+
+    <!-- Media -->
+    <a
+      href="/admin-media"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▧</span>
+      <span>Media / Gallery</span>
+
+    </a>
+
+
+    <div class="my-4 border-t border-white/10"></div>
+
+
+    <!-- Settings -->
+    <a
+      href="/admin-settings"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>⚙</span>
+      <span>Church Settings</span>
+
+    </a>
+
+
+    <!-- Admin Management -->
+    <a
+      href="/admin-admins"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♙</span>
+      <span>Admin Management</span>
+
+    </a>
+
+  </nav>
+
+
+  <!-- SIDEBAR BOTTOM -->
+  <div class="p-4 border-t border-white/10">
+
+    <a
+      href="/index"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>↗</span>
+      <span>View Website</span>
+
+    </a>
+
+
+    <button
+      id="logoutBtn"
+      class="w-full mt-1 flex items-center gap-3 px-3 py-3 rounded-xl text-red-300 hover:bg-red-500/10 hover:text-red-200 transition text-left">
+
+      <span>⇥</span>
+      <span>Logout</span>
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="flex-1 min-w-0">
+
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
+
+    <div class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+
+      <div class="flex items-center gap-3">
+
+        <button
+          id="menuBtn"
+          class="md:hidden w-10 h-10 rounded-xl border border-slate-200 hover:bg-slate-50">
+
+          ☰
+
+        </button>
+
+
+        <div>
+
+          <p class="text-xs text-slate-500">
+            Administration
+          </p>
+
+          <h2 class="text-lg sm:text-xl font-bold">
+            Testimonies
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="text-right min-w-0">
+
+        <p
+          id="adminEmail"
+          class="text-sm font-semibold truncate max-w-[180px] sm:max-w-xs">
+
+          Loading...
+
+        </p>
+
+        <p class="text-xs text-slate-500">
+          Administrator
+        </p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- CONTENT -->
+  <section class="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+
+
+    <!-- PAGE TITLE -->
+    <div class="mb-7">
+
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+
+        <div>
+
+          <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Manage Testimonies
+          </h3>
+
+          <p class="mt-2 text-slate-500">
+            Add and manage testimonies that appear on the church website.
+          </p>
+
+        </div>
+
+
+        <div class="bg-white border border-slate-200 rounded-xl px-4 py-3">
+
+          <p class="text-xs text-slate-500">
+            Total Testimonies
+          </p>
+
+          <p
+            id="totalCount"
+            class="text-2xl font-extrabold mt-1">
+            —
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- MESSAGE -->
+    <div
+      id="messageBox"
+      class="hidden mb-5 rounded-xl px-4 py-3 text-sm font-medium">
+    </div>
+
+
+    <!-- FORM -->
+    <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-7">
+
+      <div class="flex items-center justify-between gap-3 mb-6">
+
+        <div>
+
+          <h4
+            id="formTitle"
+            class="font-bold text-lg">
+            Add New Testimony
+          </h4>
+
+          <p class="text-sm text-slate-500 mt-1">
+            Published testimonies will appear on the homepage.
+          </p>
+
+        </div>
+
+
+        <span
+          id="formMode"
+          class="text-xs font-semibold bg-slate-100 text-slate-600 px-3 py-2 rounded-full">
+
+          New
+
+        </span>
+
+      </div>
+
+
+      <form id="testimonyForm" class="space-y-5">
+
+
+        <!-- NAME -->
+        <div>
+
+          <label
+            for="name"
+            class="block text-sm font-semibold mb-2">
+
+            Person's Name
+
+          </label>
+
+          <input
+            id="name"
+            type="text"
+            required
+            maxlength="100"
+            placeholder="Enter person's name"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent">
+
+        </div>
+
+
+        <!-- TESTIMONY -->
+        <div>
+
+          <label
+            for="testimony"
+            class="block text-sm font-semibold mb-2">
+
+            Testimony
+
+          </label>
+
+          <textarea
+            id="testimony"
+            required
+            rows="6"
+            maxlength="2000"
+            placeholder="Write the testimony here..."
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none resize-y focus:ring-2 focus:ring-slate-900 focus:border-transparent"></textarea>
+
+          <div class="flex justify-between mt-1">
+
+            <p class="text-xs text-slate-400">
+              Maximum 2000 characters
+            </p>
+
+            <p
+              id="characterCount"
+              class="text-xs text-slate-400">
+              0 / 2000
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE -->
+        <div>
+
+          <label
+            for="image"
+            class="block text-sm font-semibold mb-2">
+
+            Image Path
+            <span class="font-normal text-slate-400">
+              (Optional)
+            </span>
+
+          </label>
+
+          <input
+            id="image"
+            type="text"
+            maxlength="500"
+            placeholder="images/testimony.jpg"
+            class="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent">
+
+          <p class="text-xs text-slate-500 mt-2">
+            Example: <span class="font-medium">images/testimony1.jpg</span>
+          </p>
+
+          <p class="text-xs text-amber-600 mt-1">
+            The image must already exist inside your website project.
+          </p>
+
+        </div>
+
+
+        <!-- PUBLISHED -->
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+
+          <label class="flex items-start gap-3 cursor-pointer">
+
+            <input
+              id="published"
+              type="checkbox"
+              checked
+              class="mt-1 w-5 h-5">
+
+            <span>
+
+              <span class="block font-semibold text-sm">
+                Publish this testimony
+              </span>
+
+              <span class="block text-xs text-slate-500 mt-1">
+                Published testimonies can appear on the public website.
+              </span>
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+
+          <button
+            id="saveBtn"
+            type="submit"
+            class="flex-1 sm:flex-none px-6 py-3 rounded-xl bg-slate-950 text-white font-semibold hover:bg-slate-800 transition">
+
+            Add Testimony
+
+          </button>
+
+
+          <button
+            id="cancelBtn"
+            type="button"
+            class="hidden px-6 py-3 rounded-xl border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition">
+
+            Cancel Edit
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+
+    <!-- TESTIMONIES LIST -->
+    <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+
+      <!-- LIST HEADER -->
+      <div class="p-6 border-b border-slate-200">
+
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+
+          <div>
+
+            <h4 class="font-bold text-lg">
+              All Testimonies
+            </h4>
+
+            <p class="text-sm text-slate-500 mt-1">
+              Manage existing testimonies.
+            </p>
+
+          </div>
+
+
+          <button
+            id="refreshBtn"
+            type="button"
+            class="px-4 py-2 rounded-xl border border-slate-300 text-sm font-semibold hover:bg-slate-50 transition">
+
+            ↻ Refresh
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- LOADING -->
+      <div
+        id="loading"
+        class="p-10 text-center text-slate-500">
+
+        Loading testimonies...
+
+      </div>
+
+
+      <!-- EMPTY -->
+      <div
+        id="emptyState"
+        class="hidden p-10 text-center">
+
+        <div class="text-4xl mb-3">
+          ✦
+        </div>
+
+        <h5 class="font-bold text-lg">
+          No testimonies yet
+        </h5>
+
+        <p class="text-sm text-slate-500 mt-1">
+          Add the first testimony using the form above.
+        </p>
+
+      </div>
+
+
+      <!-- LIST -->
+      <div
+        id="testimoniesList"
+        class="divide-y divide-slate-200">
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="mt-6 text-center text-xs text-slate-400">
+
+      Mustard Seed Gospel Church Admin Panel
+
+    </div>
+
+  </section>
+
+</main>
+
+</div>
+
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+  collection,
+  doc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* --------------------------------------------------
+   HELPERS
+-------------------------------------------------- */
+
+const $ = (id) =>
+  document.getElementById(id);
+
+
+let editingId = null;
+
+
+/* --------------------------------------------------
+   MOBILE SIDEBAR
+-------------------------------------------------- */
+
+const sidebar =
+  $("sidebar");
+
+const overlay =
+  $("overlay");
+
+
+$("menuBtn").addEventListener("click", () => {
+
+  sidebar.classList.remove("closed");
+
+  overlay.classList.remove("hidden");
+
+});
+
+
+overlay.addEventListener("click", () => {
+
+  sidebar.classList.add("closed");
+
+  overlay.classList.add("hidden");
+
+});
+
+
+document
+  .querySelectorAll("#sidebar a")
+  .forEach((link) => {
+
+    link.addEventListener("click", () => {
+
+      if (window.innerWidth < 768) {
+
+        sidebar.classList.add("closed");
+
+        overlay.classList.add("hidden");
+
+      }
+
+    });
+
+  });
+
+
+/* --------------------------------------------------
+   MESSAGE
+-------------------------------------------------- */
+
+function showMessage(
+  message,
+  type = "success"
+) {
+
+  const box =
+    $("messageBox");
+
+
+  box.textContent =
+    message;
+
+
+  box.className =
+    "mb-5 rounded-xl px-4 py-3 text-sm font-medium";
+
+
+  if (type === "success") {
+
+    box.classList.add(
+      "bg-green-50",
+      "text-green-700",
+      "border",
+      "border-green-200"
+    );
+
+  } else {
+
+    box.classList.add(
+      "bg-red-50",
+      "text-red-700",
+      "border",
+      "border-red-200"
+    );
+
+  }
+
+
+  box.classList.remove("hidden");
+
+
+  setTimeout(() => {
+
+    box.classList.add("hidden");
+
+  }, 4000);
+
+}
+
+
+/* --------------------------------------------------
+   LOGOUT
+-------------------------------------------------- */
+
+$("logoutBtn").addEventListener(
+  "click",
+  async () => {
+
+    try {
+
+      await signOut(auth);
+
+      window.location.href =
+        "admin.login.html";
+
+    } catch (error) {
+
+      console.error(error);
+
+      showMessage(
+        "Unable to log out. Please try again.",
+        "error"
+      );
+
+    }
+
+  }
+);
+
+
+/* --------------------------------------------------
+   VERIFY ADMIN
+-------------------------------------------------- */
+
+async function verifyAdmin(user) {
+
+  try {
+
+    const adminRef =
+      doc(db, "admins", user.uid);
+
+
+    const snapshot =
+      await getDoc(adminRef);
+
+
+    if (
+      !snapshot.exists() ||
+      snapshot.data().active !== true
+    ) {
+
+      await signOut(auth);
+
+      window.location.href =
+        "admin.login.html";
+
+      return false;
+
+    }
+
+
+    $("adminEmail").textContent =
+      snapshot.data().email ||
+      user.email ||
+      "Administrator";
+
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "Admin verification error:",
+      error
+    );
+
+    return false;
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   CHARACTER COUNT
+-------------------------------------------------- */
+
+$("testimony").addEventListener(
+  "input",
+  () => {
+
+    const length =
+      $("testimony").value.length;
+
+
+    $("characterCount").textContent =
+      `${length} / 2000`;
+
+  }
+);
+
+
+/* --------------------------------------------------
+   FORMAT DATE
+-------------------------------------------------- */
+
+function formatDate(timestamp) {
+
+  if (!timestamp) {
+
+    return "Recently added";
+
+  }
+
+
+  try {
+
+    const date =
+      timestamp.toDate();
+
+
+    return date.toLocaleDateString(
+      "en-NG",
+      {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      }
+    );
+
+  } catch {
+
+    return "Recently added";
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   LOAD TESTIMONIES
+-------------------------------------------------- */
+
+async function loadTestimonies() {
+
+  $("loading")
+    .classList.remove("hidden");
+
+  $("emptyState")
+    .classList.add("hidden");
+
+  $("testimoniesList")
+    .innerHTML = "";
+
+
+  try {
+
+    const testimoniesRef =
+      collection(
+        db,
+        "testimonies"
+      );
+
+
+    let snapshot;
+
+
+    try {
+
+      const testimoniesQuery =
+        query(
+          testimoniesRef,
+          orderBy(
+            "createdAt",
+            "desc"
+          )
+        );
+
+
+      snapshot =
+        await getDocs(
+          testimoniesQuery
+        );
+
+    } catch (queryError) {
+
+      console.warn(
+        "Ordered query failed. Loading without order.",
+        queryError
+      );
+
+
+      snapshot =
+        await getDocs(
+          testimoniesRef
+        );
+
+    }
+
+
+    $("loading")
+      .classList.add("hidden");
+
+
+    $("totalCount").textContent =
+      snapshot.size;
+
+
+    if (snapshot.empty) {
+
+      $("emptyState")
+        .classList.remove("hidden");
+
+      return;
+
+    }
+
+
+    const testimonies =
+      [];
+
+
+    snapshot.forEach((item) => {
+
+      testimonies.push({
+        id: item.id,
+        ...item.data()
+      });
+
+    });
+
+
+    /*
+      If the fallback query was used,
+      sort locally by createdAt.
+    */
+
+    testimonies.sort(
+      (a, b) => {
+
+        const aTime =
+          a.createdAt?.seconds || 0;
+
+        const bTime =
+          b.createdAt?.seconds || 0;
+
+        return bTime - aTime;
+
+      }
+    );
+
+
+    testimonies.forEach(
+      renderTestimony
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Load testimonies error:",
+      error
+    );
+
+
+    $("loading").classList.add(
+      "hidden"
+    );
+
+
+    $("testimoniesList").innerHTML = `
+
+      <div class="p-8 text-center">
+
+        <div class="text-3xl mb-3">
+          ⚠️
+        </div>
+
+        <p class="font-semibold text-red-600">
+          Unable to load testimonies.
+        </p>
+
+        <p class="text-sm text-slate-500 mt-2">
+          Check your Firestore connection and security rules.
+        </p>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   RENDER TESTIMONY
+-------------------------------------------------- */
+
+function renderTestimony(
+  data
+) {
+
+  const wrapper =
+    document.createElement("div");
+
+
+  wrapper.className =
+    "p-6 hover:bg-slate-50 transition";
+
+
+  const published =
+    data.published === true;
+
+
+  const image =
+    data.image ||
+    "";
+
+
+  const imageHTML =
+    image
+      ? `
+
+        <img
+          src="${escapeHTML(image)}"
+          alt="${escapeHTML(data.name || "Testimony")}"
+          class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover border border-slate-200 shrink-0"
+          onerror="this.style.display='none'">
+
+      `
+      : `
+
+        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-100 flex items-center justify-center text-3xl shrink-0">
+          ✦
+        </div>
+
+      `;
+
+
+  wrapper.innerHTML = `
+
+    <div class="flex flex-col lg:flex-row gap-5">
+
+      <!-- IMAGE -->
+
+      <div>
+        ${imageHTML}
+      </div>
+
+
+      <!-- CONTENT -->
+
+      <div class="flex-1 min-w-0">
+
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+
+          <div>
+
+            <h5 class="font-bold text-lg">
+              ${escapeHTML(data.name || "Unnamed")}
+            </h5>
+
+            <p class="text-xs text-slate-400 mt-1">
+              ${formatDate(data.createdAt)}
+            </p>
+
+          </div>
+
+
+          <!-- STATUS -->
+
+          <span
+            class="
+              inline-flex
+              w-fit
+              px-3
+              py-1
+              rounded-full
+              text-xs
+              font-bold
+              ${published
+                ? "bg-green-100 text-green-700"
+                : "bg-slate-100 text-slate-600"}
+            ">
+
+            ${published
+              ? "Published"
+              : "Hidden"}
+
+          </span>
+
+        </div>
+
+
+        <!-- TESTIMONY TEXT -->
+
+        <p class="mt-4 text-sm text-slate-600 leading-7 whitespace-pre-line">
+          ${escapeHTML(data.testimony || "")}
+        </p>
+
+
+        <!-- ACTIONS -->
+
+        <div class="mt-5 flex flex-wrap gap-2">
+
+          <button
+            type="button"
+            data-action="edit"
+            data-id="${data.id}"
+            class="px-4 py-2 rounded-xl bg-slate-950 text-white text-sm font-semibold hover:bg-slate-800 transition">
+
+            ✎ Edit
+
+          </button>
+
+
+          <button
+            type="button"
+            data-action="toggle"
+            data-id="${data.id}"
+            data-published="${published}"
+            class="px-4 py-2 rounded-xl border border-slate-300 text-sm font-semibold hover:bg-slate-100 transition">
+
+            ${published
+              ? "Hide"
+              : "Publish"}
+
+          </button>
+
+
+          <button
+            type="button"
+            data-action="delete"
+            data-id="${data.id}"
+            class="px-4 py-2 rounded-xl border border-red-200 text-red-600 text-sm font-semibold hover:bg-red-50 transition">
+
+            🗑 Delete
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  $("testimoniesList")
+    .appendChild(wrapper);
+
+}
+
+
+/* --------------------------------------------------
+   ESCAPE HTML
+-------------------------------------------------- */
+
+function escapeHTML(value) {
+
+  return String(value || "")
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
+
+
+/* --------------------------------------------------
+   ADD / UPDATE TESTIMONY
+-------------------------------------------------- */
+
+$("testimonyForm")
+  .addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const name =
+        $("name").value.trim();
+
+
+      const testimony =
+        $("testimony").value.trim();
+
+
+      const image =
+        $("image").value.trim();
+
+
+      const published =
+        $("published").checked;
+
+
+      if (!name) {
+
+        showMessage(
+          "Please enter the person's name.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!testimony) {
+
+        showMessage(
+          "Please enter the testimony.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      const saveButton =
+        $("saveBtn");
+
+
+      const originalText =
+        saveButton.textContent;
+
+
+      saveButton.disabled =
+        true;
+
+
+      saveButton.textContent =
+        editingId
+          ? "Saving Changes..."
+          : "Adding Testimony...";
+
+
+      try {
+
+        if (editingId) {
+
+          /*
+            UPDATE EXISTING TESTIMONY
+          */
+
+          await updateDoc(
+            doc(
+              db,
+              "testimonies",
+              editingId
+            ),
+            {
+              name,
+              testimony,
+              image,
+              published,
+              updatedAt:
+                serverTimestamp()
+            }
+          );
+
+
+          showMessage(
+            "Testimony updated successfully."
+          );
+
+        } else {
+
+          /*
+            CREATE NEW TESTIMONY
+          */
+
+          await addDoc(
+            collection(
+              db,
+              "testimonies"
+            ),
+            {
+              name,
+              testimony,
+              image,
+              published,
+              createdAt:
+                serverTimestamp(),
+              updatedAt:
+                serverTimestamp()
+            }
+          );
+
+
+          showMessage(
+            "Testimony added successfully."
+          );
+
+        }
+
+
+        resetForm();
+
+        await loadTestimonies();
+
+
+      } catch (error) {
+
+        console.error(
+          "Save testimony error:",
+          error
+        );
+
+
+        showMessage(
+          "Unable to save testimony. Check your Firestore security rules.",
+          "error"
+        );
+
+      } finally {
+
+        saveButton.disabled =
+          false;
+
+        saveButton.textContent =
+          originalText;
+
+      }
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   EDIT TESTIMONY
+-------------------------------------------------- */
+
+async function editTestimony(
+  id
+) {
+
+  try {
+
+    const snapshot =
+      await getDoc(
+        doc(
+          db,
+          "testimonies",
+          id
+        )
+      );
+
+
+    if (!snapshot.exists()) {
+
+      showMessage(
+        "This testimony no longer exists.",
+        "error"
+      );
+
+      await loadTestimonies();
+
+      return;
+
+    }
+
+
+    const data =
+      snapshot.data();
+
+
+    editingId =
+      id;
+
+
+    $("name").value =
+      data.name || "";
+
+
+    $("testimony").value =
+      data.testimony || "";
+
+
+    $("image").value =
+      data.image || "";
+
+
+    $("published").checked =
+      data.published === true;
+
+
+    $("characterCount").textContent =
+      `${$("testimony").value.length} / 2000`;
+
+
+    $("formTitle").textContent =
+      "Edit Testimony";
+
+
+    $("formMode").textContent =
+      "Editing";
+
+
+    $("saveBtn").textContent =
+      "Save Changes";
+
+
+    $("cancelBtn")
+      .classList.remove("hidden");
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+
+  } catch (error) {
+
+    console.error(
+      "Edit testimony error:",
+      error
+    );
+
+
+    showMessage(
+      "Unable to open this testimony.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   TOGGLE PUBLISHED
+-------------------------------------------------- */
+
+async function togglePublished(
+  id,
+  currentPublished
+) {
+
+  try {
+
+    await updateDoc(
+      doc(
+        db,
+        "testimonies",
+        id
+      ),
+      {
+        published:
+          !currentPublished,
+        updatedAt:
+          serverTimestamp()
+      }
+    );
+
+
+    showMessage(
+      currentPublished
+        ? "Testimony hidden from the website."
+        : "Testimony published successfully."
+    );
+
+
+    await loadTestimonies();
+
+
+  } catch (error) {
+
+    console.error(
+      "Toggle testimony error:",
+      error
+    );
+
+
+    showMessage(
+      "Unable to change publication status.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   DELETE TESTIMONY
+-------------------------------------------------- */
+
+async function deleteTestimony(
+  id
+) {
+
+  const confirmed =
+    confirm(
+      "Are you sure you want to permanently delete this testimony?"
+    );
+
+
+  if (!confirmed) {
+
+    return;
+
+  }
+
+
+  try {
+
+    await deleteDoc(
+      doc(
+        db,
+        "testimonies",
+        id
+      )
+    );
+
+
+    if (editingId === id) {
+
+      resetForm();
+
+    }
+
+
+    showMessage(
+      "Testimony deleted successfully."
+    );
+
+
+    await loadTestimonies();
+
+
+  } catch (error) {
+
+    console.error(
+      "Delete testimony error:",
+      error
+    );
+
+
+    showMessage(
+      "Unable to delete testimony.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* --------------------------------------------------
+   LIST ACTIONS
+-------------------------------------------------- */
+
+$("testimoniesList")
+  .addEventListener(
+    "click",
+    (event) => {
+
+      const button =
+        event.target.closest(
+          "button[data-action]"
+        );
+
+
+      if (!button) {
+
+        return;
+
+      }
+
+
+      const action =
+        button.dataset.action;
+
+
+      const id =
+        button.dataset.id;
+
+
+      if (action === "edit") {
+
+        editTestimony(id);
+
+      }
+
+
+      if (action === "toggle") {
+
+        const published =
+          button.dataset.published === "true";
+
+
+        togglePublished(
+          id,
+          published
+        );
+
+      }
+
+
+      if (action === "delete") {
+
+        deleteTestimony(id);
+
+      }
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   CANCEL EDIT
+-------------------------------------------------- */
+
+$("cancelBtn")
+  .addEventListener(
+    "click",
+    () => {
+
+      resetForm();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   RESET FORM
+-------------------------------------------------- */
+
+function resetForm() {
+
+  editingId =
+    null;
+
+
+  $("testimonyForm")
+    .reset();
+
+
+  $("published").checked =
+    true;
+
+
+  $("characterCount").textContent =
+    "0 / 2000";
+
+
+  $("formTitle").textContent =
+    "Add New Testimony";
+
+
+  $("formMode").textContent =
+    "New";
+
+
+  $("saveBtn").textContent =
+    "Add Testimony";
+
+
+  $("cancelBtn")
+    .classList.add("hidden");
+
+}
+
+
+/* --------------------------------------------------
+   REFRESH
+-------------------------------------------------- */
+
+$("refreshBtn")
+  .addEventListener(
+    "click",
+    async () => {
+
+      const button =
+        $("refreshBtn");
+
+
+      button.disabled =
+        true;
+
+
+      button.textContent =
+        "↻ Loading...";
+
+
+      await loadTestimonies();
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "↻ Refresh";
+
+    }
+  );
+
+
+/* --------------------------------------------------
+   AUTH STATE
+-------------------------------------------------- */
+
+onAuthStateChanged(
+  auth,
+  async (user) => {
+
+    if (!user) {
+
+      window.location.href =
+        "admin.login.html";
+
+      return;
+
+    }
+
+
+    try {
+
+      const isAdmin =
+        await verifyAdmin(user);
+
+
+      if (!isAdmin) {
+
+        return;
+
+      }
+
+
+      await loadTestimonies();
+
+
+    } catch (error) {
+
+      console.error(
+        "Admin page error:",
+        error
+      );
+
+
+      try {
+
+        await signOut(auth);
+
+      } catch (_) {}
+
+
+      window.location.href =
+        "admin.login.html";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+  </html>
