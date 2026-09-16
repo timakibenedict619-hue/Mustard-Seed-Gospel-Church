@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard — Mustard Seed Gospel Church</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+.church-font {
+  font-family: "Fraunces", serif;
+}
+
+.sidebar {
+  transition: transform .25s ease;
+}
+
+@media (max-width: 767px) {
+
+  .sidebar.closed {
+    transform: translateX(-100%);
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body class="bg-[#F7F7F5] text-[#0A1931]">
+
+<div class="min-h-screen flex">
+
+
+<!-- MOBILE OVERLAY -->
+
+<div
+  id="overlay"
+  class="fixed inset-0 bg-black/40 z-30 hidden md:hidden">
+</div>
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+  id="sidebar"
+  class="sidebar closed md:translate-x-0 fixed md:static inset-y-0 left-0 z-40 w-72 bg-[#0A1931] text-white flex flex-col">
+
+
+  <!-- LOGO -->
+
+  <div class="px-6 py-6 border-b border-white/10">
+
+    <div class="flex items-center gap-3">
+
+      <div
+        class="w-12 h-12 rounded-full overflow-hidden bg-white flex items-center justify-center shrink-0">
+
+        <img
+          src="file_00000000f484821082c1a5a75b373fed.png"
+          alt="Mustard Seed Gospel Church Logo"
+          class="w-full h-full object-contain"
+        >
+
+      </div>
+
+
+      <div>
+
+        <h1 class="church-font font-bold text-sm leading-tight">
+          Mustard Seed
+        </h1>
+
+        <p class="text-xs text-slate-400">
+          Gospel Church
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="flex-1 px-4 py-5 space-y-1 overflow-y-auto">
+
+
+    <p class="px-3 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">
+      Main
+    </p>
+
+
+    <!-- Dashboard -->
+
+    <a
+      href="/admin-dashboard"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl bg-[#D4AF37] text-[#0A1931] font-bold">
+
+      <span>▣</span>
+      <span>Dashboard</span>
+
+    </a>
+
+
+    <!-- Events -->
+
+    <a
+      href="/admin-events"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>◫</span>
+      <span>Events</span>
+
+    </a>
+
+
+    <!-- Sermons -->
+
+    <a
+      href="/admin-sermons"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▶</span>
+      <span>Sermons</span>
+
+    </a>
+
+
+    <!-- Live -->
+
+    <a
+      href="/admin-live"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>●</span>
+      <span>Live</span>
+
+    </a>
+
+
+    <p class="px-3 mt-7 mb-3 text-[11px] uppercase tracking-widest text-slate-500 font-bold">
+      Management
+    </p>
+
+
+    <!-- Prayer Requests -->
+
+    <a
+      href="/admin-prayer-requests"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♡</span>
+      <span>Prayer Requests</span>
+
+    </a>
+
+
+    <!-- Messages -->
+
+    <a
+      href="/admin-contacts-messages"
+      class="flex items-center justify-between px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span class="flex items-center gap-3">
+
+        <span>✉</span>
+        <span>Messages</span>
+
+      </span>
+
+
+      <span
+        id="messageBadge"
+        class="hidden min-w-6 h-6 px-2 rounded-full bg-red-500 text-white text-[11px] font-bold items-center justify-center">
+
+        0
+
+      </span>
+
+    </a>
+
+
+    <!-- Giving -->
+
+    <a
+      href="/admin-giving"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>₦</span>
+      <span>Giving</span>
+
+    </a>
+
+
+    <!-- Departments -->
+
+    <a
+      href="/admin-departments"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♟</span>
+      <span>Departments</span>
+
+    </a>
+
+
+    <!-- WOFBI -->
+
+    <a
+      href="/admin-wofbi"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▤</span>
+      <span>WOFBI</span>
+
+    </a>
+
+
+    <!-- TESTIMONIES -->
+
+    <a
+      href="/admin-testimonies"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>✦</span>
+      <span>Testimonies</span>
+
+    </a>
+
+
+    <!-- MEDIA -->
+
+    <a
+      href="/admin-media"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>▧</span>
+      <span>Media / Gallery</span>
+
+    </a>
+
+
+    <div class="my-4 border-t border-white/10"></div>
+
+
+    <!-- SETTINGS -->
+
+    <a
+      href="/admin-settings"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>⚙</span>
+      <span>Church Settings</span>
+
+    </a>
+
+
+    <!-- ADMIN MANAGEMENT -->
+
+    <a
+      href="/admin-admins"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>♙</span>
+      <span>Admin Management</span>
+
+    </a>
+
+  </nav>
+
+
+  <!-- SIDEBAR BOTTOM -->
+
+  <div class="p-4 border-t border-white/10">
+
+
+    <!-- VIEW WEBSITE -->
+
+    <a
+      href="/index"
+      class="flex items-center gap-3 px-3 py-3 rounded-xl text-slate-300 hover:bg-white/10 hover:text-white transition">
+
+      <span>↗</span>
+      <span>View Website</span>
+
+    </a>
+
+
+    <!-- LOGOUT -->
+
+    <button
+      id="logoutBtn"
+      type="button"
+      class="w-full mt-1 flex items-center gap-3 px-3 py-3 rounded-xl text-red-300 hover:bg-red-500/10 hover:text-red-200 transition text-left">
+
+      <span>⇥</span>
+      <span>Logout</span>
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="flex-1 min-w-0">
+
+
+  <!-- HEADER -->
+
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-20">
+
+    <div
+      class="px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+
+
+      <div class="flex items-center gap-3">
+
+
+        <!-- MOBILE MENU -->
+
+        <button
+          id="menuBtn"
+          type="button"
+          class="md:hidden w-10 h-10 rounded-xl border border-slate-200 hover:bg-slate-50">
+
+          ☰
+
+        </button>
+
+
+        <div>
+
+          <p class="text-xs text-slate-500">
+            Administration
+          </p>
+
+          <h2 class="text-lg sm:text-xl font-bold">
+            Dashboard
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <!-- ADMIN -->
+
+      <div class="text-right min-w-0">
+
+        <p
+          id="adminEmail"
+          class="text-sm font-semibold truncate max-w-[180px] sm:max-w-xs">
+
+          Loading...
+
+        </p>
+
+        <p class="text-xs text-slate-500">
+          Administrator
+        </p>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- CONTENT -->
+
+  <section
+    class="px-4 sm:px-6 lg:px-8 py-6 lg:py-8 max-w-7xl mx-auto">
+
+
+    <!-- WELCOME -->
+
+    <div class="mb-7">
+
+      <h3
+        class="church-font text-2xl sm:text-3xl font-bold tracking-tight">
+
+        Welcome to the Admin Panel
+
+      </h3>
+
+      <p class="mt-2 text-slate-500">
+
+        Manage the church website content from one place.
+
+      </p>
+
+    </div>
+
+
+    <!-- =================================================
+         MAIN STATISTICS
+    ================================================= -->
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
+
+
+      <!-- EVENTS -->
+
+      <a
+        href="/admin-events"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-3">
+
+          <div>
+
+            <p class="text-sm text-slate-500 font-medium">
+              Events
+            </p>
+
+            <p
+              id="eventsCount"
+              class="mt-2 text-3xl font-extrabold">
+
+              —
+
+            </p>
+
+          </div>
+
+          <div
+            class="w-11 h-11 rounded-xl bg-[#0A1931]/10 flex items-center justify-center text-xl">
+
+            ◫
+
+          </div>
+
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500">
+          Manage church events →
+        </p>
+
+      </a>
+
+
+      <!-- SERMONS -->
+
+      <a
+        href="/admin-sermons"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-3">
+
+          <div>
+
+            <p class="text-sm text-slate-500 font-medium">
+              Sermons
+            </p>
+
+            <p
+              id="sermonsCount"
+              class="mt-2 text-3xl font-extrabold">
+
+              —
+
+            </p>
+
+          </div>
+
+          <div
+            class="w-11 h-11 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl">
+
+            ▶
+
+          </div>
+
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500">
+          Manage sermons →
+        </p>
+
+      </a>
+
+
+      <!-- TESTIMONIES -->
+
+      <a
+        href="/admin-testimonies"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-3">
+
+          <div>
+
+            <p class="text-sm text-slate-500 font-medium">
+              Testimonies
+            </p>
+
+            <p
+              id="testimoniesCount"
+              class="mt-2 text-3xl font-extrabold">
+
+              —
+
+            </p>
+
+          </div>
+
+          <div
+            class="w-11 h-11 rounded-xl bg-[#D4AF37]/20 flex items-center justify-center text-xl">
+
+            ✦
+
+          </div>
+
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500">
+          Manage testimonies →
+        </p>
+
+      </a>
+
+
+      <!-- PRAYER -->
+
+      <a
+        href="/admin-prayer-requests"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-3">
+
+          <div>
+
+            <p class="text-sm text-slate-500 font-medium">
+              Prayer Requests
+            </p>
+
+            <p
+              id="prayerCount"
+              class="mt-2 text-3xl font-extrabold">
+
+              —
+
+            </p>
+
+          </div>
+
+          <div
+            class="w-11 h-11 rounded-xl bg-[#0A1931]/10 flex items-center justify-center text-xl">
+
+            ♡
+
+          </div>
+
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500">
+          View submitted requests →
+        </p>
+
+      </a>
+
+
+      <!-- LIVE -->
+
+      <a
+        href="/admin-live"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <div class="flex items-start justify-between gap-3">
+
+          <div>
+
+            <p class="text-sm text-slate-500 font-medium">
+              Live Status
+            </p>
+
+            <p
+              id="liveStatus"
+              class="mt-2 text-xl font-extrabold">
+
+              Checking...
+
+            </p>
+
+          </div>
+
+          <div
+            id="liveIcon"
+            class="w-11 h-11 rounded-xl bg-slate-100 flex items-center justify-center text-xl">
+
+            ⚪
+
+          </div>
+
+        </div>
+
+        <p class="mt-4 text-xs text-slate-500">
+          Manage live information →
+        </p>
+
+      </a>
+
+    </div>
+
+
+    <!-- =================================================
+         SECONDARY STATISTICS
+    ================================================= -->
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+
+
+      <!-- NEW PRAYER -->
+
+      <a
+        href="/admin-prayer-requests"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <p class="text-sm text-slate-500 font-medium">
+          New Prayer Requests
+        </p>
+
+        <p
+          id="newPrayerCount"
+          class="mt-2 text-2xl font-extrabold text-[#0A1931]">
+
+          —
+
+        </p>
+
+        <p class="mt-2 text-xs text-slate-500">
+          Requests waiting for attention
+        </p>
+
+      </a>
+
+
+      <!-- MESSAGES -->
+
+      <a
+        href="/admin-contacts-messages"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <p class="text-sm text-slate-500 font-medium">
+          Contact Messages
+        </p>
+
+        <p
+          id="messagesCount"
+          class="mt-2 text-2xl font-extrabold">
+
+          —
+
+        </p>
+
+        <p class="mt-2 text-xs text-slate-500">
+          Total messages received
+        </p>
+
+      </a>
+
+
+      <!-- NEW MESSAGES -->
+
+      <a
+        href="/admin-contacts-messages"
+        class="bg-white border border-slate-200 rounded-2xl p-5 hover:shadow-md transition">
+
+        <p class="text-sm text-slate-500 font-medium">
+          New Messages
+        </p>
+
+        <p
+          id="newMessagesCount"
+          class="mt-2 text-2xl font-extrabold text-red-600">
+
+          —
+
+        </p>
+
+        <p class="mt-2 text-xs text-slate-500">
+          Messages waiting for attention
+        </p>
+
+      </a>
+
+    </div>
+
+
+    <!-- =================================================
+         QUICK ACTIONS + CMS STATUS
+    ================================================= -->
+
+    <div class="mt-7 grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+
+      <!-- QUICK ACTIONS -->
+
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6">
+
+        <div class="mb-5">
+
+          <h4 class="font-bold text-lg">
+            Quick Actions
+          </h4>
+
+          <p class="text-sm text-slate-500 mt-1">
+            Jump directly to common tasks.
+          </p>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+
+          <a
+            href="/admin-events"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Add / Edit Event
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Update event details and image paths.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-sermons"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Add / Edit Sermon
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Manage sermon information.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-live"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Update Live
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Control the current live service information.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-testimonies"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Add / Edit Testimony
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Publish and manage church testimonies.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-prayer-requests"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Prayer Requests
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Review requests sent through the website.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-contacts-messages"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Contact Messages
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Read and manage website messages.
+            </p>
+
+          </a>
+
+
+          <a
+            href="/admin-settings"
+            class="rounded-xl border border-slate-200 p-4 hover:bg-slate-50 transition">
+
+            <p class="font-semibold">
+              Church Settings
+            </p>
+
+            <p class="text-xs text-slate-500 mt-1">
+              Update church information and social links.
+            </p>
+
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- CMS STATUS -->
+
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6">
+
+        <h4 class="font-bold text-lg">
+          CMS Status
+        </h4>
+
+        <p class="text-sm text-slate-500 mt-1">
+          Current status of your church management system.
+        </p>
+
+
+        <div class="mt-5 space-y-3">
+
+
+          <!-- AUTH -->
+
+          <div
+            class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+
+            <div
+              class="flex items-center justify-between gap-3">
+
+              <div>
+
+                <p
+                  class="text-xs uppercase tracking-wide text-slate-500 font-bold">
+
+                  Authentication
+
+                </p>
+
+                <p class="mt-1 font-semibold">
+                  Firebase Auth
+                </p>
+
+              </div>
+
+              <span class="text-green-600 text-sm font-bold">
+                ● Active
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- DATABASE -->
+
+          <div
+            class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+
+            <div
+              class="flex items-center justify-between gap-3">
+
+              <div>
+
+                <p
+                  class="text-xs uppercase tracking-wide text-slate-500 font-bold">
+
+                  Database
+
+                </p>
+
+                <p class="mt-1 font-semibold">
+                  Cloud Firestore
+                </p>
+
+              </div>
+
+              <span class="text-green-600 text-sm font-bold">
+                ● Connected
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- IMAGE STORAGE -->
+
+          <div
+            class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+
+            <div
+              class="flex items-center justify-between gap-3">
+
+              <div>
+
+                <p
+                  class="text-xs uppercase tracking-wide text-slate-500 font-bold">
+
+                  Image Storage
+
+                </p>
+
+                <p class="mt-1 font-semibold">
+                  Local Image Paths
+                </p>
+
+              </div>
+
+              <span class="text-blue-600 text-sm font-bold">
+                ● Active
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- LIVE -->
+
+          <div
+            class="rounded-xl bg-slate-50 border border-slate-200 p-4">
+
+            <div
+              class="flex items-center justify-between gap-3">
+
+              <div>
+
+                <p
+                  class="text-xs uppercase tracking-wide text-slate-500 font-bold">
+
+                  Live Service
+
+                </p>
+
+                <p
+                  id="systemLiveStatus"
+                  class="mt-1 font-semibold">
+
+                  Checking...
+
+                </p>
+
+              </div>
+
+              <span
+                id="systemLiveDot"
+                class="text-slate-400 text-sm font-bold">
+
+                ●
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =================================================
+         IMAGE STORAGE
+    ================================================= -->
+
+    <div
+      class="mt-5 bg-white border border-slate-200 rounded-2xl p-6">
+
+      <h4 class="font-bold text-lg">
+        Image Storage
+      </h4>
+
+      <p class="text-sm text-slate-500 mt-1">
+        Current setup uses local image paths.
+      </p>
+
+
+      <div
+        class="mt-5 rounded-xl bg-slate-50 border border-slate-200 p-4">
+
+        <div class="flex gap-3">
+
+          <div class="text-xl">
+            🖼️
+          </div>
+
+          <div>
+
+            <p class="font-semibold text-sm">
+              Local Paths
+            </p>
+
+            <p class="text-sm text-slate-600 mt-1">
+
+              Images stay inside your website project.
+              Firestore stores the image path used by the website.
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+
+        <p class="text-sm font-semibold text-amber-900">
+          Important
+        </p>
+
+        <p class="text-sm text-amber-800 mt-1">
+
+          This setup does not upload images to Firebase Storage.
+          To change an image, place the new image in your website
+          folder and update its path.
+
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="mt-6 text-center text-xs text-slate-400">
+
+      Mustard Seed Gospel Church Admin Panel
+
+    </div>
+
+  </section>
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+import { auth, db } from "./firebase.js";
+
+import {
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getCountFromServer
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const $ = (id) => document.getElementById(id);
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+const sidebar = $("sidebar");
+const overlay = $("overlay");
+const menuBtn = $("menuBtn");
+
+
+menuBtn.addEventListener("click", () => {
+
+  sidebar.classList.remove("closed");
+  overlay.classList.remove("hidden");
+
+});
+
+
+overlay.addEventListener("click", () => {
+
+  sidebar.classList.add("closed");
+  overlay.classList.add("hidden");
+
+});
+
+
+document.querySelectorAll("#sidebar a").forEach((link) => {
+
+  link.addEventListener("click", () => {
+
+    if (window.innerWidth < 768) {
+
+      sidebar.classList.add("closed");
+      overlay.classList.add("hidden");
+
+    }
+
+  });
+
+});
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+$("logoutBtn").addEventListener("click", async () => {
+
+  try {
+
+    await signOut(auth);
+
+    /*
+      IMPORTANT:
+      Your login page is admin-login.html
+    */
+
+    window.location.href = "admin-login.html";
+
+  } catch (error) {
+
+    console.error("Logout error:", error);
+
+    alert("Unable to log out. Please try again.");
+
+  }
+
+});
+
+
+/* =====================================================
+   VERIFY ADMIN
+===================================================== */
+
+async function verifyAdmin(user) {
+
+  const adminRef = doc(
+    db,
+    "admins",
+    user.uid
+  );
+
+
+  const snapshot = await getDoc(adminRef);
+
+
+  if (!snapshot.exists()) {
+
+    await signOut(auth);
+
+    window.location.href = "admin-login.html";
+
+    return false;
+
+  }
+
+
+  const data = snapshot.data();
+
+
+  if (data.active !== true) {
+
+    await signOut(auth);
+
+    window.location.href = "admin-login.html";
+
+    return false;
+
+  }
+
+
+  $("adminEmail").textContent =
+    data.email ||
+    user.email ||
+    "Administrator";
+
+
+  return true;
+
+}
+
+
+/* =====================================================
+   LOAD COLLECTION COUNT
+===================================================== */
+
+async function loadCount(
+  collectionName,
+  elementId
+) {
+
+  try {
+
+    const snapshot =
+      await getCountFromServer(
+        collection(db, collectionName)
+      );
+
+
+    const count =
+      snapshot.data().count;
+
+
+    $(elementId).textContent =
+      count;
+
+
+    return count;
+
+  } catch (error) {
+
+    console.error(
+      "Count error:",
+      collectionName,
+      error
+    );
+
+
+    $(elementId).textContent =
+      "—";
+
+
+    return 0;
+
+  }
+
+}
+
+
+/* =====================================================
+   PRAYER REQUESTS
+===================================================== */
+
+async function loadPrayerCounts() {
+
+  try {
+
+    const totalSnapshot =
+      await getCountFromServer(
+        collection(db, "prayerRequests")
+      );
+
+
+    const total =
+      totalSnapshot.data().count;
+
+
+    $("prayerCount").textContent =
+      total;
+
+
+    const requestsSnapshot =
+      await getDocs(
+        collection(db, "prayerRequests")
+      );
+
+
+    let newCount = 0;
+
+
+    requestsSnapshot.forEach((item) => {
+
+      const data = item.data();
+
+      const status =
+        String(data.status || "").toLowerCase();
+
+
+      if (
+        !status ||
+        status === "new"
+      ) {
+
+        newCount++;
+
+      }
+
+    });
+
+
+    $("newPrayerCount").textContent =
+      newCount;
+
+
+  } catch (error) {
+
+    console.error(
+      "Prayer count error:",
+      error
+    );
+
+
+    $("prayerCount").textContent =
+      "—";
+
+    $("newPrayerCount").textContent =
+      "—";
+
+  }
+
+}
+
+
+/* =====================================================
+   CONTACT MESSAGES
+===================================================== */
+
+async function loadMessageCounts() {
+
+  try {
+
+    const snapshot =
+      await getDocs(
+        collection(db, "contactMessages")
+      );
+
+
+    const total =
+      snapshot.size;
+
+
+    let newMessages = 0;
+
+
+    snapshot.forEach((item) => {
+
+      const data = item.data();
+
+      const status =
+        String(data.status || "").toLowerCase();
+
+
+      if (
+        !status ||
+        status === "new"
+      ) {
+
+        newMessages++;
+
+      }
+
+    });
+
+
+    $("messagesCount").textContent =
+      total;
+
+
+    $("newMessagesCount").textContent =
+      newMessages;
+
+
+    const badge =
+      $("messageBadge");
+
+
+    if (newMessages > 0) {
+
+      badge.textContent =
+        newMessages;
+
+      badge.classList.remove("hidden");
+      badge.classList.add("flex");
+
+    } else {
+
+      badge.classList.add("hidden");
+      badge.classList.remove("flex");
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Message count error:",
+      error
+    );
+
+
+    $("messagesCount").textContent =
+      "—";
+
+    $("newMessagesCount").textContent =
+      "—";
+
+  }
+
+}
+
+
+/* =====================================================
+   LIVE STATUS
+===================================================== */
+
+async function loadLive() {
+
+  try {
+
+    const snapshot =
+      await getDoc(
+        doc(
+          db,
+          "live",
+          "current"
+        )
+      );
+
+
+    const status =
+      $("liveStatus");
+
+    const icon =
+      $("liveIcon");
+
+    const systemStatus =
+      $("systemLiveStatus");
+
+    const systemDot =
+      $("systemLiveDot");
+
+
+    if (!snapshot.exists()) {
+
+      status.textContent =
+        "Not configured";
+
+      icon.textContent =
+        "⚪";
+
+      systemStatus.textContent =
+        "Not configured";
+
+      systemDot.className =
+        "text-slate-400 text-sm font-bold";
+
+      return;
+
+    }
+
+
+    const data =
+      snapshot.data();
+
+
+    if (data.isLive === true) {
+
+      status.textContent =
+        "Live Now";
+
+      icon.textContent =
+        "🔴";
+
+      systemStatus.textContent =
+        "Live Now";
+
+      systemDot.className =
+        "text-red-600 text-sm font-bold";
+
+    } else {
+
+      status.textContent =
+        "Offline";
+
+      icon.textContent =
+        "⚫";
+
+      systemStatus.textContent =
+        "Offline";
+
+      systemDot.className =
+        "text-slate-400 text-sm font-bold";
+
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Live status error:",
+      error
+    );
+
+
+    $("liveStatus").textContent =
+      "Unavailable";
+
+    $("liveIcon").textContent =
+      "⚠️";
+
+    $("systemLiveStatus").textContent =
+      "Unavailable";
+
+    $("systemLiveDot").className =
+      "text-amber-500 text-sm font-bold";
+
+  }
+
+}
+
+
+/* =====================================================
+   INITIALIZE DASHBOARD
+===================================================== */
+
+onAuthStateChanged(
+  auth,
+  async (user) => {
+
+    if (!user) {
+
+      window.location.href =
+        "admin-login.html";
+
+      return;
+
+    }
+
+
+    try {
+
+      const isAdmin =
+        await verifyAdmin(user);
+
+
+      if (!isAdmin) {
+
+        return;
+
+      }
+
+
+      /*
+        Load everything after admin verification.
+      */
+
+      await Promise.all([
+
+        loadCount(
+          "events",
+          "eventsCount"
+        ),
+
+        loadCount(
+          "sermons",
+          "sermonsCount"
+        ),
+
+        loadCount(
+          "testimonies",
+          "testimoniesCount"
+        ),
+
+        loadPrayerCounts(),
+
+        loadMessageCounts(),
+
+        loadLive()
+
+      ]);
+
+    } catch (error) {
+
+      console.error(
+        "Dashboard error:",
+        error
+      );
+
+
+      try {
+
+        await signOut(auth);
+
+      } catch (_) {}
+
+
+      window.location.href =
+        "admin-login.html";
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+            </html>
