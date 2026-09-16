@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GracePoint Church | Welcome Home - Port Harcourt</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+ --primary:#0f172a;
+ --accent:#f59e0b;
+ --accent2:#fbbf24;
+ --light:#f8fafc;
+ --muted:#64748b;
+ --white:#ffffff;
+ --dark:#020617;
+ --radius:20px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--light);color:var(--primary);line-height:1.7;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-block;padding:14px 32px;border-radius:100px;font-weight:600;transition:.3s;cursor:pointer;border:none;font-size:16px}
+.btn-primary{background:var(--accent);color:var(--dark)}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 10px 20px rgba(245,158,11,.3)}
+.btn-outline{border:2px solid var(--white);color:var(--white);background:transparent}
+.btn-outline:hover{background:var(--white);color:var(--primary)}
+.btn-dark{background:var(--primary);color:white}
+.badge{display:inline-block;padding:6px 14px;background:#fef3c7;color:#92400e;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:.5px}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);padding:18px 0;transition:.3s}
+nav.scrolled{padding:12px 0;background:rgba(15,23,42,.95)}
+.nav-flex{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'Playfair Display';font-size:28px;color:white;font-weight:800}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:32px;align-items:center;color:white}
+.nav-links a{font-weight:500;opacity:.9;transition:.2s}
+.nav-links a:hover{color:var(--accent);opacity:1}
+.nav-links .btn{padding:10px 24px}
+.mobile-toggle{display:none;color:white;font-size:28px;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(rgba(2,6,23,.55),rgba(2,6,23,.85)),url('https://images.unsplash.com/photo-1436397543931-01c1a5b36c36?q=80&w=1920') center/cover;display:flex;align-items:center;color:white;padding-top:80px;position:relative}
+.hero-content{max-width:750px}
+.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.05;margin-bottom:24px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--accent2)}
+.hero p{font-size:20px;max-width:600px;opacity:.9;margin-bottom:32px;font-weight:300}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.stats-bar{background:var(--white);border-radius:20px;padding:28px 20px;display:flex;justify-content:space-around;margin-top:60px;box-shadow:0 20px 60px rgba(0,0,0,.15);color:var(--primary);flex-wrap:wrap;gap:20px}
+.stat{text-align:center;min-width:100px}
+.stat b{font-size:32px;display:block;color:var(--primary);font-family:'Playfair Display'}
+.stat span{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+
+/* SECTIONS */
+section{padding:110px 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 70px}
+.section-head h2{font-size:clamp(32px,4vw,52px);margin-bottom:16px}
+.section-head p{color:var(--muted);font-size:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+.card{background:white;border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,.05);transition:.35s;border:1px solid rgba(0,0,0,.04)}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.09)}
+.icon-box{width:64px;height:64px;background:#fef3c7;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:24px}
+.card h3{font-size:22px;margin-bottom:12px}
+.card p{color:var(--muted)}
+
+/* PASTOR */
+.pastor-section{background:var(--primary);color:white;overflow:hidden}
+.pastor-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pastor-img{border-radius:28px;overflow:hidden;position:relative}
+.pastor-img img{width:100%;height:640px;object-fit:cover;display:block}
+.pastor-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.6),transparent)}
+.service-time{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:22px 24px;margin-top:28px;display:flex;justify-content:space-between;backdrop-filter:blur(10px)}
+
+/* SERMONS */
+.sermon-player{background:var(--dark);border-radius:24px;padding:40px;color:white;display:grid;grid-template-columns:1.3fr .7fr;gap:40px;border:1px solid rgba(255,255,255,.08)}
+.progress{margin-top:24px;background:rgba(255,255,255,.12);border-radius:100px;height:6px;position:relative;overflow:hidden}
+.progress-fill{width:45%;background:var(--accent);height:100%;border-radius:100px}
+.sermon-list{display:grid;gap:14px}
+.sermon-item{display:flex;gap:14px;background:rgba(255,255,255,.06);padding:14px;border-radius:14px;border:1px solid rgba(255,255,255,.06);transition:.2s;cursor:pointer}
+.sermon-item:hover{background:rgba(255,255,255,.1)}
+.sermon-item img{width:64px;height:64px;border-radius:10px;object-fit:cover}
+
+/* EVENTS */
+.events-list{display:grid;gap:20px}
+.event-card{display:flex;background:white;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04);transition:.3s}
+.event-card:hover{transform:translateY(-4px)}
+.event-date{background:var(--primary);color:white;min-width:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center}
+.event-date span{font-size:13px;letter-spacing:2px;opacity:.7;text-transform:uppercase}
+.event-date b{font-size:36px;font-family:'Playfair Display';line-height:1}
+.event-body{padding:24px 28px;flex:1}
+.event-body h3{margin-bottom:8px}
+.event-body small{display:inline-block;margin-top:10px;color:var(--muted);background:#f1f5f9;padding:6px 12px;border-radius:100px}
+
+/* GIVING */
+.giving-box{background:linear-gradient(135deg,var(--primary) 0%,#1e293b 100%);border-radius:28px;padding:70px 40px;color:white;text-align:center;position:relative;overflow:hidden}
+.giving-box::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,var(--accent) 0%,transparent 70%);opacity:.15;top:-100px;right:-100px}
+
+/* GALLERY */
+.gallery{columns:3;column-gap:18px}
+.gallery img{width:100%;border-radius:18px;margin-bottom:18px;break-inside:avoid;transition:.3s;display:block}
+.gallery img:hover{transform:scale(1.02)}
+
+/* FORM */
+form input,form textarea,form select{width:100%;padding:16px 20px;border-radius:12px;border:1.5px solid #e2e8f0;margin-bottom:16px;font-family:inherit;font-size:16px;transition:.2s;background:white}
+form input:focus,form textarea:focus,form select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(245,158,11,.15)}
+
+/* FOOTER */
+footer{background:var(--dark);color:#94a3b8;padding:80px 0 40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.6fr;gap:50px}
+footer h4{color:white;margin-bottom:22px;font-size:18px}
+footer a{display:block;margin-bottom:10px;transition:.2s}
+footer a:hover{color:white}
+.copy{margin-top:60px;padding-top:30px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:14px}
+
+@media(max-width:980px){
+ .grid-3,.grid-2,.pastor-grid,.footer-grid,.sermon-player{grid-template-columns:1fr}
+ .nav-links{display:none}
+ .mobile-toggle{display:block}
+ .gallery{columns:2}
+ .hero h1{font-size:44px}
+ section{padding:70px 0}
+ .stats-bar{gap:10px}
+}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+<div class="container nav-flex">
+<div class="logo">Grace<span>Point</span></div>
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#sermons">/Sermons</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#give">Give</a></li>
+<li><a href="#contact" class="btn btn-primary" style="color:black">Visit Us</a></li>
+</ul>
+<div class="mobile-toggle" id="mobileToggle">☰</div>
+</div>
+</nav>
+
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+<span class="badge">🔴 LIVE SUNDAY 9AM & 11AM • PORT HARCOURT</span>
+<h1>Welcome Home.<br><em>Faith Lives Here.</em></h1>
+<p>We are a family of believers passionate about Jesus, community, and seeing Port Harcourt transformed by God's love. Come as you are.</p>
+<div class="hero-btns">
+<a href="#services" class="btn btn-primary">Plan Your Visit →</a>
+<a href="https://youtube.com" target="_blank" class="btn btn-outline">▶ Watch Live</a>
+</div>
+</div>
+<div class="stats-bar">
+<div class="stat"><b id="memberCount">2,543+</b><span>Members</span></div>
+<div class="stat"><b>15 Years</b><span>Of Grace</span></div>
+<div class="stat"><b>24</b><span>Ministries</span></div>
+<div class="stat"><b>Every Sunday</b><span>9AM & 11AM</span></div>
+</div>
+</div>
+</section>
+<!-- ABOUT -->
+<section id="about">
+<div class="container">
+<div class="section-head">
+<span class="badge">WHO WE ARE</span>
+<h2>We Exist to Know Jesus & Make Him Known</h2>
+<p>For 15 years, GracePoint has been a place of hope, healing, and purpose for families across Rivers State. We are not perfect, but we are family.</p>
+</div>
+<div class="grid-3">
+<div class="card">
+<div class="icon-box">✝️</div>
+<h3>Our Faith</h3>
+<p>Centered on the Word, led by the Spirit, grounded in love. We believe Jesus still saves, heals, and restores today. The Bible is our final authority.</p>
+<ul style="margin-top:16px;color:#334155">
+<li>✓ Christ-Centered Preaching</li>
+<li>✓ Spirit-Empowered Worship</li>
+<li>✓ Bible-Based Doctrine</li>
+</ul>
+</div>
+<div class="card">
+<div class="icon-box">🤝</div>
+<h3>Our Family</h3>
+<p>More than a church, we are family. From children to elders, everyone finds belonging and purpose here. No one stands alone at GracePoint.</p>
+<ul style="margin-top:16px;color:#334155">
+<li>✓ GP Kids (Ages 2-12)</li>
+<li>✓ Tribe Teens</li>
+<li>✓ Connect Groups City-Wide</li>
+</ul>
+</div>
+<div class="card">
+<div class="icon-box">🌍</div>
+<h3>Our Mission</h3>
+<p>Local outreach, city transformation, and global missions. We are called to serve Port Harcourt, reach Nigeria, and touch the nations.</p>
+<ul style="margin-top:16px;color:#334155">
+<li>✓ Street Evangelism</li>
+<li>✓ Prison & Hospital Outreach</li>
+<li>✓ Community Development</li>
+</ul>
+</div>
+</div>
+
+<div class="grid-3" style="margin-top:28
+<!-- SERMONS -->
+<section id="sermons" style="background:white">
+<div class="container">
+<div class="section-head">
+<span class="badge">MESSAGES</span>
+<h2>Latest Messages</h2>
+<p>Missed a service? Catch up on life-changing messages from our pulpit. Available on YouTube, Spotify, and Apple Podcasts.</p>
+</div>
+
+<div class="sermon-player">
+<div>
+<span style="background:var(--accent);color:black;padding:6px 14px;border-radius:100px;font-size:11px;font-weight:800;letter-spacing:1px">LATEST MESSAGE • SEP 14</span>
+<h3 style="font-size:38px;margin:18px 0;line-height:1.1">The Grace That Keeps You</h3>
+<p style="opacity:.7;font-size:16px">Pastor David Obi • Series: Unshakable • 58 mins</p>
+
+<div class="progress"><div class="progress-fill"></div></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;opacity:.6;margin-top:8px">
+<span>24:32</span><span>58:00</span>
+</div>
+
+<div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+<button class="btn btn-primary" onclick="showToast('Playing sermon...')">▶ Play Now</button>
+<button class="btn btn-outline" onclick="showToast('Download started')">⬇ Download</button>
+<button class="btn btn-outline" onclick="showToast('Link copied!')" style="padding:14px 20px">🔗 Share</button>
+</div>
+
+<div style="margin-top:32px;display:flex;gap:20px;font
+<!-- GALLERY -->
+<section style="background:white">
+<div class="container">
+<div class="section-head">
+<span class="badge">FAMILY ALBUM</span>
+<h2>Life at GracePoint</h2>
+<p>We don't just do church, we do life together. Sundays, outreaches, weddings, dedications — family moments.</p>
+</div>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-15116327648-9bca21f2a6b5?q=80&w=600" alt="Worship">
+<img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=600" alt="Community">
+<img src="https://images.unsplash.com/photo-1507692049790-de58227181d0?q=80&w=600" alt="Church">
+<img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=600" alt="Concert">
+<img src="https://images.unsplash.com/photo-1516450360452-9312abbf6f7e?q=80&w=600" alt="Praise">
+<img src="https://images.unsplash.com/photo-1511795409834
