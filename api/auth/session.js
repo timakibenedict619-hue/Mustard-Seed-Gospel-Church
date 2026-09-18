@@ -1,11 +1,10 @@
 import { createRemoteJWKSet, jwtVerify, SignJWT } from "jose";
 
 const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
-
+const ADMIN_UIDS = process.env.ADMIN_UIDS;
 const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET;
 
 const SESSION_COOKIE = "__session";
-
 const SESSION_DURATION = 5 * 24 * 60 * 60; // 5 days
 
 const firebaseKeys = createRemoteJWKSet(
@@ -24,11 +23,15 @@ export default async function handler(req, res) {
 
   try {
     if (!FIREBASE_PROJECT_ID) {
-      throw new Error("FIREBASE_PROJECT_ID is not configured.");
+      throw new Error("FIREBASE_PROJECT_ID is missing.");
+    }
+
+    if (!ADMIN_UIDS) {
+      throw new Error("ADMIN_UIDS is missing.");
     }
 
     if (!SESSION_SECRET) {
-      throw new Error("ADMIN_SESSION_SECRET is not configured.");
+      throw new Error("ADMIN_SESSION_SECRET is missing.");
     }
 
     const { idToken } = req.body || {};
@@ -40,7 +43,7 @@ export default async function handler(req, res) {
       });
     }
 
-    // Verify Firebase ID token directly with Google's public keys
+    // Verify the Firebase ID token
     const { payload } = await jwtVerify(idToken, firebaseKeys, {
       issuer: `https://securetoken.google.com/${FIREBASE_PROJECT_ID}`,
       audience: FIREBASE_PROJECT_ID
@@ -55,41 +58,24 @@ export default async function handler(req, res) {
       });
     }
 
-    /*
-     * IMPORTANT:
-     * We verify that the authenticated Firebase account
-     * is an administrator using the Firebase REST API.
-     */
+    // Check whether this UID is an administrator
+    const allowedAdmins = ADMIN_UIDS
+      .split(",")
+      .map(uid => uid.trim())
+      .filter(Boolean);
 
-    const firestoreUrl =
-      `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}` +
-      `/databases/(default)/documents/admins/${encodeURIComponent(uid)}`;
-
-    const firestoreResponse = await fetch(firestoreUrl);
-
-    if (!firestoreResponse.ok) {
+    if (!allowedAdmins.includes(uid)) {
       return res.status(403).json({
         success: false,
         message: "This account is not registered as an administrator."
       });
     }
 
-    const adminDocument = await firestoreResponse.json();
-
-    const activeField = adminDocument.fields?.active?.booleanValue;
-
-    if (activeField !== true) {
-      return res.status(403).json({
-        success: false,
-        message: "This administrator account is inactive."
-      });
-    }
-
-    // Create our own signed admin session
+    // Create secure signed session
     const secretKey = new TextEncoder().encode(SESSION_SECRET);
 
     const sessionToken = await new SignJWT({
-      uid,
+      uid: uid,
       admin: true
     })
       .setProtectedHeader({
