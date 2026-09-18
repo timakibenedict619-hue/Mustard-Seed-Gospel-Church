@@ -1,28 +1,10 @@
-import { initializeApp, cert, getApps } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
-import { getFirestore } from "firebase-admin/firestore";
-import fs from "fs";
-import path from "path";
+import { jwtVerify } from "jose";
 
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
-    })
-  });
-}
-
-const adminAuth = getAuth();
-const adminDb = getFirestore();
+const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
+const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET;
 
 const SESSION_COOKIE = "__session";
 
-/*
-  Only these pages can be served through the protected
-  admin system.
-*/
 const ALLOWED_ADMIN_PAGES = new Set([
   "admin-dashboard.html",
   "admin-events.html",
@@ -42,9 +24,7 @@ const ALLOWED_ADMIN_PAGES = new Set([
 function getCookie(req, name) {
   const cookieHeader = req.headers.cookie || "";
 
-  const cookies = cookieHeader.split(";");
-
-  for (const cookie of cookies) {
+  for (const cookie of cookieHeader.split(";")) {
     const [key, ...valueParts] = cookie.trim().split("=");
 
     if (key === name) {
@@ -57,22 +37,24 @@ function getCookie(req, name) {
 
 function redirectToLogin(res) {
   res.statusCode = 302;
+
   res.setHeader("Location", "/admin-login.html");
+
   res.setHeader(
     "Cache-Control",
     "no-store, no-cache, must-revalidate, private"
   );
+
   res.end();
 }
 
 export default async function handler(req, res) {
   try {
-    /*
-      Get the requested admin page from the URL.
+    if (!FIREBASE_PROJECT_ID || !SESSION_SECRET) {
+      console.error("Required environment variables are missing.");
+      return redirectToLogin(res);
+    }
 
-      Example:
-      /api/admin?path=admin-dashboard.html
-    */
     const requestedPage = req.query?.path;
 
     if (
@@ -85,85 +67,76 @@ export default async function handler(req, res) {
       return res.end("Page not found.");
     }
 
-    /*
-      Get the secure HTTP-only session cookie.
-    */
-    const sessionCookie = getCookie(req, SESSION_COOKIE);
+    const sessionToken = getCookie(req, SESSION_COOKIE);
 
-    if (!sessionCookie) {
+    if (!sessionToken) {
       return redirectToLogin(res);
     }
 
-    /*
-      Verify the Firebase session.
-      checkRevoked = true means revoked sessions
-      are also rejected.
-    */
-    let decodedClaims;
+    const secretKey = new TextEncoder().encode(SESSION_SECRET);
+
+    let payload;
 
     try {
-      decodedClaims = await adminAuth.verifySessionCookie(
-        sessionCookie,
-        true
-      );
+      const verified = await jwtVerify(sessionToken, secretKey, {
+        algorithms: ["HS256"]
+      });
+
+      payload = verified.payload;
     } catch (error) {
       console.error("Invalid admin session:", error);
       return redirectToLogin(res);
     }
 
-    const uid = decodedClaims.uid;
-
-    /*
-      Verify that the authenticated Firebase user
-      is actually registered as an active admin.
-    */
-    const adminRef = adminDb.collection("admins").doc(uid);
-    const adminSnap = await adminRef.get();
-
-    if (!adminSnap.exists) {
-      return redirectToLogin(res);
-    }
-
-    const adminData = adminSnap.data();
-
-    if (adminData.active !== true) {
+    if (payload.admin !== true || !payload.uid) {
       return redirectToLogin(res);
     }
 
     /*
-      The user is authenticated and is an active admin.
+     * Re-check that the administrator account is still active.
+     * This prevents an account that has been disabled in Firestore
+     * from continuing to access the protected pages.
+     */
 
-      Now, and only now, read the requested HTML file.
-    */
-    const filePath = path.join(process.cwd(), requestedPage);
+    const firestoreUrl =
+      `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}` +
+      `/databases/(default)/documents/admins/${encodeURIComponent(payload.uid)}`;
 
-    /*
-      Extra protection against path traversal.
-    */
-    const projectRoot = path.resolve(process.cwd());
-    const resolvedPath = path.resolve(filePath);
+    const firestoreResponse = await fetch(firestoreUrl);
 
-    if (!resolvedPath.startsWith(projectRoot + path.sep)) {
-      res.statusCode = 403;
-      res.setHeader("Cache-Control", "no-store");
-      return res.end("Forbidden.");
+    if (!firestoreResponse.ok) {
+      return redirectToLogin(res);
     }
 
-    if (!fs.existsSync(resolvedPath)) {
-      res.statusCode = 404;
-      res.setHeader("Cache-Control", "no-store");
-      return res.end("Admin page not found.");
+    const adminDocument = await firestoreResponse.json();
+
+    const activeField =
+      adminDocument.fields?.active?.booleanValue;
+
+    if (activeField !== true) {
+      return redirectToLogin(res);
     }
 
-    const html = fs.readFileSync(resolvedPath, "utf8");
-
     /*
-      Never allow an authenticated admin page
-      to be cached publicly.
-    */
+     * Read the requested HTML page.
+     */
+
+    const fs = await import("fs/promises");
+    const path = await import("path");
+
+    const filePath = path.join(
+      process.cwd(),
+      requestedPage
+    );
+
+    const html = await fs.readFile(filePath, "utf8");
+
     res.statusCode = 200;
 
-    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.setHeader(
+      "Content-Type",
+      "text/html; charset=utf-8"
+    );
 
     res.setHeader(
       "Cache-Control",
@@ -171,7 +144,6 @@ export default async function handler(req, res) {
     );
 
     res.setHeader("Pragma", "no-cache");
-
     res.setHeader("Expires", "0");
 
     return res.end(html);
@@ -179,10 +151,6 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Admin page error:", error);
 
-    /*
-      Do not expose internal server errors or
-      Firebase information to the visitor.
-    */
     return redirectToLogin(res);
   }
 }
