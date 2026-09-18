@@ -2,7 +2,11 @@
   "name": "mustard-seed-gospel-church",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
-    "firebase-admin": "latest"
+    "firebase-admin": "14.3.0"
   }
 }
