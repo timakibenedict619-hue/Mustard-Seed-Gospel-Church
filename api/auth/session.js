@@ -1,25 +1,20 @@
-import { initializeApp, cert, getApps } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
-import { getFirestore } from "firebase-admin/firestore";
+import { createRemoteJWKSet, jwtVerify, SignJWT } from "jose";
 
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
-    })
-  });
-}
+const FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID;
 
-const adminAuth = getAuth();
-const adminDb = getFirestore();
+const SESSION_SECRET = process.env.ADMIN_SESSION_SECRET;
 
 const SESSION_COOKIE = "__session";
-const SESSION_DURATION = 5 * 24 * 60 * 60 * 1000; // 5 days
+
+const SESSION_DURATION = 5 * 24 * 60 * 60; // 5 days
+
+const firebaseKeys = createRemoteJWKSet(
+  new URL(
+    "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
+  )
+);
 
 export default async function handler(req, res) {
-  // Only accept POST requests
   if (req.method !== "POST") {
     return res.status(405).json({
       success: false,
@@ -28,6 +23,14 @@ export default async function handler(req, res) {
   }
 
   try {
+    if (!FIREBASE_PROJECT_ID) {
+      throw new Error("FIREBASE_PROJECT_ID is not configured.");
+    }
+
+    if (!SESSION_SECRET) {
+      throw new Error("ADMIN_SESSION_SECRET is not configured.");
+    }
+
     const { idToken } = req.body || {};
 
     if (!idToken || typeof idToken !== "string") {
@@ -37,42 +40,69 @@ export default async function handler(req, res) {
       });
     }
 
-    // Verify the Firebase login token
-    const decodedToken = await adminAuth.verifyIdToken(idToken);
+    // Verify Firebase ID token directly with Google's public keys
+    const { payload } = await jwtVerify(idToken, firebaseKeys, {
+      issuer: `https://securetoken.google.com/${FIREBASE_PROJECT_ID}`,
+      audience: FIREBASE_PROJECT_ID
+    });
 
-    const uid = decodedToken.uid;
+    const uid = payload.user_id || payload.sub;
 
-    // Check whether this Firebase account is registered as an admin
-    const adminRef = adminDb.collection("admins").doc(uid);
-    const adminSnap = await adminRef.get();
+    if (!uid) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid Firebase account."
+      });
+    }
 
-    if (!adminSnap.exists) {
+    /*
+     * IMPORTANT:
+     * We verify that the authenticated Firebase account
+     * is an administrator using the Firebase REST API.
+     */
+
+    const firestoreUrl =
+      `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT_ID}` +
+      `/databases/(default)/documents/admins/${encodeURIComponent(uid)}`;
+
+    const firestoreResponse = await fetch(firestoreUrl);
+
+    if (!firestoreResponse.ok) {
       return res.status(403).json({
         success: false,
         message: "This account is not registered as an administrator."
       });
     }
 
-    const adminData = adminSnap.data();
+    const adminDocument = await firestoreResponse.json();
 
-    if (adminData.active !== true) {
+    const activeField = adminDocument.fields?.active?.booleanValue;
+
+    if (activeField !== true) {
       return res.status(403).json({
         success: false,
         message: "This administrator account is inactive."
       });
     }
 
-    // Create a secure Firebase session cookie
-    const sessionCookie = await adminAuth.createSessionCookie(idToken, {
-      expiresIn: SESSION_DURATION
-    });
+    // Create our own signed admin session
+    const secretKey = new TextEncoder().encode(SESSION_SECRET);
 
-    // Store the session in an HTTP-only cookie
+    const sessionToken = await new SignJWT({
+      uid,
+      admin: true
+    })
+      .setProtectedHeader({
+        alg: "HS256",
+        typ: "JWT"
+      })
+      .setIssuedAt()
+      .setExpirationTime(`${SESSION_DURATION}s`)
+      .sign(secretKey);
+
     res.setHeader(
       "Set-Cookie",
-      `${SESSION_COOKIE}=${sessionCookie}; Max-Age=${Math.floor(
-        SESSION_DURATION / 1000
-      )}; Path=/; HttpOnly; Secure; SameSite=Lax`
+      `${SESSION_COOKIE}=${sessionToken}; Max-Age=${SESSION_DURATION}; Path=/; HttpOnly; Secure; SameSite=Lax`
     );
 
     return res.status(200).json({
@@ -83,9 +113,9 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("Admin session error:", error);
 
-    return res.status(401).json({
+    return res.status(500).json({
       success: false,
-      message: "Unable to create admin session."
+      message: "Unable to create secure administrator session."
     });
   }
-                                        }
+}
