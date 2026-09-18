@@ -1,5 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+
+  "routes": [
+    {
+      "src": "^/(admin-(?!login(?:\\.html)?$)[^/]+?)(?:\\.html)?$",
+      "dest": "/api/admin?path=$1.html"
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
 }
