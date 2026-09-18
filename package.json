@@ -1,0 +1,8 @@
+{
+  "name": "mustard-seed-gospel-church",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "firebase-admin": "latest"
+  }
+}
